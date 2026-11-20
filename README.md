@@ -4,7 +4,7 @@
 
 **Team Intuition · Genesis Hackathon 2026 (FinTech Case: "RL environments for post-training financial-audit models")**
 
-👋 **Hi from Team Intuition!** We are a high school student team participating in the **Genesis Hackathon 2026**. For this FinTech case, we designed and built a complete, reproducible Reinforcement Learning (RL) practice world for post-training and evaluating AI financial auditors. 
+We are **Team Intuition**. Here is our solution: a complete, reproducible Reinforcement Learning (RL) practice world for post-training and evaluating AI financial auditors. 
 
 In financial auditing, AI models cannot simply guess or hallucinate text: every finding must be backed by concrete mathematical evidence, and false accusations are just as damaging as missed errors. We built a gym-compatible environment where a seeded generator writes a synthetic company's books for a reporting period, injects subtle accounting errors alongside realistic decoys, lets an AI agent investigate via 5 narrow tools, and scores findings against ground truth using a strict one-to-one bipartite matching algorithm and the case's standardized reward function.
 
@@ -65,9 +65,9 @@ Working directory is the repository root (`/app` inside the container). No netwo
 
 ---
 
-## 🧠 How It Works: High-School Intuition
+## 🧠 How It Works
 
-As high school students tackling RL and financial auditing, we broke the problem down into 5 intuitive layers:
+We structured the solution into 5 core layers:
 
 ```
 Seed + Config ──► Latent Business Simulation ──► Double-Entry Clean Books

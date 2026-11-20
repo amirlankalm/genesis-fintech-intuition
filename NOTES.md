@@ -1,14 +1,14 @@
 # Team Intuition: Engineering Workbook & Technical Notes
 
 **Genesis Hackathon 2026 · FinTech Case: "RL environments for post-training financial-audit models"**
-**Team:** Intuition (High School Division)  
+**Team:** Intuition  
 **Timeline:** 19–20 November 2026  
 
 ---
 
 ## 1. Case Overview & Our Approach
 
-As high school students tackling the intersection of Reinforcement Learning and FinTech, our goal was to build an industrial-strength, Gym-compatible practice environment for post-training AI financial auditors. 
+We are **Team Intuition**. For this Genesis Hackathon FinTech case, our goal was to build an industrial-strength, Gym-compatible practice environment for post-training AI financial auditors. 
 
 In financial auditing, large language models cannot simply generate open-ended prose or guess. A valid audit finding must identify the exact transaction, calculate the precise discrepancy amount, and link the definitive primary source documents (invoices, bank lines, receipts) as proof. Furthermore, false alarms in audit are toxic—every false accusation wastes valuable investigator time.
 
