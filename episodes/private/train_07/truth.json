@@ -1,0 +1,54 @@
+{
+  "issues": [
+    {
+      "issue_id": "truth-1ea7905c2c63",
+      "type": "duplicate_invoice",
+      "affected_ids": [
+        "I6PAN5Y",
+        "IPHMRV2"
+      ],
+      "expected_amount_minor": 74400,
+      "currency": "JPY",
+      "acceptable_evidence_sets": [
+        [
+          "DU826SP",
+          "DZKNHB3"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-a32dcae556f1",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "IUH3F82",
+        "PWDRMD3"
+      ],
+      "expected_amount_minor": 290000,
+      "currency": "JPY",
+      "acceptable_evidence_sets": [
+        [
+          "D7W6CTP",
+          "DH8988B",
+          "LECDJJE",
+          "LEPH7SZ"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-13c9e346ad59",
+      "type": "fx_mismatch",
+      "affected_ids": [
+        "PWDRMD3"
+      ],
+      "expected_amount_minor": 1644156,
+      "currency": "JPY",
+      "acceptable_evidence_sets": [
+        [
+          "2026-08-10|USD|JPY",
+          "D7W6CTP",
+          "LECDJJE"
+        ]
+      ]
+    }
+  ]
+}

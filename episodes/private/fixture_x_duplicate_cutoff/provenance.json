@@ -1,0 +1,125 @@
+{
+  "builder": "case-builder/1",
+  "variant": "fixture_x_duplicate_cutoff",
+  "canary": "canary-b7e610957525aedd",
+  "injections": [
+    {
+      "injection_id": "inj-1",
+      "family": "duplicate_invoice",
+      "error": {
+        "family": "duplicate_invoice",
+        "invoice_id": "I11",
+        "copy": {
+          "invoice_id": "I35",
+          "doc_id": "D60",
+          "posted_at": "2026-10-31T22:45:00+05:00"
+        }
+      },
+      "expected": {
+        "type": "duplicate_invoice",
+        "affected_ids": [
+          "I11",
+          "I35"
+        ],
+        "amount_minor": 120000,
+        "currency": "KZT"
+      },
+      "causal_note": "The same invoice was keyed in a second time and given a new number.",
+      "changes": [
+        {
+          "op": "insert",
+          "table": "invoices",
+          "record": {
+            "doc_id": "D60",
+            "invoice_id": "I35",
+            "entity_id": "E7",
+            "issued_at": "2026-10-31T22:00:00+05:00",
+            "due_at": "2026-11-14T22:00:00+05:00",
+            "currency": "KZT",
+            "total_minor": 120000,
+            "line_items": [
+              {
+                "description": "Lab access pass",
+                "quantity": 4,
+                "unit_price_minor": 30000,
+                "amount_minor": 120000
+              }
+            ]
+          }
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LEUWJC8",
+            "timestamp": "2026-10-31T22:45:00+05:00",
+            "account": "accounts_receivable",
+            "debit_minor": 120000,
+            "credit_minor": 0,
+            "currency": "KZT",
+            "entity_id": "E7",
+            "invoice_id": "I35",
+            "payment_id": null
+          }
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LFKDJYC",
+            "timestamp": "2026-10-31T22:45:00+05:00",
+            "account": "revenue",
+            "debit_minor": 0,
+            "credit_minor": 120000,
+            "currency": "KZT",
+            "entity_id": "E7",
+            "invoice_id": "I35",
+            "payment_id": null
+          }
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-2",
+      "family": "cutoff",
+      "error": {
+        "family": "cutoff",
+        "invoice_id": "I35",
+        "posted_at": "2026-11-01T08:30:00+05:00"
+      },
+      "expected": {
+        "type": "cutoff",
+        "affected_ids": [
+          "I35"
+        ],
+        "amount_minor": 120000,
+        "currency": "KZT"
+      },
+      "causal_note": "The invoice was posted with a date on the other side of the period boundary.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LEUWJC8",
+          "field": "timestamp",
+          "before": "2026-10-31T22:45:00+05:00",
+          "after": "2026-11-01T08:30:00+05:00"
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LFKDJYC",
+          "field": "timestamp",
+          "before": "2026-10-31T22:45:00+05:00",
+          "after": "2026-11-01T08:30:00+05:00"
+        }
+      ]
+    }
+  ],
+  "status": "interaction",
+  "families": [
+    "cutoff",
+    "duplicate_invoice"
+  ],
+  "split": "fixture"
+}

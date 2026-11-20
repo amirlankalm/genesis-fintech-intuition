@@ -1,0 +1,249 @@
+{
+  "builder": "case-builder/1",
+  "variant": "train_06",
+  "canary": "canary-b7c3e0c8eb5a3db5",
+  "injections": [
+    {
+      "injection_id": "inj-1",
+      "family": "duplicate_invoice",
+      "error": {
+        "family": "duplicate_invoice",
+        "invoice_id": "I4962GU",
+        "copy": {
+          "invoice_id": "IZZQT9D",
+          "doc_id": "D3VKDW4",
+          "posted_at": "2026-05-30T04:45:00+05:00",
+          "issued_at": "2026-05-29T07:30:00-05:00",
+          "due_at": "2026-06-05T07:30:00-05:00"
+        }
+      },
+      "expected": {
+        "type": "duplicate_invoice",
+        "affected_ids": [
+          "I4962GU",
+          "IZZQT9D"
+        ],
+        "amount_minor": 108000000,
+        "currency": "KZT"
+      },
+      "causal_note": "The same invoice was keyed in a second time and given a new number.",
+      "changes": [
+        {
+          "op": "insert",
+          "table": "invoices",
+          "record": {
+            "doc_id": "D3VKDW4",
+            "invoice_id": "IZZQT9D",
+            "entity_id": "EJA747G",
+            "issued_at": "2026-05-29T07:30:00-05:00",
+            "due_at": "2026-06-05T07:30:00-05:00",
+            "currency": "KZT",
+            "total_minor": 108000000,
+            "line_items": [
+              {
+                "description": "Data-literacy course seat",
+                "quantity": 9,
+                "unit_price_minor": 12000000,
+                "amount_minor": 108000000
+              }
+            ]
+          }
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "L7FFSHZ",
+            "timestamp": "2026-05-30T04:45:00+05:00",
+            "account": "revenue",
+            "debit_minor": 0,
+            "credit_minor": 108000000,
+            "currency": "KZT",
+            "entity_id": "EJA747G",
+            "invoice_id": "IZZQT9D",
+            "payment_id": null
+          }
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LHTC7PG",
+            "timestamp": "2026-05-30T04:45:00+05:00",
+            "account": "accounts_receivable",
+            "debit_minor": 108000000,
+            "credit_minor": 0,
+            "currency": "KZT",
+            "entity_id": "EJA747G",
+            "invoice_id": "IZZQT9D",
+            "payment_id": null
+          }
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-2",
+      "family": "payment_allocation",
+      "error": {
+        "family": "payment_allocation",
+        "payment_id": "PABS7AY",
+        "invoice_id": "IT2PD39",
+        "applied_minor": 44000000
+      },
+      "expected": {
+        "type": "payment_allocation",
+        "affected_ids": [
+          "IT2PD39",
+          "PABS7AY"
+        ],
+        "amount_minor": 58600000,
+        "currency": "KZT"
+      },
+      "causal_note": "The clerk applied less of the receipt to the invoice than the policy requires and left the rest unapplied.",
+      "changes": [
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "L5EUQB9",
+            "timestamp": "2026-05-17T21:50:00+05:00",
+            "account": "unapplied_receipts",
+            "debit_minor": 0,
+            "credit_minor": 58600000,
+            "currency": "KZT",
+            "entity_id": "ENDCE4V",
+            "invoice_id": null,
+            "payment_id": "PABS7AY"
+          }
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LBSKGJ2",
+          "field": "credit_minor",
+          "before": 102600000,
+          "after": 44000000
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-3",
+      "family": "fx_mismatch",
+      "error": {
+        "family": "fx_mismatch",
+        "payment_id": "P4VN299",
+        "rate": "543.08",
+        "rate_source": "2026-05-03"
+      },
+      "expected": {
+        "type": "fx_mismatch",
+        "affected_ids": [
+          "P4VN299"
+        ],
+        "amount_minor": 370179,
+        "currency": "KZT"
+      },
+      "causal_note": "The clerk translated the receipt at a rate the policy does not select.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "L7HPSXH",
+          "field": "credit_minor",
+          "before": 169999991,
+          "after": 170000000
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LEG8CDB",
+          "field": "debit_minor",
+          "before": 169999991,
+          "after": 170370170
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LUMS6EJ",
+            "timestamp": "2026-05-01T00:52:00+05:00",
+            "account": "unapplied_receipts",
+            "debit_minor": 0,
+            "credit_minor": 370170,
+            "currency": "KZT",
+            "entity_id": "E8TU577",
+            "invoice_id": null,
+            "payment_id": "P4VN299"
+          }
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-4",
+      "family": "cutoff",
+      "error": {
+        "family": "cutoff",
+        "invoice_id": "IFW5P8B",
+        "posted_at": "2026-04-28T20:26:00+05:00"
+      },
+      "expected": {
+        "type": "cutoff",
+        "affected_ids": [
+          "IFW5P8B"
+        ],
+        "amount_minor": 202500000,
+        "currency": "KZT"
+      },
+      "causal_note": "The invoice was posted with a date on the other side of the period boundary.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LDADWV8",
+          "field": "timestamp",
+          "before": "2026-05-01T12:24:00+05:00",
+          "after": "2026-04-28T20:26:00+05:00"
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LK45EFF",
+          "field": "timestamp",
+          "before": "2026-05-01T12:24:00+05:00",
+          "after": "2026-04-28T20:26:00+05:00"
+        }
+      ]
+    }
+  ],
+  "generator": {
+    "seed": 106,
+    "config": {
+      "base_currency": "KZT",
+      "foreign_currencies": [
+        "USD",
+        "EUR"
+      ],
+      "timezone": "Asia/Almaty",
+      "period": "2026-05",
+      "invoices": 70,
+      "ledger_rows": 800,
+      "head_days": 6,
+      "tail_days": 7
+    },
+    "inject": {
+      "duplicate_invoice": 1,
+      "payment_allocation": 1,
+      "fx_mismatch": 1,
+      "cutoff": 1,
+      "interactions": []
+    }
+  },
+  "status": "faulty",
+  "families": [
+    "cutoff",
+    "duplicate_invoice",
+    "fx_mismatch",
+    "payment_allocation"
+  ],
+  "split": "train"
+}

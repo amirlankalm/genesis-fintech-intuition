@@ -1,0 +1,36 @@
+{
+  "issues": [
+    {
+      "issue_id": "truth-853b46922946",
+      "type": "duplicate_invoice",
+      "affected_ids": [
+        "I322M53",
+        "IF43SXQ"
+      ],
+      "expected_amount_minor": 78000,
+      "currency": "JPY",
+      "acceptable_evidence_sets": [
+        [
+          "D3RXV9K",
+          "DU98PPK"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-fe271e18ba07",
+      "type": "duplicate_invoice",
+      "affected_ids": [
+        "IQBA7HH",
+        "IXHG7GK"
+      ],
+      "expected_amount_minor": 124000,
+      "currency": "JPY",
+      "acceptable_evidence_sets": [
+        [
+          "DEZ95P6",
+          "DS2TK36"
+        ]
+      ]
+    }
+  ]
+}

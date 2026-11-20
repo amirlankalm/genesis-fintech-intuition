@@ -1,0 +1,19 @@
+{
+  "issues": [
+    {
+      "issue_id": "truth-cb385d915f36",
+      "type": "cutoff",
+      "affected_ids": [
+        "I11"
+      ],
+      "expected_amount_minor": 120000,
+      "currency": "KZT",
+      "acceptable_evidence_sets": [
+        [
+          "D29",
+          "LKDVRBH"
+        ]
+      ]
+    }
+  ]
+}

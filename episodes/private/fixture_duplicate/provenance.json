@@ -1,0 +1,88 @@
+{
+  "builder": "case-builder/1",
+  "variant": "fixture_duplicate",
+  "canary": "canary-a436cc07850bd209",
+  "injections": [
+    {
+      "injection_id": "inj-1",
+      "family": "duplicate_invoice",
+      "error": {
+        "family": "duplicate_invoice",
+        "invoice_id": "I26",
+        "copy": {
+          "invoice_id": "I33",
+          "doc_id": "D58",
+          "posted_at": "2026-10-14T11:05:00+05:00"
+        }
+      },
+      "expected": {
+        "type": "duplicate_invoice",
+        "affected_ids": [
+          "I26",
+          "I33"
+        ],
+        "amount_minor": 80000,
+        "currency": "KZT"
+      },
+      "causal_note": "The same invoice was keyed in a second time and given a new number.",
+      "changes": [
+        {
+          "op": "insert",
+          "table": "invoices",
+          "record": {
+            "doc_id": "D58",
+            "invoice_id": "I33",
+            "entity_id": "E3",
+            "issued_at": "2026-10-14T09:00:00+05:00",
+            "due_at": "2026-10-21T09:00:00+05:00",
+            "currency": "KZT",
+            "total_minor": 80000,
+            "line_items": [
+              {
+                "description": "Support plan week",
+                "quantity": 1,
+                "unit_price_minor": 80000,
+                "amount_minor": 80000
+              }
+            ]
+          }
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LNJBCJ6",
+            "timestamp": "2026-10-14T11:05:00+05:00",
+            "account": "revenue",
+            "debit_minor": 0,
+            "credit_minor": 80000,
+            "currency": "KZT",
+            "entity_id": "E3",
+            "invoice_id": "I33",
+            "payment_id": null
+          }
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LWZRQS9",
+            "timestamp": "2026-10-14T11:05:00+05:00",
+            "account": "accounts_receivable",
+            "debit_minor": 80000,
+            "credit_minor": 0,
+            "currency": "KZT",
+            "entity_id": "E3",
+            "invoice_id": "I33",
+            "payment_id": null
+          }
+        }
+      ]
+    }
+  ],
+  "status": "faulty",
+  "families": [
+    "duplicate_invoice"
+  ],
+  "split": "fixture"
+}

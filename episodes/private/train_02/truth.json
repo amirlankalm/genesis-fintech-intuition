@@ -1,0 +1,37 @@
+{
+  "issues": [
+    {
+      "issue_id": "truth-f0d1d0512033",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "IAZ24ET",
+        "P4QABRF"
+      ],
+      "expected_amount_minor": 11000000,
+      "currency": "KZT",
+      "acceptable_evidence_sets": [
+        [
+          "D8VTCHG",
+          "DBKSNM8"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-fceceefeedbb",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "IGKSBRF",
+        "PNSX7H7"
+      ],
+      "expected_amount_minor": 29200,
+      "currency": "USD",
+      "acceptable_evidence_sets": [
+        [
+          "DJVSPF7",
+          "DZXN99G",
+          "LHDZEPP"
+        ]
+      ]
+    }
+  ]
+}

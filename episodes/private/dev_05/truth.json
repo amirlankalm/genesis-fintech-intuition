@@ -1,0 +1,54 @@
+{
+  "issues": [
+    {
+      "issue_id": "truth-86d1bca48050",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "I37W5Y8",
+        "PQBFVD4"
+      ],
+      "expected_amount_minor": 35200000,
+      "currency": "KZT",
+      "acceptable_evidence_sets": [
+        [
+          "D6FNRRE",
+          "D8GHKSB",
+          "LUZYDTZ"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-585e0e793896",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "IVBPRRM",
+        "P7TUVCC"
+      ],
+      "expected_amount_minor": 10000,
+      "currency": "EUR",
+      "acceptable_evidence_sets": [
+        [
+          "DGUSH5Z",
+          "DTN8EBP"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-53f1e4d9bc42",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "IY6UAN4",
+        "P92KKGT"
+      ],
+      "expected_amount_minor": 9100,
+      "currency": "EUR",
+      "acceptable_evidence_sets": [
+        [
+          "D92ZVXH",
+          "DVWBJ3K",
+          "LHFU6XB"
+        ]
+      ]
+    }
+  ]
+}

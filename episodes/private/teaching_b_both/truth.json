@@ -1,0 +1,38 @@
+{
+  "issues": [
+    {
+      "issue_id": "truth-b2af4710609b",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "I7",
+        "P9"
+      ],
+      "expected_amount_minor": 100000,
+      "currency": "KZT",
+      "acceptable_evidence_sets": [
+        [
+          "D31",
+          "D44",
+          "L11"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-956084f183a3",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "I3",
+        "P5"
+      ],
+      "expected_amount_minor": 40000,
+      "currency": "KZT",
+      "acceptable_evidence_sets": [
+        [
+          "D12",
+          "D36",
+          "L23"
+        ]
+      ]
+    }
+  ]
+}

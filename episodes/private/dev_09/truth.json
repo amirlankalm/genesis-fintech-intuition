@@ -1,0 +1,196 @@
+{
+  "issues": [
+    {
+      "issue_id": "truth-a13ba858f54d",
+      "type": "duplicate_invoice",
+      "affected_ids": [
+        "I28F333",
+        "IWPYUA3"
+      ],
+      "expected_amount_minor": 65000,
+      "currency": "EUR",
+      "acceptable_evidence_sets": [
+        [
+          "D6HYK6Z",
+          "DTZPDAG"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-97a07c9c4951",
+      "type": "duplicate_invoice",
+      "affected_ids": [
+        "I6NRBUD",
+        "IT8UXCS"
+      ],
+      "expected_amount_minor": 339000,
+      "currency": "USD",
+      "acceptable_evidence_sets": [
+        [
+          "D2RH3R6",
+          "D5VAJE4"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-2f00a045b605",
+      "type": "duplicate_invoice",
+      "affected_ids": [
+        "IJH3DYJ",
+        "IQAZ86C"
+      ],
+      "expected_amount_minor": 80000,
+      "currency": "GBP",
+      "acceptable_evidence_sets": [
+        [
+          "DD6HZ87",
+          "DP93RQH"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-08be4ccdec21",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "IFWBW7Z",
+        "P2FKTCJ"
+      ],
+      "expected_amount_minor": 16800,
+      "currency": "EUR",
+      "acceptable_evidence_sets": [
+        [
+          "DEC2KDP",
+          "DYZC3U8",
+          "LH3E777"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-c81aa1196dd1",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "IHBSZDQ",
+        "P2HYUG9"
+      ],
+      "expected_amount_minor": 19000,
+      "currency": "GBP",
+      "acceptable_evidence_sets": [
+        [
+          "D43QRRK",
+          "DNKVTDP",
+          "LCUGKAM"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-f20cc909e65b",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "IT8QPS8",
+        "PYQVWT5"
+      ],
+      "expected_amount_minor": 17600,
+      "currency": "EUR",
+      "acceptable_evidence_sets": [
+        [
+          "DDWJKC2",
+          "DRASDGP",
+          "LNND7KC"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-7538a3c08637",
+      "type": "fx_mismatch",
+      "affected_ids": [
+        "PF8D3KB"
+      ],
+      "expected_amount_minor": 66,
+      "currency": "GBP",
+      "acceptable_evidence_sets": [
+        [
+          "2026-12-23|EUR|GBP",
+          "DKT7FH2",
+          "LTWYB5P"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-44338ce8f191",
+      "type": "fx_mismatch",
+      "affected_ids": [
+        "PPTVSGH"
+      ],
+      "expected_amount_minor": 181,
+      "currency": "EUR",
+      "acceptable_evidence_sets": [
+        [
+          "2026-10-05|EUR|GBP",
+          "D2V5SY4",
+          "LDS8W8Y"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-592f980fb97b",
+      "type": "fx_mismatch",
+      "affected_ids": [
+        "PT6NGSS"
+      ],
+      "expected_amount_minor": 304,
+      "currency": "EUR",
+      "acceptable_evidence_sets": [
+        [
+          "2026-10-16|USD|EUR",
+          "DZQRB2H",
+          "LJPCFWU"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-7d25ed806692",
+      "type": "cutoff",
+      "affected_ids": [
+        "IBF5UXN"
+      ],
+      "expected_amount_minor": 75000,
+      "currency": "USD",
+      "acceptable_evidence_sets": [
+        [
+          "DFJN7JB",
+          "LS9CPW4"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-28ee6f555abd",
+      "type": "cutoff",
+      "affected_ids": [
+        "IHXQ8EX"
+      ],
+      "expected_amount_minor": 22000,
+      "currency": "EUR",
+      "acceptable_evidence_sets": [
+        [
+          "D3P7SWB",
+          "LS6N2YQ"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-d86775d8aeee",
+      "type": "cutoff",
+      "affected_ids": [
+        "INRNYNR"
+      ],
+      "expected_amount_minor": 192000,
+      "currency": "GBP",
+      "acceptable_evidence_sets": [
+        [
+          "DWFXK5R",
+          "LUKPCUD"
+        ]
+      ]
+    }
+  ]
+}

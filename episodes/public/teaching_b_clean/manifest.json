@@ -1,0 +1,41 @@
+{
+  "schema_version": "genesis-fintech-draft-2026-11-12/teaching-1",
+  "episode_id": "ep-a27d35",
+  "base_currency": "KZT",
+  "period_start": "2026-10-01T00:00:00+05:00",
+  "period_end": "2026-10-31T23:59:59+05:00",
+  "timezone": "Asia/Almaty",
+  "counts": {
+    "ledger_rows": 12,
+    "documents": 5,
+    "fx_rates": 3
+  },
+  "currencies": {
+    "KZT": {
+      "exponent": 2
+    },
+    "USD": {
+      "exponent": 2
+    }
+  },
+  "rounding": {
+    "permitted": [
+      "half_up"
+    ],
+    "default": "half_up"
+  },
+  "amount_tolerance_minor": {
+    "KZT": 0,
+    "USD": 0
+  },
+  "issue_types": [
+    "payment_allocation"
+  ],
+  "limits": {
+    "max_steps": 100,
+    "page_limit": 50,
+    "max_findings": 30,
+    "max_evidence_ids": 10,
+    "max_explanation_chars": 1000
+  }
+}

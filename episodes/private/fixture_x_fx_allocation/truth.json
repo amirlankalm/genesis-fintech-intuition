@@ -1,0 +1,38 @@
+{
+  "issues": [
+    {
+      "issue_id": "truth-261efcb30493",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "I08",
+        "P31"
+      ],
+      "expected_amount_minor": 900000,
+      "currency": "KZT",
+      "acceptable_evidence_sets": [
+        [
+          "D03",
+          "D12",
+          "LKRZR5E",
+          "LTA4AF8"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-41ddecb2b2de",
+      "type": "fx_mismatch",
+      "affected_ids": [
+        "P31"
+      ],
+      "expected_amount_minor": 100000,
+      "currency": "KZT",
+      "acceptable_evidence_sets": [
+        [
+          "2026-10-21|USD|KZT",
+          "D03",
+          "LTA4AF8"
+        ]
+      ]
+    }
+  ]
+}

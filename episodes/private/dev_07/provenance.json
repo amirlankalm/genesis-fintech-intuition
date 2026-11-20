@@ -1,0 +1,163 @@
+{
+  "builder": "case-builder/1",
+  "variant": "dev_07",
+  "canary": "canary-a6f7ee681c60bb81",
+  "injections": [
+    {
+      "injection_id": "inj-1",
+      "family": "duplicate_invoice",
+      "error": {
+        "family": "duplicate_invoice",
+        "invoice_id": "IVX92HX",
+        "copy": {
+          "invoice_id": "I7PKUTX",
+          "doc_id": "D4GQUAH",
+          "posted_at": "2026-02-04T06:12:00+00:00",
+          "issued_at": "2026-02-03T17:00:00+01:00",
+          "due_at": "2026-02-17T17:00:00+01:00"
+        }
+      },
+      "expected": {
+        "type": "duplicate_invoice",
+        "affected_ids": [
+          "I7PKUTX",
+          "IVX92HX"
+        ],
+        "amount_minor": 10800000,
+        "currency": "KZT"
+      },
+      "causal_note": "The same invoice was keyed in a second time and given a new number.",
+      "changes": [
+        {
+          "op": "insert",
+          "table": "invoices",
+          "record": {
+            "doc_id": "D4GQUAH",
+            "invoice_id": "I7PKUTX",
+            "entity_id": "EHGGETS",
+            "issued_at": "2026-02-03T17:00:00+01:00",
+            "due_at": "2026-02-17T17:00:00+01:00",
+            "currency": "KZT",
+            "total_minor": 10800000,
+            "line_items": [
+              {
+                "description": "Training manual set",
+                "quantity": 6,
+                "unit_price_minor": 1800000,
+                "amount_minor": 10800000
+              }
+            ]
+          }
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "L7B7EPM",
+            "timestamp": "2026-02-04T06:12:00+00:00",
+            "account": "revenue",
+            "debit_minor": 0,
+            "credit_minor": 10800000,
+            "currency": "KZT",
+            "entity_id": "EHGGETS",
+            "invoice_id": "I7PKUTX",
+            "payment_id": null
+          }
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LU9Y9GW",
+            "timestamp": "2026-02-04T06:12:00+00:00",
+            "account": "accounts_receivable",
+            "debit_minor": 10800000,
+            "credit_minor": 0,
+            "currency": "KZT",
+            "entity_id": "EHGGETS",
+            "invoice_id": "I7PKUTX",
+            "payment_id": null
+          }
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-2",
+      "family": "fx_mismatch",
+      "error": {
+        "family": "fx_mismatch",
+        "payment_id": "PW7YERJ",
+        "rate": "506.77",
+        "rate_source": "2026-01-08"
+      },
+      "expected": {
+        "type": "fx_mismatch",
+        "affected_ids": [
+          "PW7YERJ"
+        ],
+        "amount_minor": 8104,
+        "currency": "KZT"
+      },
+      "causal_note": "The clerk translated the receipt at a rate the policy does not select.",
+      "changes": [
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "L7NQ5EJ",
+            "timestamp": "2026-01-06T22:46:00+00:00",
+            "account": "unapplied_receipts",
+            "debit_minor": 0,
+            "credit_minor": 7884,
+            "currency": "KZT",
+            "entity_id": "EHGGETS",
+            "invoice_id": null,
+            "payment_id": "PW7YERJ"
+          }
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LCDC8NH",
+          "field": "debit_minor",
+          "before": 10799780,
+          "after": 10807884
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LM3H44K",
+          "field": "credit_minor",
+          "before": 10799780,
+          "after": 10800000
+        }
+      ]
+    }
+  ],
+  "generator": {
+    "seed": 207,
+    "config": {
+      "base_currency": "USD",
+      "foreign_currencies": [
+        "KZT"
+      ],
+      "timezone": "UTC",
+      "period": "2026-01",
+      "invoices": 30,
+      "ledger_rows": 320,
+      "head_days": 6,
+      "tail_days": 7
+    },
+    "inject": {
+      "duplicate_invoice": 1,
+      "fx_mismatch": 1,
+      "interactions": []
+    }
+  },
+  "status": "faulty",
+  "families": [
+    "duplicate_invoice",
+    "fx_mismatch"
+  ],
+  "split": "dev"
+}

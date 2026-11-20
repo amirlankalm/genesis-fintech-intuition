@@ -1,0 +1,173 @@
+{
+  "builder": "case-builder/1",
+  "variant": "dev_05",
+  "canary": "canary-ca931398f9e65db2",
+  "injections": [
+    {
+      "injection_id": "inj-1",
+      "family": "payment_allocation",
+      "error": {
+        "family": "payment_allocation",
+        "payment_id": "P7TUVCC",
+        "invoice_id": "IVBPRRM",
+        "applied_minor": 0
+      },
+      "expected": {
+        "type": "payment_allocation",
+        "affected_ids": [
+          "IVBPRRM",
+          "P7TUVCC"
+        ],
+        "amount_minor": 10000,
+        "currency": "EUR"
+      },
+      "causal_note": "The clerk applied less of the receipt to the invoice than the policy requires and left the rest unapplied.",
+      "changes": [
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "L5ZXGPS",
+            "timestamp": "2026-12-31T19:47:00+05:00",
+            "account": "unapplied_receipts",
+            "debit_minor": 0,
+            "credit_minor": 10000,
+            "currency": "EUR",
+            "entity_id": "EV6DFZ7",
+            "invoice_id": null,
+            "payment_id": "P7TUVCC"
+          }
+        },
+        {
+          "op": "delete",
+          "table": "ledger",
+          "record": {
+            "row_id": "LS787AC",
+            "timestamp": "2026-12-31T19:47:00+05:00",
+            "account": "accounts_receivable",
+            "debit_minor": 0,
+            "credit_minor": 10000,
+            "currency": "EUR",
+            "entity_id": "EV6DFZ7",
+            "invoice_id": "IVBPRRM",
+            "payment_id": "P7TUVCC"
+          }
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-2",
+      "family": "payment_allocation",
+      "error": {
+        "family": "payment_allocation",
+        "payment_id": "PQBFVD4",
+        "invoice_id": "I37W5Y8",
+        "applied_minor": 36000000
+      },
+      "expected": {
+        "type": "payment_allocation",
+        "affected_ids": [
+          "I37W5Y8",
+          "PQBFVD4"
+        ],
+        "amount_minor": 35200000,
+        "currency": "KZT"
+      },
+      "causal_note": "The clerk applied less of the receipt to the invoice than the policy requires and left the rest unapplied.",
+      "changes": [
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LJDMNG2",
+            "timestamp": "2026-12-13T04:42:00+05:00",
+            "account": "unapplied_receipts",
+            "debit_minor": 0,
+            "credit_minor": 35200000,
+            "currency": "KZT",
+            "entity_id": "EUSQT8B",
+            "invoice_id": null,
+            "payment_id": "PQBFVD4"
+          }
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LUZYDTZ",
+          "field": "credit_minor",
+          "before": 71200000,
+          "after": 36000000
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-3",
+      "family": "payment_allocation",
+      "error": {
+        "family": "payment_allocation",
+        "payment_id": "P92KKGT",
+        "invoice_id": "IY6UAN4",
+        "applied_minor": 21000
+      },
+      "expected": {
+        "type": "payment_allocation",
+        "affected_ids": [
+          "IY6UAN4",
+          "P92KKGT"
+        ],
+        "amount_minor": 9100,
+        "currency": "EUR"
+      },
+      "causal_note": "The clerk applied less of the receipt to the invoice than the policy requires and left the rest unapplied.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LHFU6XB",
+          "field": "credit_minor",
+          "before": 30100,
+          "after": 21000
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LRXS3Q7",
+            "timestamp": "2027-01-03T02:50:00+05:00",
+            "account": "unapplied_receipts",
+            "debit_minor": 0,
+            "credit_minor": 9100,
+            "currency": "EUR",
+            "entity_id": "EUHGXJ3",
+            "invoice_id": null,
+            "payment_id": "P92KKGT"
+          }
+        }
+      ]
+    }
+  ],
+  "generator": {
+    "seed": 205,
+    "config": {
+      "base_currency": "KZT",
+      "foreign_currencies": [
+        "EUR"
+      ],
+      "timezone": "Asia/Almaty",
+      "period": "2026-12",
+      "invoices": 60,
+      "ledger_rows": 700,
+      "head_days": 6,
+      "tail_days": 7
+    },
+    "inject": {
+      "payment_allocation": 3,
+      "interactions": []
+    }
+  },
+  "status": "faulty",
+  "families": [
+    "payment_allocation"
+  ],
+  "split": "dev"
+}

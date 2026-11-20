@@ -1,0 +1,6 @@
+{
+  "builder": "teaching-fixture-builder/2",
+  "variant": "teaching_b_clean",
+  "canary": "canary-9e6c89ca3d66a974",
+  "injections": []
+}

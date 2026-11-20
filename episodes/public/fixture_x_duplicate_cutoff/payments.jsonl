@@ -1,0 +1,8 @@
+{"doc_id":"D19","payment_id":"P40","timestamp":"2026-10-25T14:00:00+05:00","currency":"KZT","amount_minor":20000000,"invoice_refs":["I24"]}
+{"doc_id":"D61","payment_id":"P14","timestamp":"2026-10-12T11:00:00+05:00","currency":"KZT","amount_minor":300000,"invoice_refs":["I21"]}
+{"doc_id":"D25","payment_id":"P22","timestamp":"2026-10-16T10:00:00+05:00","currency":"KZT","amount_minor":80000,"invoice_refs":["I26"]}
+{"doc_id":"D48","payment_id":"P05","timestamp":"2026-10-09T10:00:00+05:00","currency":"KZT","amount_minor":80000,"invoice_refs":["I17"]}
+{"doc_id":"D56","payment_id":"P09","timestamp":"2026-10-23T10:00:00+05:00","currency":"KZT","amount_minor":50000,"invoice_refs":["I02"]}
+{"doc_id":"D10","payment_id":"P18","timestamp":"2026-10-27T10:00:00+05:00","currency":"KZT","amount_minor":30000,"invoice_refs":["I02"]}
+{"doc_id":"D64","payment_id":"P27","timestamp":"2026-11-03T10:00:00+05:00","currency":"KZT","amount_minor":230000,"invoice_refs":["I30"]}
+{"doc_id":"D03","payment_id":"P31","timestamp":"2026-10-20T21:30:00+00:00","currency":"USD","amount_minor":10000,"invoice_refs":["I08"]}

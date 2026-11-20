@@ -1,0 +1,36 @@
+{
+  "issues": [
+    {
+      "issue_id": "truth-81733b09b396",
+      "type": "fx_mismatch",
+      "affected_ids": [
+        "PC9RDEH"
+      ],
+      "expected_amount_minor": 693,
+      "currency": "JPY",
+      "acceptable_evidence_sets": [
+        [
+          "2026-08-30|JPY|KZT",
+          "DYYT5PZ",
+          "LVTWY3X"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-fa46777ccd7f",
+      "type": "fx_mismatch",
+      "affected_ids": [
+        "PVPPJA6"
+      ],
+      "expected_amount_minor": 2210,
+      "currency": "JPY",
+      "acceptable_evidence_sets": [
+        [
+          "2026-09-08|JPY|KZT",
+          "D9BUDFK",
+          "LAHK58A"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+{"doc_id":"D44","payment_id":"P9","timestamp":"2026-10-14T09:15:00+05:00","currency":"KZT","amount_minor":260000,"invoice_refs":["I7"]}
+{"doc_id":"D27","payment_id":"P2","timestamp":"2026-10-16T14:00:00+05:00","currency":"KZT","amount_minor":150000,"invoice_refs":["I3"]}
+{"doc_id":"D36","payment_id":"P5","timestamp":"2026-10-23T16:45:00+05:00","currency":"KZT","amount_minor":120000,"invoice_refs":["I3"]}

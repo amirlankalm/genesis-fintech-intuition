@@ -1,0 +1,9 @@
+{
+  "builder": "case-builder/1",
+  "variant": "fixture_clean",
+  "canary": "canary-9cd267acee00f5c5",
+  "injections": [],
+  "status": "clean",
+  "families": [],
+  "split": "fixture"
+}

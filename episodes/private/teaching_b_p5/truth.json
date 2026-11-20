@@ -1,0 +1,21 @@
+{
+  "issues": [
+    {
+      "issue_id": "truth-b75016fd2c2e",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "I3",
+        "P5"
+      ],
+      "expected_amount_minor": 40000,
+      "currency": "KZT",
+      "acceptable_evidence_sets": [
+        [
+          "D12",
+          "D36",
+          "L23"
+        ]
+      ]
+    }
+  ]
+}

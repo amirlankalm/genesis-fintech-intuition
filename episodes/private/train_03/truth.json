@@ -1,0 +1,35 @@
+{
+  "issues": [
+    {
+      "issue_id": "truth-98de5b036571",
+      "type": "duplicate_invoice",
+      "affected_ids": [
+        "I29TCTM",
+        "IUWW7QW"
+      ],
+      "expected_amount_minor": 44100,
+      "currency": "USD",
+      "acceptable_evidence_sets": [
+        [
+          "D5W2HX2",
+          "DHMNVT5"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-ec464d80a566",
+      "type": "cutoff",
+      "affected_ids": [
+        "ICCCCV3"
+      ],
+      "expected_amount_minor": 408000,
+      "currency": "USD",
+      "acceptable_evidence_sets": [
+        [
+          "DQRJXSK",
+          "LEW3M56"
+        ]
+      ]
+    }
+  ]
+}

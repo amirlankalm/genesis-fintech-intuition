@@ -1,0 +1,106 @@
+{
+  "builder": "case-builder/1",
+  "variant": "train_04",
+  "canary": "canary-c3fbe99da306bf1b",
+  "injections": [
+    {
+      "injection_id": "inj-1",
+      "family": "fx_mismatch",
+      "error": {
+        "family": "fx_mismatch",
+        "payment_id": "PC9RDEH",
+        "rate": "3.2430",
+        "rate_source": "2026-08-29"
+      },
+      "expected": {
+        "type": "fx_mismatch",
+        "affected_ids": [
+          "PC9RDEH"
+        ],
+        "amount_minor": 693,
+        "currency": "JPY"
+      },
+      "causal_note": "The clerk translated the receipt at a rate the policy does not select.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "L5TFEXF",
+          "field": "credit_minor",
+          "before": 154000,
+          "after": 153307
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LVTWY3X",
+          "field": "debit_minor",
+          "before": 154000,
+          "after": 153307
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-2",
+      "family": "fx_mismatch",
+      "error": {
+        "family": "fx_mismatch",
+        "payment_id": "PVPPJA6",
+        "rate": "3.3091",
+        "rate_source": "2026-09-06"
+      },
+      "expected": {
+        "type": "fx_mismatch",
+        "affected_ids": [
+          "PVPPJA6"
+        ],
+        "amount_minor": 2210,
+        "currency": "JPY"
+      },
+      "causal_note": "The clerk translated the receipt at a rate the policy does not select.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "L9RGRE7",
+          "field": "credit_minor",
+          "before": 840700,
+          "after": 838490
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LAHK58A",
+          "field": "debit_minor",
+          "before": 840700,
+          "after": 838490
+        }
+      ]
+    }
+  ],
+  "generator": {
+    "seed": 104,
+    "config": {
+      "base_currency": "KZT",
+      "foreign_currencies": [
+        "USD",
+        "JPY"
+      ],
+      "timezone": "Asia/Almaty",
+      "period": "2026-Q3",
+      "invoices": 55,
+      "ledger_rows": 600,
+      "head_days": 6,
+      "tail_days": 7
+    },
+    "inject": {
+      "fx_mismatch": 2,
+      "interactions": []
+    }
+  },
+  "status": "faulty",
+  "families": [
+    "fx_mismatch"
+  ],
+  "split": "train"
+}

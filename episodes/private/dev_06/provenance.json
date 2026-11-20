@@ -1,0 +1,231 @@
+{
+  "builder": "case-builder/1",
+  "variant": "dev_06",
+  "canary": "canary-670023d3dbdce10b",
+  "injections": [
+    {
+      "injection_id": "inj-1",
+      "family": "fx_mismatch",
+      "error": {
+        "family": "fx_mismatch",
+        "payment_id": "PED4FPH",
+        "rate": "158.53",
+        "rate_source": "2026-02-24"
+      },
+      "expected": {
+        "type": "fx_mismatch",
+        "affected_ids": [
+          "PED4FPH"
+        ],
+        "amount_minor": 389,
+        "currency": "USD"
+      },
+      "causal_note": "The clerk translated the receipt at a rate the policy does not select.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LJMX2QY",
+          "field": "debit_minor",
+          "before": 88200,
+          "after": 87811
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LM56ABP",
+          "field": "credit_minor",
+          "before": 88200,
+          "after": 87811
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-2",
+      "family": "payment_allocation",
+      "error": {
+        "family": "payment_allocation",
+        "payment_id": "PED4FPH",
+        "invoice_id": "IPHSY78",
+        "applied_minor": 59000
+      },
+      "expected": {
+        "type": "payment_allocation",
+        "affected_ids": [
+          "IPHSY78",
+          "PED4FPH"
+        ],
+        "amount_minor": 28811,
+        "currency": "USD"
+      },
+      "causal_note": "The clerk applied less of the receipt to the invoice than the policy requires and left the rest unapplied.",
+      "changes": [
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "L3AAK9Q",
+            "timestamp": "2026-02-25T00:38:00+09:00",
+            "account": "unapplied_receipts",
+            "debit_minor": 0,
+            "credit_minor": 28811,
+            "currency": "USD",
+            "entity_id": "EJTVQ4X",
+            "invoice_id": null,
+            "payment_id": "PED4FPH"
+          }
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LM56ABP",
+          "field": "credit_minor",
+          "before": 87811,
+          "after": 59000
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-3",
+      "family": "duplicate_invoice",
+      "error": {
+        "family": "duplicate_invoice",
+        "invoice_id": "IENZUU3",
+        "copy": {
+          "invoice_id": "IBXWQDP",
+          "doc_id": "D2DRX2H",
+          "posted_at": "2025-12-28T17:25:00+09:00"
+        }
+      },
+      "expected": {
+        "type": "duplicate_invoice",
+        "affected_ids": [
+          "IBXWQDP",
+          "IENZUU3"
+        ],
+        "amount_minor": 88200,
+        "currency": "USD"
+      },
+      "causal_note": "The same invoice was keyed in a second time and given a new number.",
+      "changes": [
+        {
+          "op": "insert",
+          "table": "invoices",
+          "record": {
+            "doc_id": "D2DRX2H",
+            "invoice_id": "IBXWQDP",
+            "entity_id": "EJTVQ4X",
+            "issued_at": "2025-12-28T17:00:00+09:00",
+            "due_at": "2026-01-04T17:00:00+09:00",
+            "currency": "USD",
+            "total_minor": 88200,
+            "line_items": [
+              {
+                "description": "Robotics workshop session",
+                "quantity": 9,
+                "unit_price_minor": 9800,
+                "amount_minor": 88200
+              }
+            ]
+          }
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LASPE23",
+            "timestamp": "2025-12-28T17:25:00+09:00",
+            "account": "accounts_receivable",
+            "debit_minor": 88200,
+            "credit_minor": 0,
+            "currency": "USD",
+            "entity_id": "EJTVQ4X",
+            "invoice_id": "IBXWQDP",
+            "payment_id": null
+          }
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LERYEM6",
+            "timestamp": "2025-12-28T17:25:00+09:00",
+            "account": "revenue",
+            "debit_minor": 0,
+            "credit_minor": 88200,
+            "currency": "USD",
+            "entity_id": "EJTVQ4X",
+            "invoice_id": "IBXWQDP",
+            "payment_id": null
+          }
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-4",
+      "family": "cutoff",
+      "error": {
+        "family": "cutoff",
+        "invoice_id": "IBXWQDP",
+        "posted_at": "2026-01-01T20:57:00+09:00"
+      },
+      "expected": {
+        "type": "cutoff",
+        "affected_ids": [
+          "IBXWQDP"
+        ],
+        "amount_minor": 88200,
+        "currency": "USD"
+      },
+      "causal_note": "The invoice was posted with a date on the other side of the period boundary.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LASPE23",
+          "field": "timestamp",
+          "before": "2025-12-28T17:25:00+09:00",
+          "after": "2026-01-01T20:57:00+09:00"
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LERYEM6",
+          "field": "timestamp",
+          "before": "2025-12-28T17:25:00+09:00",
+          "after": "2026-01-01T20:57:00+09:00"
+        }
+      ]
+    }
+  ],
+  "generator": {
+    "seed": 206,
+    "config": {
+      "base_currency": "JPY",
+      "foreign_currencies": [
+        "USD",
+        "EUR"
+      ],
+      "timezone": "Asia/Tokyo",
+      "period": "2026-Q1",
+      "invoices": 85,
+      "ledger_rows": 1000,
+      "head_days": 6,
+      "tail_days": 7
+    },
+    "inject": {
+      "interactions": [
+        "fx_then_allocation",
+        "duplicate_then_cutoff"
+      ]
+    }
+  },
+  "status": "interaction",
+  "families": [
+    "cutoff",
+    "duplicate_invoice",
+    "fx_mismatch",
+    "payment_allocation"
+  ],
+  "split": "dev"
+}

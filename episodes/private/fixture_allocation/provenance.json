@@ -1,0 +1,64 @@
+{
+  "builder": "case-builder/1",
+  "variant": "fixture_allocation",
+  "canary": "canary-5b57d1d7e43a3bfb",
+  "injections": [
+    {
+      "injection_id": "inj-1",
+      "family": "payment_allocation",
+      "error": {
+        "family": "payment_allocation",
+        "payment_id": "P22",
+        "invoice_id": "I26",
+        "applied_minor": 0
+      },
+      "expected": {
+        "type": "payment_allocation",
+        "affected_ids": [
+          "I26",
+          "P22"
+        ],
+        "amount_minor": 80000,
+        "currency": "KZT"
+      },
+      "causal_note": "The clerk applied less of the receipt to the invoice than the policy requires and left the rest unapplied.",
+      "changes": [
+        {
+          "op": "delete",
+          "table": "ledger",
+          "record": {
+            "row_id": "LEM8TDV",
+            "timestamp": "2026-10-16T10:00:00+05:00",
+            "account": "accounts_receivable",
+            "debit_minor": 0,
+            "credit_minor": 80000,
+            "currency": "KZT",
+            "entity_id": "E3",
+            "invoice_id": "I26",
+            "payment_id": "P22"
+          }
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LU57DX2",
+            "timestamp": "2026-10-16T10:00:00+05:00",
+            "account": "unapplied_receipts",
+            "debit_minor": 0,
+            "credit_minor": 80000,
+            "currency": "KZT",
+            "entity_id": "E3",
+            "invoice_id": null,
+            "payment_id": "P22"
+          }
+        }
+      ]
+    }
+  ],
+  "status": "faulty",
+  "families": [
+    "payment_allocation"
+  ],
+  "split": "fixture"
+}

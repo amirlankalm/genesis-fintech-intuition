@@ -1,0 +1,95 @@
+{
+  "builder": "case-builder/1",
+  "variant": "fixture_x_fx_allocation",
+  "canary": "canary-f57c4796a76b7504",
+  "injections": [
+    {
+      "injection_id": "inj-1",
+      "family": "fx_mismatch",
+      "error": {
+        "family": "fx_mismatch",
+        "payment_id": "P31",
+        "rate": "490.00",
+        "rate_source": "2026-10-20"
+      },
+      "expected": {
+        "type": "fx_mismatch",
+        "affected_ids": [
+          "P31"
+        ],
+        "amount_minor": 100000,
+        "currency": "KZT"
+      },
+      "causal_note": "The clerk translated the receipt at a rate the policy does not select.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LKRZR5E",
+          "field": "credit_minor",
+          "before": 5000000,
+          "after": 4900000
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LTA4AF8",
+          "field": "debit_minor",
+          "before": 5000000,
+          "after": 4900000
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-2",
+      "family": "payment_allocation",
+      "error": {
+        "family": "payment_allocation",
+        "payment_id": "P31",
+        "invoice_id": "I08",
+        "applied_minor": 4000000
+      },
+      "expected": {
+        "type": "payment_allocation",
+        "affected_ids": [
+          "I08",
+          "P31"
+        ],
+        "amount_minor": 900000,
+        "currency": "KZT"
+      },
+      "causal_note": "The clerk applied less of the receipt to the invoice than the policy requires and left the rest unapplied.",
+      "changes": [
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "L3KFAM4",
+            "timestamp": "2026-10-21T02:30:00+05:00",
+            "account": "unapplied_receipts",
+            "debit_minor": 0,
+            "credit_minor": 900000,
+            "currency": "KZT",
+            "entity_id": "E5",
+            "invoice_id": null,
+            "payment_id": "P31"
+          }
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LKRZR5E",
+          "field": "credit_minor",
+          "before": 4900000,
+          "after": 4000000
+        }
+      ]
+    }
+  ],
+  "status": "interaction",
+  "families": [
+    "fx_mismatch",
+    "payment_allocation"
+  ],
+  "split": "fixture"
+}

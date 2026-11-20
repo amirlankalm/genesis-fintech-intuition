@@ -1,0 +1,35 @@
+{
+  "issues": [
+    {
+      "issue_id": "truth-1342b44bdf37",
+      "type": "duplicate_invoice",
+      "affected_ids": [
+        "I52HZVA",
+        "IRHA3AG"
+      ],
+      "expected_amount_minor": 40500,
+      "currency": "EUR",
+      "acceptable_evidence_sets": [
+        [
+          "DHFK7FA",
+          "DTXTZXF"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-658ef30f792a",
+      "type": "cutoff",
+      "affected_ids": [
+        "I52HZVA"
+      ],
+      "expected_amount_minor": 40500,
+      "currency": "EUR",
+      "acceptable_evidence_sets": [
+        [
+          "DHFK7FA",
+          "LH9FV2T"
+        ]
+      ]
+    }
+  ]
+}

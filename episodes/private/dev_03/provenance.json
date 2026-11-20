@@ -1,0 +1,28 @@
+{
+  "builder": "case-builder/1",
+  "variant": "dev_03",
+  "canary": "canary-6c41f02b9110b65a",
+  "injections": [],
+  "generator": {
+    "seed": 203,
+    "config": {
+      "base_currency": "GBP",
+      "foreign_currencies": [
+        "USD",
+        "EUR"
+      ],
+      "timezone": "Asia/Kolkata",
+      "period": "2026-03",
+      "invoices": 45,
+      "ledger_rows": 450,
+      "head_days": 6,
+      "tail_days": 7
+    },
+    "inject": {
+      "interactions": []
+    }
+  },
+  "status": "clean",
+  "families": [],
+  "split": "dev"
+}

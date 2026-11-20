@@ -1,0 +1,154 @@
+{
+  "builder": "case-builder/1",
+  "variant": "train_10",
+  "canary": "canary-109aca735c995eb3",
+  "injections": [
+    {
+      "injection_id": "inj-1",
+      "family": "cutoff",
+      "error": {
+        "family": "cutoff",
+        "invoice_id": "IX256UG",
+        "posted_at": "2026-12-02T14:39:00-05:00"
+      },
+      "expected": {
+        "type": "cutoff",
+        "affected_ids": [
+          "IX256UG"
+        ],
+        "amount_minor": 457300,
+        "currency": "USD"
+      },
+      "causal_note": "The invoice was posted with a date on the other side of the period boundary.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "L2DRPX4",
+          "field": "timestamp",
+          "before": "2026-11-27T13:11:00-05:00",
+          "after": "2026-12-02T14:39:00-05:00"
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LQ2D9DM",
+          "field": "timestamp",
+          "before": "2026-11-27T13:11:00-05:00",
+          "after": "2026-12-02T14:39:00-05:00"
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-2",
+      "family": "payment_allocation",
+      "error": {
+        "family": "payment_allocation",
+        "payment_id": "PYA8D5F",
+        "invoice_id": "IX256UG",
+        "applied_minor": 300000
+      },
+      "expected": {
+        "type": "payment_allocation",
+        "affected_ids": [
+          "IX256UG",
+          "PYA8D5F"
+        ],
+        "amount_minor": 157300,
+        "currency": "USD"
+      },
+      "causal_note": "The clerk applied less of the receipt to the invoice than the policy requires and left the rest unapplied.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LMQGFN3",
+          "field": "credit_minor",
+          "before": 457300,
+          "after": 300000
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LPUEKUJ",
+            "timestamp": "2026-12-01T02:10:00-05:00",
+            "account": "unapplied_receipts",
+            "debit_minor": 0,
+            "credit_minor": 157300,
+            "currency": "USD",
+            "entity_id": "EKXWU7T",
+            "invoice_id": null,
+            "payment_id": "PYA8D5F"
+          }
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-3",
+      "family": "fx_mismatch",
+      "error": {
+        "family": "fx_mismatch",
+        "payment_id": "PM7PUG9",
+        "rate": "1.0845",
+        "rate_source": "2026-11-22"
+      },
+      "expected": {
+        "type": "fx_mismatch",
+        "affected_ids": [
+          "PM7PUG9"
+        ],
+        "amount_minor": 557,
+        "currency": "USD"
+      },
+      "causal_note": "The clerk translated the receipt at a rate the policy does not select.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "L8DT2HG",
+          "field": "debit_minor",
+          "before": 88200,
+          "after": 87643
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LPHGWT9",
+          "field": "credit_minor",
+          "before": 88200,
+          "after": 87643
+        }
+      ]
+    }
+  ],
+  "generator": {
+    "seed": 110,
+    "config": {
+      "base_currency": "USD",
+      "foreign_currencies": [
+        "KZT",
+        "EUR"
+      ],
+      "timezone": "America/Bogota",
+      "period": "2026-11",
+      "invoices": 105,
+      "ledger_rows": 2000,
+      "head_days": 6,
+      "tail_days": 7
+    },
+    "inject": {
+      "fx_mismatch": 1,
+      "interactions": [
+        "cutoff_and_allocation"
+      ]
+    }
+  },
+  "status": "interaction",
+  "families": [
+    "cutoff",
+    "fx_mismatch",
+    "payment_allocation"
+  ],
+  "split": "train"
+}

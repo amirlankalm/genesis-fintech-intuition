@@ -1,0 +1,201 @@
+{
+  "builder": "case-builder/1",
+  "variant": "train_07",
+  "canary": "canary-a5a1f90ecfe89509",
+  "injections": [
+    {
+      "injection_id": "inj-1",
+      "family": "fx_mismatch",
+      "error": {
+        "family": "fx_mismatch",
+        "payment_id": "PWDRMD3",
+        "rate": "513.27",
+        "rate_source": "mistyped"
+      },
+      "expected": {
+        "type": "fx_mismatch",
+        "affected_ids": [
+          "PWDRMD3"
+        ],
+        "amount_minor": 1644156,
+        "currency": "JPY"
+      },
+      "causal_note": "The clerk translated the receipt at a rate the policy does not select.",
+      "changes": [
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "L4TCGVW",
+            "timestamp": "2026-08-10T22:52:00+00:00",
+            "account": "unapplied_receipts",
+            "debit_minor": 0,
+            "credit_minor": 1644155,
+            "currency": "JPY",
+            "entity_id": "EMTDJ33",
+            "invoice_id": null,
+            "payment_id": "PWDRMD3"
+          }
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LECDJJE",
+          "field": "debit_minor",
+          "before": 699999,
+          "after": 2344155
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LEPH7SZ",
+          "field": "credit_minor",
+          "before": 699999,
+          "after": 700000
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-2",
+      "family": "payment_allocation",
+      "error": {
+        "family": "payment_allocation",
+        "payment_id": "PWDRMD3",
+        "invoice_id": "IUH3F82",
+        "applied_minor": 410000
+      },
+      "expected": {
+        "type": "payment_allocation",
+        "affected_ids": [
+          "IUH3F82",
+          "PWDRMD3"
+        ],
+        "amount_minor": 290000,
+        "currency": "JPY"
+      },
+      "causal_note": "The clerk applied less of the receipt to the invoice than the policy requires and left the rest unapplied.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "L4TCGVW",
+          "field": "credit_minor",
+          "before": 1644155,
+          "after": 1934155
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LEPH7SZ",
+          "field": "credit_minor",
+          "before": 700000,
+          "after": 410000
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-3",
+      "family": "duplicate_invoice",
+      "error": {
+        "family": "duplicate_invoice",
+        "invoice_id": "IPHMRV2",
+        "copy": {
+          "invoice_id": "I6PAN5Y",
+          "doc_id": "DU826SP",
+          "posted_at": "2026-08-31T17:05:00+00:00"
+        }
+      },
+      "expected": {
+        "type": "duplicate_invoice",
+        "affected_ids": [
+          "I6PAN5Y",
+          "IPHMRV2"
+        ],
+        "amount_minor": 74400,
+        "currency": "JPY"
+      },
+      "causal_note": "The same invoice was keyed in a second time and given a new number.",
+      "changes": [
+        {
+          "op": "insert",
+          "table": "invoices",
+          "record": {
+            "doc_id": "DU826SP",
+            "invoice_id": "I6PAN5Y",
+            "entity_id": "EGAQXTM",
+            "issued_at": "2026-08-31T22:05:00+05:00",
+            "due_at": "2026-09-30T22:05:00+05:00",
+            "currency": "JPY",
+            "total_minor": 74400,
+            "line_items": [
+              {
+                "description": "Equipment rental day",
+                "quantity": 8,
+                "unit_price_minor": 9300,
+                "amount_minor": 74400
+              }
+            ]
+          }
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "L99NCNY",
+            "timestamp": "2026-08-31T17:05:00+00:00",
+            "account": "revenue",
+            "debit_minor": 0,
+            "credit_minor": 74400,
+            "currency": "JPY",
+            "entity_id": "EGAQXTM",
+            "invoice_id": "I6PAN5Y",
+            "payment_id": null
+          }
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LG99B3H",
+            "timestamp": "2026-08-31T17:05:00+00:00",
+            "account": "accounts_receivable",
+            "debit_minor": 74400,
+            "credit_minor": 0,
+            "currency": "JPY",
+            "entity_id": "EGAQXTM",
+            "invoice_id": "I6PAN5Y",
+            "payment_id": null
+          }
+        }
+      ]
+    }
+  ],
+  "generator": {
+    "seed": 107,
+    "config": {
+      "base_currency": "USD",
+      "foreign_currencies": [
+        "JPY"
+      ],
+      "timezone": "UTC",
+      "period": "2026-08",
+      "invoices": 45,
+      "ledger_rows": 500,
+      "head_days": 6,
+      "tail_days": 7
+    },
+    "inject": {
+      "duplicate_invoice": 1,
+      "interactions": [
+        "fx_then_allocation"
+      ]
+    }
+  },
+  "status": "interaction",
+  "families": [
+    "duplicate_invoice",
+    "fx_mismatch",
+    "payment_allocation"
+  ],
+  "split": "train"
+}

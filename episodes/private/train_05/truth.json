@@ -1,0 +1,34 @@
+{
+  "issues": [
+    {
+      "issue_id": "truth-58bb710e2bc8",
+      "type": "cutoff",
+      "affected_ids": [
+        "IFYSE7C"
+      ],
+      "expected_amount_minor": 412200,
+      "currency": "USD",
+      "acceptable_evidence_sets": [
+        [
+          "D95B2YE",
+          "LKU57J3"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-99f434b920d2",
+      "type": "cutoff",
+      "affected_ids": [
+        "IGGZ2J7"
+      ],
+      "expected_amount_minor": 34200,
+      "currency": "EUR",
+      "acceptable_evidence_sets": [
+        [
+          "DQXMMT6",
+          "LPJYHZU"
+        ]
+      ]
+    }
+  ]
+}

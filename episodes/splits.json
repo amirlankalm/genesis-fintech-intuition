@@ -1,0 +1,41 @@
+{
+  "teaching": [
+    "teaching_b",
+    "teaching_b_p5",
+    "teaching_b_both",
+    "teaching_b_clean"
+  ],
+  "fixture": [
+    "fixture_clean",
+    "fixture_duplicate",
+    "fixture_allocation",
+    "fixture_fx",
+    "fixture_cutoff",
+    "fixture_x_fx_allocation",
+    "fixture_x_duplicate_cutoff"
+  ],
+  "train": [
+    "train_01",
+    "train_02",
+    "train_03",
+    "train_04",
+    "train_05",
+    "train_06",
+    "train_07",
+    "train_08",
+    "train_09",
+    "train_10"
+  ],
+  "dev": [
+    "dev_01",
+    "dev_02",
+    "dev_03",
+    "dev_04",
+    "dev_05",
+    "dev_06",
+    "dev_07",
+    "dev_08",
+    "dev_09",
+    "dev_10"
+  ]
+}

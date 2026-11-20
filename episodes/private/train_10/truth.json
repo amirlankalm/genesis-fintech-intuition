@@ -1,0 +1,53 @@
+{
+  "issues": [
+    {
+      "issue_id": "truth-7c62ceaed5cd",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "IX256UG",
+        "PYA8D5F"
+      ],
+      "expected_amount_minor": 157300,
+      "currency": "USD",
+      "acceptable_evidence_sets": [
+        [
+          "DB737TK",
+          "DT9CZQT",
+          "LMQGFN3",
+          "LX2DTFR"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-ddd486609a1c",
+      "type": "fx_mismatch",
+      "affected_ids": [
+        "PM7PUG9"
+      ],
+      "expected_amount_minor": 557,
+      "currency": "USD",
+      "acceptable_evidence_sets": [
+        [
+          "2026-11-21|EUR|USD",
+          "DRQ8RD8",
+          "L8DT2HG"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-46a3a9186755",
+      "type": "cutoff",
+      "affected_ids": [
+        "IX256UG"
+      ],
+      "expected_amount_minor": 457300,
+      "currency": "USD",
+      "acceptable_evidence_sets": [
+        [
+          "DT9CZQT",
+          "LQ2D9DM"
+        ]
+      ]
+    }
+  ]
+}

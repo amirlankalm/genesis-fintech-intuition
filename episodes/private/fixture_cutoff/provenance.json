@@ -1,0 +1,48 @@
+{
+  "builder": "case-builder/1",
+  "variant": "fixture_cutoff",
+  "canary": "canary-46e0abf9b758ce42",
+  "injections": [
+    {
+      "injection_id": "inj-1",
+      "family": "cutoff",
+      "error": {
+        "family": "cutoff",
+        "invoice_id": "I11",
+        "posted_at": "2026-11-01T09:00:00+05:00"
+      },
+      "expected": {
+        "type": "cutoff",
+        "affected_ids": [
+          "I11"
+        ],
+        "amount_minor": 120000,
+        "currency": "KZT"
+      },
+      "causal_note": "The invoice was posted with a date on the other side of the period boundary.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LGGW29A",
+          "field": "timestamp",
+          "before": "2026-10-31T22:30:00+05:00",
+          "after": "2026-11-01T09:00:00+05:00"
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LKDVRBH",
+          "field": "timestamp",
+          "before": "2026-10-31T22:30:00+05:00",
+          "after": "2026-11-01T09:00:00+05:00"
+        }
+      ]
+    }
+  ],
+  "status": "faulty",
+  "families": [
+    "cutoff"
+  ],
+  "split": "fixture"
+}

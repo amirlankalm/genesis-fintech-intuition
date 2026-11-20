@@ -1,0 +1,20 @@
+{
+  "issues": [
+    {
+      "issue_id": "truth-2422c3851aa4",
+      "type": "duplicate_invoice",
+      "affected_ids": [
+        "I26",
+        "I33"
+      ],
+      "expected_amount_minor": 80000,
+      "currency": "KZT",
+      "acceptable_evidence_sets": [
+        [
+          "D07",
+          "D58"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "policy_version": "case-draft-2",
+  "accounts": {
+    "receivable": "accounts_receivable",
+    "revenue": "revenue",
+    "bank": "bank",
+    "unapplied": "unapplied_receipts",
+    "fx_clearing": "fx_clearing"
+  },
+  "time": {
+    "company_offset": "manifest.period_start",
+    "note": "Compare timestamps as instants. The company's local time is the UTC offset written on manifest.period_start; no daylight-saving change happens inside an episode. A timestamp is inside the period when period_start <= instant <= period_end, before it when earlier and after it when later. A local calendar date is the date of the instant at the company's offset, whatever offset the record itself was written with."
+  },
+  "posting": {
+    "note": "Each invoice record is posted once: one accounts_receivable debit and one revenue credit for its total, in its currency, both carrying its invoice_id. A receipt is one bank debit for the document amount in the document currency, carrying its payment_id, then credits to accounts_receivable (one row per referenced invoice it settles) and to unapplied_receipts. These rows carry the instant of the payment document. A refund returns unapplied credit of a receipt in the invoice currency: a debit to unapplied_receipts and a credit to bank, later than the receipt, both carrying the payment_id of the receipt it returns. Rows with neither an invoice_id nor a payment_id are other journal entries and take no part in any rule below."
+  },
+  "duplicates": {
+    "policy": "identical_obligation",
+    "note": "Two or more invoice records describe one obligation recorded more than once when their entity_id, currency, issued_at instant, due_at instant and line_items (the list as written, in order) are all identical. Records that differ in any of these are separate obligations, however similar the amounts."
+  },
+  "allocation": {
+    "policy": "referenced_invoice_up_to_open_balance",
+    "bank_account": "bank",
+    "receivable_account": "accounts_receivable",
+    "unapplied_account": "unapplied_receipts",
+    "note": "A receipt is allocated to each invoice in its invoice_refs, in order, up to that invoice's open balance when the receipt arrives. Only an excess over the open balance stays in unapplied_receipts as customer credit. Receipts are taken in order of their payment timestamp. An invoice's open balance is its total minus what this policy required earlier receipts to allocate to it. An invoice has its full open balance from its record alone: when it was posted plays no part. The amount a receipt brings is measured in the invoice currency: the document amount when the currencies are equal, otherwise the translated amount recorded as the fx_clearing debit of that receipt. A receipt with no invoice_refs has nothing to allocate."
+  },
+  "fx": {
+    "date_policy": "payment_date",
+    "rate_direction": "target_per_source",
+    "rounding": "half_up",
+    "clearing_account": "fx_clearing",
+    "note": "A receipt in another currency than its invoices is translated into the invoice currency at the fx.csv rate dated on the receipt's local calendar date. One of the two currencies is always the base currency, and fx.csv quotes each pair in one direction only. A rate is target units per one source unit: multiply when the receipt currency is the row's source_currency, divide when it is the row's target_currency. Work in major units, then round once, half up, to the minor units of the invoice currency. The books show the translation as a credit to fx_clearing for the document amount in the receipt currency and a debit to fx_clearing for the translated amount in the invoice currency."
+  },
+  "cutoff": {
+    "policy": "invoice_issued_at",
+    "note": "Revenue belongs to the period that contains the invoice's issued_at. The revenue row of an invoice must be timestamped on the same side of the period as issued_at: before it, inside it, or after it. A posting made earlier or later than issued_at on the same side is not an error."
+  },
+  "overlap": {
+    "note": "Each rule is applied to the records independently. Allocation is measured against the translated amount that was recorded, so a wrong translation is one fx_mismatch and not also an allocation shortfall. A duplicate record whose revenue row is also on the wrong side of the period is a duplicate_invoice and a cutoff: two rules broken, two issues."
+  },
+  "finding_conventions": {
+    "duplicate_invoice": {
+      "meaning": "One obligation was recorded as two or more invoice records.",
+      "affected_ids": "The invoice_id of every record in the group, in any order.",
+      "claimed_amount_minor": "The invoice total times (records in the group minus one): the amount recorded in excess, as a positive integer in minor units of the invoice currency.",
+      "evidence_ids": "The doc_id of every invoice record in the group. Further evidence ids may be added if a tool returns a record or document for them: a ledger row_id, a document doc_id, an invoice_id, a payment_id or an fx key (date|source_currency|target_currency)."
+    },
+    "payment_allocation": {
+      "meaning": "A proven receipt was allocated to its referenced invoice for less than the policy requires.",
+      "affected_ids": "The invoice_id and the payment_id, in any order.",
+      "claimed_amount_minor": "Required allocation minus recorded allocation for that invoice and payment, as a positive integer in minor units of the invoice currency.",
+      "evidence_ids": "The invoice doc_id, the payment doc_id and the row_id of every accounts_receivable row that carries both that invoice_id and that payment_id (there may be none). When the receipt is in another currency than the invoice, also the row_id of the receipt's fx_clearing debit (the recorded translation, what the receipt brings in the invoice currency). Further evidence ids may be added if a tool returns a record or document for them: a ledger row_id, a document doc_id, an invoice_id, a payment_id or an fx key (date|source_currency|target_currency)."
+    },
+    "fx_mismatch": {
+      "meaning": "The recorded translation of a receipt differs from the translation the policy requires.",
+      "affected_ids": "The payment_id.",
+      "claimed_amount_minor": "The absolute difference between the recorded and the required translated amount, as a positive integer in minor units of the invoice currency. Direction is not encoded.",
+      "evidence_ids": "The payment doc_id, the id of the fx row the policy selects (date|source_currency|target_currency) and the row_id of the receipt's fx_clearing debit. Further evidence ids may be added if a tool returns a record or document for them: a ledger row_id, a document doc_id, an invoice_id, a payment_id or an fx key (date|source_currency|target_currency)."
+    },
+    "cutoff": {
+      "meaning": "An invoice's revenue row is on another side of the reporting period than its issued_at.",
+      "affected_ids": "The invoice_id.",
+      "claimed_amount_minor": "The invoice total, as a positive integer in minor units of the invoice currency.",
+      "evidence_ids": "The invoice doc_id and the row_id of its revenue row. Further evidence ids may be added if a tool returns a record or document for them: a ledger row_id, a document doc_id, an invoice_id, a payment_id or an fx key (date|source_currency|target_currency)."
+    }
+  }
+}

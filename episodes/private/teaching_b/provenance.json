@@ -1,0 +1,35 @@
+{
+  "builder": "teaching-fixture-builder/2",
+  "variant": "teaching_b",
+  "canary": "canary-21c9f573e6b38083",
+  "injections": [
+    {
+      "injection_id": "inj-1",
+      "family": "payment_allocation",
+      "mutation": "partial_allocation",
+      "target": {
+        "invoice_id": "I7",
+        "payment_id": "P9"
+      },
+      "causal_note": "The clerk applied part of the receipt to the invoice and left the rest unapplied.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "row_id": "L11",
+          "field": "credit_minor",
+          "before": 250000,
+          "after": 150000
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "row_id": "L13",
+          "field": "credit_minor",
+          "before": 10000,
+          "after": 110000
+        }
+      ]
+    }
+  ]
+}

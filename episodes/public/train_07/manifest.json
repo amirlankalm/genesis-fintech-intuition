@@ -1,0 +1,44 @@
+{
+  "schema_version": "genesis-fintech-draft-2026-11-12/case-1",
+  "episode_id": "ep-53a1cffbf0",
+  "base_currency": "USD",
+  "period_start": "2026-08-01T00:00:00+00:00",
+  "period_end": "2026-08-31T23:59:59+00:00",
+  "timezone": "UTC",
+  "counts": {
+    "ledger_rows": 489,
+    "documents": 73,
+    "fx_rates": 49
+  },
+  "currencies": {
+    "USD": {
+      "exponent": 2
+    },
+    "JPY": {
+      "exponent": 0
+    }
+  },
+  "rounding": {
+    "permitted": [
+      "half_up"
+    ],
+    "default": "half_up"
+  },
+  "amount_tolerance_minor": {
+    "USD": 0,
+    "JPY": 0
+  },
+  "issue_types": [
+    "duplicate_invoice",
+    "payment_allocation",
+    "fx_mismatch",
+    "cutoff"
+  ],
+  "limits": {
+    "max_steps": 100,
+    "page_limit": 50,
+    "max_findings": 30,
+    "max_evidence_ids": 10,
+    "max_explanation_chars": 1000
+  }
+}

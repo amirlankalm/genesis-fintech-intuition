@@ -1,0 +1,28 @@
+{
+  "policy_version": "teaching-1",
+  "fx": {
+    "date_policy": "payment_date",
+    "rate_direction": "target_per_source",
+    "rounding": "half_up",
+    "note": "A foreign-currency amount is translated to the base currency at the fx.csv rate dated on the payment's local calendar date. A rate is target units per one source unit."
+  },
+  "cutoff": {
+    "policy": "invoice_issued_at",
+    "note": "Revenue belongs to the period that contains the invoice issued_at, read in the company timezone."
+  },
+  "allocation": {
+    "policy": "referenced_invoice_up_to_open_balance",
+    "bank_account": "bank",
+    "receivable_account": "accounts_receivable",
+    "unapplied_account": "unapplied_receipts",
+    "note": "A bank receipt is allocated to each invoice in its invoice_refs, in order, up to that invoice's open balance when the receipt arrives. Only an excess over the open balance stays in unapplied_receipts as customer credit. Receipts are taken in order of their payment timestamp. An invoice's open balance is its total minus what this policy required earlier receipts to allocate to it."
+  },
+  "finding_conventions": {
+    "payment_allocation": {
+      "meaning": "A proven receipt was allocated to its referenced invoice for less than the policy requires.",
+      "affected_ids": "The invoice_id and the payment_id, in any order.",
+      "claimed_amount_minor": "Required allocation minus recorded allocation for that invoice and payment, as a positive integer in minor units of the invoice currency.",
+      "evidence_ids": "The invoice doc_id, the payment doc_id and the row_id of every accounts_receivable row that carries both that invoice_id and that payment_id. Further record ids may be added."
+    }
+  }
+}

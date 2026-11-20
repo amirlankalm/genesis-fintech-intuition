@@ -1,0 +1,128 @@
+{
+  "builder": "case-builder/1",
+  "variant": "train_02",
+  "canary": "canary-fb59ed0cc91b0709",
+  "injections": [
+    {
+      "injection_id": "inj-1",
+      "family": "payment_allocation",
+      "error": {
+        "family": "payment_allocation",
+        "payment_id": "PNSX7H7",
+        "invoice_id": "IGKSBRF",
+        "applied_minor": 10000
+      },
+      "expected": {
+        "type": "payment_allocation",
+        "affected_ids": [
+          "IGKSBRF",
+          "PNSX7H7"
+        ],
+        "amount_minor": 29200,
+        "currency": "USD"
+      },
+      "causal_note": "The clerk applied less of the receipt to the invoice than the policy requires and left the rest unapplied.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LHDZEPP",
+          "field": "credit_minor",
+          "before": 39200,
+          "after": 10000
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LN8T8E9",
+            "timestamp": "2026-10-04T00:17:00+05:00",
+            "account": "unapplied_receipts",
+            "debit_minor": 0,
+            "credit_minor": 29200,
+            "currency": "USD",
+            "entity_id": "EKCQUWN",
+            "invoice_id": null,
+            "payment_id": "PNSX7H7"
+          }
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-2",
+      "family": "payment_allocation",
+      "error": {
+        "family": "payment_allocation",
+        "payment_id": "P4QABRF",
+        "invoice_id": "IAZ24ET",
+        "applied_minor": 0
+      },
+      "expected": {
+        "type": "payment_allocation",
+        "affected_ids": [
+          "IAZ24ET",
+          "P4QABRF"
+        ],
+        "amount_minor": 11000000,
+        "currency": "KZT"
+      },
+      "causal_note": "The clerk applied less of the receipt to the invoice than the policy requires and left the rest unapplied.",
+      "changes": [
+        {
+          "op": "delete",
+          "table": "ledger",
+          "record": {
+            "row_id": "L2VQD6N",
+            "timestamp": "2026-10-03T14:52:00+05:00",
+            "account": "accounts_receivable",
+            "debit_minor": 0,
+            "credit_minor": 11000000,
+            "currency": "KZT",
+            "entity_id": "ENVFHQ6",
+            "invoice_id": "IAZ24ET",
+            "payment_id": "P4QABRF"
+          }
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "L45TGZT",
+            "timestamp": "2026-10-03T14:52:00+05:00",
+            "account": "unapplied_receipts",
+            "debit_minor": 0,
+            "credit_minor": 11000000,
+            "currency": "KZT",
+            "entity_id": "ENVFHQ6",
+            "invoice_id": null,
+            "payment_id": "P4QABRF"
+          }
+        }
+      ]
+    }
+  ],
+  "generator": {
+    "seed": 101,
+    "config": {
+      "base_currency": "KZT",
+      "foreign_currencies": [
+        "USD"
+      ],
+      "timezone": "Asia/Almaty",
+      "period": "2026-10",
+      "invoices": 24,
+      "ledger_rows": 220,
+      "head_days": 6,
+      "tail_days": 7
+    },
+    "inject": {
+      "payment_allocation": 2,
+      "interactions": []
+    }
+  },
+  "status": "faulty",
+  "families": [
+    "payment_allocation"
+  ],
+  "split": "train"
+}

@@ -1,0 +1,146 @@
+{
+  "builder": "case-builder/1",
+  "variant": "train_08",
+  "canary": "canary-51862ce65f9db248",
+  "injections": [
+    {
+      "injection_id": "inj-1",
+      "family": "duplicate_invoice",
+      "error": {
+        "family": "duplicate_invoice",
+        "invoice_id": "IRHA3AG",
+        "copy": {
+          "invoice_id": "I52HZVA",
+          "doc_id": "DHFK7FA",
+          "posted_at": "2026-05-06T23:36:00+01:00"
+        }
+      },
+      "expected": {
+        "type": "duplicate_invoice",
+        "affected_ids": [
+          "I52HZVA",
+          "IRHA3AG"
+        ],
+        "amount_minor": 40500,
+        "currency": "EUR"
+      },
+      "causal_note": "The same invoice was keyed in a second time and given a new number.",
+      "changes": [
+        {
+          "op": "insert",
+          "table": "invoices",
+          "record": {
+            "doc_id": "DHFK7FA",
+            "invoice_id": "I52HZVA",
+            "entity_id": "EPCBG27",
+            "issued_at": "2026-05-02T08:00:00+01:00",
+            "due_at": "2026-05-16T08:00:00+01:00",
+            "currency": "EUR",
+            "total_minor": 40500,
+            "line_items": [
+              {
+                "description": "Software licence seat",
+                "quantity": 9,
+                "unit_price_minor": 4500,
+                "amount_minor": 40500
+              }
+            ]
+          }
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "L9E2F2Y",
+            "timestamp": "2026-05-06T23:36:00+01:00",
+            "account": "accounts_receivable",
+            "debit_minor": 40500,
+            "credit_minor": 0,
+            "currency": "EUR",
+            "entity_id": "EPCBG27",
+            "invoice_id": "I52HZVA",
+            "payment_id": null
+          }
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LH9FV2T",
+            "timestamp": "2026-05-06T23:36:00+01:00",
+            "account": "revenue",
+            "debit_minor": 0,
+            "credit_minor": 40500,
+            "currency": "EUR",
+            "entity_id": "EPCBG27",
+            "invoice_id": "I52HZVA",
+            "payment_id": null
+          }
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-2",
+      "family": "cutoff",
+      "error": {
+        "family": "cutoff",
+        "invoice_id": "I52HZVA",
+        "posted_at": "2026-04-30T11:13:00+01:00"
+      },
+      "expected": {
+        "type": "cutoff",
+        "affected_ids": [
+          "I52HZVA"
+        ],
+        "amount_minor": 40500,
+        "currency": "EUR"
+      },
+      "causal_note": "The invoice was posted with a date on the other side of the period boundary.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "L9E2F2Y",
+          "field": "timestamp",
+          "before": "2026-05-06T23:36:00+01:00",
+          "after": "2026-04-30T11:13:00+01:00"
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LH9FV2T",
+          "field": "timestamp",
+          "before": "2026-05-06T23:36:00+01:00",
+          "after": "2026-04-30T11:13:00+01:00"
+        }
+      ]
+    }
+  ],
+  "generator": {
+    "seed": 108,
+    "config": {
+      "base_currency": "EUR",
+      "foreign_currencies": [
+        "GBP",
+        "USD"
+      ],
+      "timezone": "Africa/Lagos",
+      "period": "2026-04",
+      "invoices": 35,
+      "ledger_rows": 350,
+      "head_days": 6,
+      "tail_days": 7
+    },
+    "inject": {
+      "interactions": [
+        "duplicate_then_cutoff"
+      ]
+    }
+  },
+  "status": "interaction",
+  "families": [
+    "cutoff",
+    "duplicate_invoice"
+  ],
+  "split": "train"
+}

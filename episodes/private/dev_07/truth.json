@@ -1,0 +1,36 @@
+{
+  "issues": [
+    {
+      "issue_id": "truth-0b3d2cb803af",
+      "type": "duplicate_invoice",
+      "affected_ids": [
+        "I7PKUTX",
+        "IVX92HX"
+      ],
+      "expected_amount_minor": 10800000,
+      "currency": "KZT",
+      "acceptable_evidence_sets": [
+        [
+          "D4GQUAH",
+          "DTYJKFZ"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-0f9d73ea83bb",
+      "type": "fx_mismatch",
+      "affected_ids": [
+        "PW7YERJ"
+      ],
+      "expected_amount_minor": 8104,
+      "currency": "KZT",
+      "acceptable_evidence_sets": [
+        [
+          "2026-01-06|USD|KZT",
+          "DGVCQUU",
+          "LCDC8NH"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": "genesis-fintech-draft-2026-11-12/case-1",
+  "episode_id": "ep-b4a5cd6fc6",
+  "base_currency": "KWD",
+  "period_start": "2026-10-01T00:00:00+04:00",
+  "period_end": "2026-10-31T23:59:59+04:00",
+  "timezone": "Asia/Dubai",
+  "counts": {
+    "ledger_rows": 1503,
+    "documents": 164,
+    "fx_rates": 49
+  },
+  "currencies": {
+    "KWD": {
+      "exponent": 3
+    },
+    "USD": {
+      "exponent": 2
+    }
+  },
+  "rounding": {
+    "permitted": [
+      "half_up"
+    ],
+    "default": "half_up"
+  },
+  "amount_tolerance_minor": {
+    "KWD": 0,
+    "USD": 0
+  },
+  "issue_types": [
+    "duplicate_invoice",
+    "payment_allocation",
+    "fx_mismatch",
+    "cutoff"
+  ],
+  "limits": {
+    "max_steps": 100,
+    "page_limit": 50,
+    "max_findings": 30,
+    "max_evidence_ids": 10,
+    "max_explanation_chars": 1000
+  }
+}

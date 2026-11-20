@@ -1,0 +1,68 @@
+{
+  "issues": [
+    {
+      "issue_id": "truth-b87e261fb8f7",
+      "type": "duplicate_invoice",
+      "affected_ids": [
+        "I4962GU",
+        "IZZQT9D"
+      ],
+      "expected_amount_minor": 108000000,
+      "currency": "KZT",
+      "acceptable_evidence_sets": [
+        [
+          "D3VKDW4",
+          "DMGPQ7U"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-819f7d41f897",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "IT2PD39",
+        "PABS7AY"
+      ],
+      "expected_amount_minor": 58600000,
+      "currency": "KZT",
+      "acceptable_evidence_sets": [
+        [
+          "D4QENRP",
+          "DTCV49H",
+          "LBSKGJ2"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-c8b9ab06ebae",
+      "type": "fx_mismatch",
+      "affected_ids": [
+        "P4VN299"
+      ],
+      "expected_amount_minor": 370179,
+      "currency": "KZT",
+      "acceptable_evidence_sets": [
+        [
+          "2026-05-01|EUR|KZT",
+          "DB4GABK",
+          "LEG8CDB"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-c55e452b0b48",
+      "type": "cutoff",
+      "affected_ids": [
+        "IFW5P8B"
+      ],
+      "expected_amount_minor": 202500000,
+      "currency": "KZT",
+      "acceptable_evidence_sets": [
+        [
+          "D82PVBX",
+          "LDADWV8"
+        ]
+      ]
+    }
+  ]
+}

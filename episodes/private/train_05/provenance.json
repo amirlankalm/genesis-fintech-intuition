@@ -1,0 +1,103 @@
+{
+  "builder": "case-builder/1",
+  "variant": "train_05",
+  "canary": "canary-2ddcdf432de6db56",
+  "injections": [
+    {
+      "injection_id": "inj-1",
+      "family": "cutoff",
+      "error": {
+        "family": "cutoff",
+        "invoice_id": "IFYSE7C",
+        "posted_at": "2026-02-28T22:46:00+00:00"
+      },
+      "expected": {
+        "type": "cutoff",
+        "affected_ids": [
+          "IFYSE7C"
+        ],
+        "amount_minor": 412200,
+        "currency": "USD"
+      },
+      "causal_note": "The invoice was posted with a date on the other side of the period boundary.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LKU57J3",
+          "field": "timestamp",
+          "before": "2026-03-06T04:35:00+00:00",
+          "after": "2026-02-28T22:46:00+00:00"
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LUJFH7Z",
+          "field": "timestamp",
+          "before": "2026-03-06T04:35:00+00:00",
+          "after": "2026-02-28T22:46:00+00:00"
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-2",
+      "family": "cutoff",
+      "error": {
+        "family": "cutoff",
+        "invoice_id": "IGGZ2J7",
+        "posted_at": "2026-03-02T18:18:00+00:00"
+      },
+      "expected": {
+        "type": "cutoff",
+        "affected_ids": [
+          "IGGZ2J7"
+        ],
+        "amount_minor": 34200,
+        "currency": "EUR"
+      },
+      "causal_note": "The invoice was posted with a date on the other side of the period boundary.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LMQP3CG",
+          "field": "timestamp",
+          "before": "2026-02-25T19:57:00+00:00",
+          "after": "2026-03-02T18:18:00+00:00"
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LPJYHZU",
+          "field": "timestamp",
+          "before": "2026-02-25T19:57:00+00:00",
+          "after": "2026-03-02T18:18:00+00:00"
+        }
+      ]
+    }
+  ],
+  "generator": {
+    "seed": 105,
+    "config": {
+      "base_currency": "EUR",
+      "foreign_currencies": [
+        "USD"
+      ],
+      "timezone": "UTC",
+      "period": "2026-02",
+      "invoices": 30,
+      "ledger_rows": 300,
+      "head_days": 6,
+      "tail_days": 7
+    },
+    "inject": {
+      "cutoff": 2,
+      "interactions": []
+    }
+  },
+  "status": "faulty",
+  "families": [
+    "cutoff"
+  ],
+  "split": "train"
+}

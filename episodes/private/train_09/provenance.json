@@ -1,0 +1,27 @@
+{
+  "builder": "case-builder/1",
+  "variant": "train_09",
+  "canary": "canary-4d0d1130a7845ccc",
+  "injections": [],
+  "generator": {
+    "seed": 109,
+    "config": {
+      "base_currency": "KZT",
+      "foreign_currencies": [
+        "USD"
+      ],
+      "timezone": "Asia/Almaty",
+      "period": "2026-Q2",
+      "invoices": 90,
+      "ledger_rows": 1200,
+      "head_days": 6,
+      "tail_days": 7
+    },
+    "inject": {
+      "interactions": []
+    }
+  },
+  "status": "clean",
+  "families": [],
+  "split": "train"
+}

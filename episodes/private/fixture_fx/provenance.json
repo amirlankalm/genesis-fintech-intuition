@@ -1,0 +1,93 @@
+{
+  "builder": "case-builder/1",
+  "variant": "fixture_fx",
+  "canary": "canary-48977f09f431db14",
+  "injections": [
+    {
+      "injection_id": "inj-1",
+      "family": "fx_mismatch",
+      "error": {
+        "family": "fx_mismatch",
+        "payment_id": "P31",
+        "rate": "490.00",
+        "rate_source": "2026-10-20"
+      },
+      "expected": {
+        "type": "fx_mismatch",
+        "affected_ids": [
+          "P31"
+        ],
+        "amount_minor": 100000,
+        "currency": "KZT"
+      },
+      "causal_note": "The clerk translated the receipt at a rate the policy does not select.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LKRZR5E",
+          "field": "credit_minor",
+          "before": 5000000,
+          "after": 4900000
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LTA4AF8",
+          "field": "debit_minor",
+          "before": 5000000,
+          "after": 4900000
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-2",
+      "family": "fx_mismatch",
+      "error": {
+        "family": "fx_mismatch",
+        "payment_id": "P40",
+        "rate": "3.36",
+        "rate_source": "2026-10-24"
+      },
+      "expected": {
+        "type": "fx_mismatch",
+        "affected_ids": [
+          "P40"
+        ],
+        "amount_minor": 700,
+        "currency": "JPY"
+      },
+      "causal_note": "The clerk translated the receipt at a rate the policy does not select.",
+      "changes": [
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LHSH5PH",
+            "timestamp": "2026-10-25T14:00:00+05:00",
+            "account": "unapplied_receipts",
+            "debit_minor": 0,
+            "credit_minor": 700,
+            "currency": "JPY",
+            "entity_id": "E6",
+            "invoice_id": null,
+            "payment_id": "P40"
+          }
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LUNU89T",
+          "field": "debit_minor",
+          "before": 58824,
+          "after": 59524
+        }
+      ]
+    }
+  ],
+  "status": "faulty",
+  "families": [
+    "fx_mismatch"
+  ],
+  "split": "fixture"
+}

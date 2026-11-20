@@ -1,0 +1,35 @@
+{
+  "issues": [
+    {
+      "issue_id": "truth-47ae0b2476b2",
+      "type": "duplicate_invoice",
+      "affected_ids": [
+        "I11",
+        "I35"
+      ],
+      "expected_amount_minor": 120000,
+      "currency": "KZT",
+      "acceptable_evidence_sets": [
+        [
+          "D29",
+          "D60"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-0172e1b1c61e",
+      "type": "cutoff",
+      "affected_ids": [
+        "I35"
+      ],
+      "expected_amount_minor": 120000,
+      "currency": "KZT",
+      "acceptable_evidence_sets": [
+        [
+          "D60",
+          "LFKDJYC"
+        ]
+      ]
+    }
+  ]
+}

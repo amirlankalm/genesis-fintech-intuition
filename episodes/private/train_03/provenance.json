@@ -1,0 +1,154 @@
+{
+  "builder": "case-builder/1",
+  "variant": "train_03",
+  "canary": "canary-d0545488ef40212a",
+  "injections": [
+    {
+      "injection_id": "inj-1",
+      "family": "duplicate_invoice",
+      "error": {
+        "family": "duplicate_invoice",
+        "invoice_id": "I29TCTM",
+        "copy": {
+          "invoice_id": "IUWW7QW",
+          "doc_id": "D5W2HX2",
+          "posted_at": "2026-08-04T03:20:00-05:00",
+          "issued_at": "2026-08-01T08:35:00-05:00",
+          "due_at": "2026-08-31T08:35:00-05:00"
+        }
+      },
+      "expected": {
+        "type": "duplicate_invoice",
+        "affected_ids": [
+          "I29TCTM",
+          "IUWW7QW"
+        ],
+        "amount_minor": 44100,
+        "currency": "USD"
+      },
+      "causal_note": "The same invoice was keyed in a second time and given a new number.",
+      "changes": [
+        {
+          "op": "insert",
+          "table": "invoices",
+          "record": {
+            "doc_id": "D5W2HX2",
+            "invoice_id": "IUWW7QW",
+            "entity_id": "EM6BVQJ",
+            "issued_at": "2026-08-01T08:35:00-05:00",
+            "due_at": "2026-08-31T08:35:00-05:00",
+            "currency": "USD",
+            "total_minor": 44100,
+            "line_items": [
+              {
+                "description": "Software licence seat",
+                "quantity": 7,
+                "unit_price_minor": 4900,
+                "amount_minor": 34300
+              },
+              {
+                "description": "Robotics workshop session",
+                "quantity": 1,
+                "unit_price_minor": 9800,
+                "amount_minor": 9800
+              }
+            ]
+          }
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LF7889M",
+            "timestamp": "2026-08-04T03:20:00-05:00",
+            "account": "revenue",
+            "debit_minor": 0,
+            "credit_minor": 44100,
+            "currency": "USD",
+            "entity_id": "EM6BVQJ",
+            "invoice_id": "IUWW7QW",
+            "payment_id": null
+          }
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LHXTBJW",
+            "timestamp": "2026-08-04T03:20:00-05:00",
+            "account": "accounts_receivable",
+            "debit_minor": 44100,
+            "credit_minor": 0,
+            "currency": "USD",
+            "entity_id": "EM6BVQJ",
+            "invoice_id": "IUWW7QW",
+            "payment_id": null
+          }
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-2",
+      "family": "cutoff",
+      "error": {
+        "family": "cutoff",
+        "invoice_id": "ICCCCV3",
+        "posted_at": "2026-07-31T13:40:00-05:00"
+      },
+      "expected": {
+        "type": "cutoff",
+        "affected_ids": [
+          "ICCCCV3"
+        ],
+        "amount_minor": 408000,
+        "currency": "USD"
+      },
+      "causal_note": "The invoice was posted with a date on the other side of the period boundary.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LEW3M56",
+          "field": "timestamp",
+          "before": "2026-08-04T00:36:00-05:00",
+          "after": "2026-07-31T13:40:00-05:00"
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LU6QDDD",
+          "field": "timestamp",
+          "before": "2026-08-04T00:36:00-05:00",
+          "after": "2026-07-31T13:40:00-05:00"
+        }
+      ]
+    }
+  ],
+  "generator": {
+    "seed": 103,
+    "config": {
+      "base_currency": "USD",
+      "foreign_currencies": [
+        "EUR",
+        "KZT"
+      ],
+      "timezone": "America/Bogota",
+      "period": "2026-07",
+      "invoices": 40,
+      "ledger_rows": 400,
+      "head_days": 6,
+      "tail_days": 7
+    },
+    "inject": {
+      "duplicate_invoice": 1,
+      "cutoff": 1,
+      "interactions": []
+    }
+  },
+  "status": "faulty",
+  "families": [
+    "cutoff",
+    "duplicate_invoice"
+  ],
+  "split": "train"
+}

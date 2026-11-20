@@ -1,0 +1,161 @@
+{
+  "builder": "case-builder/1",
+  "variant": "dev_04",
+  "canary": "canary-2f798d7c54dd109b",
+  "injections": [
+    {
+      "injection_id": "inj-1",
+      "family": "payment_allocation",
+      "error": {
+        "family": "payment_allocation",
+        "payment_id": "PAXG9BY",
+        "invoice_id": "IVYBD5N",
+        "applied_minor": 74000
+      },
+      "expected": {
+        "type": "payment_allocation",
+        "affected_ids": [
+          "IVYBD5N",
+          "PAXG9BY"
+        ],
+        "amount_minor": 152600,
+        "currency": "GBP"
+      },
+      "causal_note": "The clerk applied less of the receipt to the invoice than the policy requires and left the rest unapplied.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "L8VE3UQ",
+          "field": "credit_minor",
+          "before": 226600,
+          "after": 74000
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LTHA9Y8",
+            "timestamp": "2026-03-16T16:54:00+05:30",
+            "account": "unapplied_receipts",
+            "debit_minor": 0,
+            "credit_minor": 152600,
+            "currency": "GBP",
+            "entity_id": "E89EJHD",
+            "invoice_id": null,
+            "payment_id": "PAXG9BY"
+          }
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-2",
+      "family": "fx_mismatch",
+      "error": {
+        "family": "fx_mismatch",
+        "payment_id": "PH857SW",
+        "rate": "0.80945",
+        "rate_source": "mistyped"
+      },
+      "expected": {
+        "type": "fx_mismatch",
+        "affected_ids": [
+          "PH857SW"
+        ],
+        "amount_minor": 13,
+        "currency": "EUR"
+      },
+      "causal_note": "The clerk translated the receipt at a rate the policy does not select.",
+      "changes": [
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "L62U3NW",
+            "timestamp": "2026-02-28T00:15:00+05:30",
+            "account": "unapplied_receipts",
+            "debit_minor": 0,
+            "credit_minor": 13,
+            "currency": "EUR",
+            "entity_id": "EAPABGV",
+            "invoice_id": null,
+            "payment_id": "PH857SW"
+          }
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LANK36H",
+          "field": "debit_minor",
+          "before": 117700,
+          "after": 117713
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-3",
+      "family": "cutoff",
+      "error": {
+        "family": "cutoff",
+        "invoice_id": "IDWNG2Q",
+        "posted_at": "2026-03-30T03:43:00+05:30"
+      },
+      "expected": {
+        "type": "cutoff",
+        "affected_ids": [
+          "IDWNG2Q"
+        ],
+        "amount_minor": 80000,
+        "currency": "GBP"
+      },
+      "causal_note": "The invoice was posted with a date on the other side of the period boundary.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LG5MTX8",
+          "field": "timestamp",
+          "before": "2026-04-05T03:10:00+05:30",
+          "after": "2026-03-30T03:43:00+05:30"
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LR5KAGZ",
+          "field": "timestamp",
+          "before": "2026-04-05T03:10:00+05:30",
+          "after": "2026-03-30T03:43:00+05:30"
+        }
+      ]
+    }
+  ],
+  "generator": {
+    "seed": 203,
+    "config": {
+      "base_currency": "GBP",
+      "foreign_currencies": [
+        "USD",
+        "EUR"
+      ],
+      "timezone": "Asia/Kolkata",
+      "period": "2026-03",
+      "invoices": 45,
+      "ledger_rows": 450,
+      "head_days": 6,
+      "tail_days": 7
+    },
+    "inject": {
+      "payment_allocation": 1,
+      "fx_mismatch": 1,
+      "cutoff": 1,
+      "interactions": []
+    }
+  },
+  "status": "faulty",
+  "families": [
+    "cutoff",
+    "fx_mismatch",
+    "payment_allocation"
+  ],
+  "split": "dev"
+}

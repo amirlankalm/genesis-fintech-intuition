@@ -1,0 +1,27 @@
+{
+  "builder": "case-builder/1",
+  "variant": "dev_10",
+  "canary": "canary-b3f36a64797d9560",
+  "injections": [],
+  "generator": {
+    "seed": 210,
+    "config": {
+      "base_currency": "JPY",
+      "foreign_currencies": [
+        "KZT"
+      ],
+      "timezone": "Asia/Tokyo",
+      "period": "2026-05",
+      "invoices": 20,
+      "ledger_rows": 240,
+      "head_days": 6,
+      "tail_days": 7
+    },
+    "inject": {
+      "interactions": []
+    }
+  },
+  "status": "clean",
+  "families": [],
+  "split": "dev"
+}

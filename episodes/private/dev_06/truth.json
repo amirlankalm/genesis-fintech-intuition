@@ -1,0 +1,69 @@
+{
+  "issues": [
+    {
+      "issue_id": "truth-b686071f0f9f",
+      "type": "duplicate_invoice",
+      "affected_ids": [
+        "IBXWQDP",
+        "IENZUU3"
+      ],
+      "expected_amount_minor": 88200,
+      "currency": "USD",
+      "acceptable_evidence_sets": [
+        [
+          "D2DRX2H",
+          "DDFJSJ4"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-20995af6f163",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "IPHSY78",
+        "PED4FPH"
+      ],
+      "expected_amount_minor": 28811,
+      "currency": "USD",
+      "acceptable_evidence_sets": [
+        [
+          "D6ACTQT",
+          "DH8E9Y7",
+          "LJMX2QY",
+          "LM56ABP"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-6676e761175f",
+      "type": "fx_mismatch",
+      "affected_ids": [
+        "PED4FPH"
+      ],
+      "expected_amount_minor": 389,
+      "currency": "USD",
+      "acceptable_evidence_sets": [
+        [
+          "2026-02-25|USD|JPY",
+          "DH8E9Y7",
+          "LJMX2QY"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-91fbd04b30b4",
+      "type": "cutoff",
+      "affected_ids": [
+        "IBXWQDP"
+      ],
+      "expected_amount_minor": 88200,
+      "currency": "USD",
+      "acceptable_evidence_sets": [
+        [
+          "D2DRX2H",
+          "LERYEM6"
+        ]
+      ]
+    }
+  ]
+}

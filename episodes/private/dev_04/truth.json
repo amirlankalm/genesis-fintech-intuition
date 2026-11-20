@@ -1,0 +1,52 @@
+{
+  "issues": [
+    {
+      "issue_id": "truth-73aafe23c6bf",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "IVYBD5N",
+        "PAXG9BY"
+      ],
+      "expected_amount_minor": 152600,
+      "currency": "GBP",
+      "acceptable_evidence_sets": [
+        [
+          "DVH46CX",
+          "DXB7Q7Q",
+          "L8VE3UQ"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-0f5d261ebcc9",
+      "type": "fx_mismatch",
+      "affected_ids": [
+        "PH857SW"
+      ],
+      "expected_amount_minor": 13,
+      "currency": "EUR",
+      "acceptable_evidence_sets": [
+        [
+          "2026-02-28|EUR|GBP",
+          "DBGDPA2",
+          "LANK36H"
+        ]
+      ]
+    },
+    {
+      "issue_id": "truth-6bb1ce7f7641",
+      "type": "cutoff",
+      "affected_ids": [
+        "IDWNG2Q"
+      ],
+      "expected_amount_minor": 80000,
+      "currency": "GBP",
+      "acceptable_evidence_sets": [
+        [
+          "DBD9NP5",
+          "LG5MTX8"
+        ]
+      ]
+    }
+  ]
+}

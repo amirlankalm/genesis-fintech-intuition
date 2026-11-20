@@ -1,0 +1,643 @@
+{
+  "builder": "case-builder/1",
+  "variant": "dev_09",
+  "canary": "canary-b2b3a87fbe675b71",
+  "injections": [
+    {
+      "injection_id": "inj-1",
+      "family": "duplicate_invoice",
+      "error": {
+        "family": "duplicate_invoice",
+        "invoice_id": "I28F333",
+        "copy": {
+          "invoice_id": "IWPYUA3",
+          "doc_id": "D6HYK6Z",
+          "posted_at": "2026-11-04T17:12:00+00:00"
+        }
+      },
+      "expected": {
+        "type": "duplicate_invoice",
+        "affected_ids": [
+          "I28F333",
+          "IWPYUA3"
+        ],
+        "amount_minor": 65000,
+        "currency": "EUR"
+      },
+      "causal_note": "The same invoice was keyed in a second time and given a new number.",
+      "changes": [
+        {
+          "op": "insert",
+          "table": "invoices",
+          "record": {
+            "doc_id": "D6HYK6Z",
+            "invoice_id": "IWPYUA3",
+            "entity_id": "EHNMMXM",
+            "issued_at": "2026-11-04T11:00:00+00:00",
+            "due_at": "2026-12-04T11:00:00+00:00",
+            "currency": "EUR",
+            "total_minor": 65000,
+            "line_items": [
+              {
+                "description": "Consulting hour",
+                "quantity": 5,
+                "unit_price_minor": 13000,
+                "amount_minor": 65000
+              }
+            ]
+          }
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "L6G39H4",
+            "timestamp": "2026-11-04T17:12:00+00:00",
+            "account": "accounts_receivable",
+            "debit_minor": 65000,
+            "credit_minor": 0,
+            "currency": "EUR",
+            "entity_id": "EHNMMXM",
+            "invoice_id": "IWPYUA3",
+            "payment_id": null
+          }
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LNY86QH",
+            "timestamp": "2026-11-04T17:12:00+00:00",
+            "account": "revenue",
+            "debit_minor": 0,
+            "credit_minor": 65000,
+            "currency": "EUR",
+            "entity_id": "EHNMMXM",
+            "invoice_id": "IWPYUA3",
+            "payment_id": null
+          }
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-2",
+      "family": "duplicate_invoice",
+      "error": {
+        "family": "duplicate_invoice",
+        "invoice_id": "IQAZ86C",
+        "copy": {
+          "invoice_id": "IJH3DYJ",
+          "doc_id": "DP93RQH",
+          "posted_at": "2026-11-07T10:57:00+00:00",
+          "issued_at": "2026-11-06T12:00:00-05:00",
+          "due_at": "2026-11-13T12:00:00-05:00"
+        }
+      },
+      "expected": {
+        "type": "duplicate_invoice",
+        "affected_ids": [
+          "IJH3DYJ",
+          "IQAZ86C"
+        ],
+        "amount_minor": 80000,
+        "currency": "GBP"
+      },
+      "causal_note": "The same invoice was keyed in a second time and given a new number.",
+      "changes": [
+        {
+          "op": "insert",
+          "table": "invoices",
+          "record": {
+            "doc_id": "DP93RQH",
+            "invoice_id": "IJH3DYJ",
+            "entity_id": "EJ6XXXR",
+            "issued_at": "2026-11-06T12:00:00-05:00",
+            "due_at": "2026-11-13T12:00:00-05:00",
+            "currency": "GBP",
+            "total_minor": 80000,
+            "line_items": [
+              {
+                "description": "Certification exam fee",
+                "quantity": 5,
+                "unit_price_minor": 16000,
+                "amount_minor": 80000
+              }
+            ]
+          }
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "L7GCV9Y",
+            "timestamp": "2026-11-07T10:57:00+00:00",
+            "account": "revenue",
+            "debit_minor": 0,
+            "credit_minor": 80000,
+            "currency": "GBP",
+            "entity_id": "EJ6XXXR",
+            "invoice_id": "IJH3DYJ",
+            "payment_id": null
+          }
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LES9TA9",
+            "timestamp": "2026-11-07T10:57:00+00:00",
+            "account": "accounts_receivable",
+            "debit_minor": 80000,
+            "credit_minor": 0,
+            "currency": "GBP",
+            "entity_id": "EJ6XXXR",
+            "invoice_id": "IJH3DYJ",
+            "payment_id": null
+          }
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-3",
+      "family": "duplicate_invoice",
+      "error": {
+        "family": "duplicate_invoice",
+        "invoice_id": "I6NRBUD",
+        "copy": {
+          "invoice_id": "IT8UXCS",
+          "doc_id": "D2RH3R6",
+          "posted_at": "2027-01-01T09:40:00+00:00"
+        }
+      },
+      "expected": {
+        "type": "duplicate_invoice",
+        "affected_ids": [
+          "I6NRBUD",
+          "IT8UXCS"
+        ],
+        "amount_minor": 339000,
+        "currency": "USD"
+      },
+      "causal_note": "The same invoice was keyed in a second time and given a new number.",
+      "changes": [
+        {
+          "op": "insert",
+          "table": "invoices",
+          "record": {
+            "doc_id": "D2RH3R6",
+            "invoice_id": "IT8UXCS",
+            "entity_id": "E98K55R",
+            "issued_at": "2027-01-01T10:18:00+05:30",
+            "due_at": "2027-01-15T10:18:00+05:30",
+            "currency": "USD",
+            "total_minor": 339000,
+            "line_items": [
+              {
+                "description": "Data-literacy course seat",
+                "quantity": 8,
+                "unit_price_minor": 24000,
+                "amount_minor": 192000
+              },
+              {
+                "description": "Certification exam fee",
+                "quantity": 7,
+                "unit_price_minor": 21000,
+                "amount_minor": 147000
+              }
+            ]
+          }
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "L7M5XKQ",
+            "timestamp": "2027-01-01T09:40:00+00:00",
+            "account": "accounts_receivable",
+            "debit_minor": 339000,
+            "credit_minor": 0,
+            "currency": "USD",
+            "entity_id": "E98K55R",
+            "invoice_id": "IT8UXCS",
+            "payment_id": null
+          }
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LANKW2Q",
+            "timestamp": "2027-01-01T09:40:00+00:00",
+            "account": "revenue",
+            "debit_minor": 0,
+            "credit_minor": 339000,
+            "currency": "USD",
+            "entity_id": "E98K55R",
+            "invoice_id": "IT8UXCS",
+            "payment_id": null
+          }
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-4",
+      "family": "payment_allocation",
+      "error": {
+        "family": "payment_allocation",
+        "payment_id": "PYQVWT5",
+        "invoice_id": "IT8QPS8",
+        "applied_minor": 60000
+      },
+      "expected": {
+        "type": "payment_allocation",
+        "affected_ids": [
+          "IT8QPS8",
+          "PYQVWT5"
+        ],
+        "amount_minor": 17600,
+        "currency": "EUR"
+      },
+      "causal_note": "The clerk applied less of the receipt to the invoice than the policy requires and left the rest unapplied.",
+      "changes": [
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "L2T98M6",
+            "timestamp": "2026-10-05T07:33:00+00:00",
+            "account": "unapplied_receipts",
+            "debit_minor": 0,
+            "credit_minor": 17600,
+            "currency": "EUR",
+            "entity_id": "ESFKRHP",
+            "invoice_id": null,
+            "payment_id": "PYQVWT5"
+          }
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LNND7KC",
+          "field": "credit_minor",
+          "before": 77600,
+          "after": 60000
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-5",
+      "family": "payment_allocation",
+      "error": {
+        "family": "payment_allocation",
+        "payment_id": "P2HYUG9",
+        "invoice_id": "IHBSZDQ",
+        "applied_minor": 36000
+      },
+      "expected": {
+        "type": "payment_allocation",
+        "affected_ids": [
+          "IHBSZDQ",
+          "P2HYUG9"
+        ],
+        "amount_minor": 19000,
+        "currency": "GBP"
+      },
+      "causal_note": "The clerk applied less of the receipt to the invoice than the policy requires and left the rest unapplied.",
+      "changes": [
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LATAGN5",
+            "timestamp": "2026-12-02T23:07:00+00:00",
+            "account": "unapplied_receipts",
+            "debit_minor": 0,
+            "credit_minor": 19000,
+            "currency": "GBP",
+            "entity_id": "E6BCPSM",
+            "invoice_id": null,
+            "payment_id": "P2HYUG9"
+          }
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LCUGKAM",
+          "field": "credit_minor",
+          "before": 55000,
+          "after": 36000
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-6",
+      "family": "payment_allocation",
+      "error": {
+        "family": "payment_allocation",
+        "payment_id": "P2FKTCJ",
+        "invoice_id": "IFWBW7Z",
+        "applied_minor": 5200
+      },
+      "expected": {
+        "type": "payment_allocation",
+        "affected_ids": [
+          "IFWBW7Z",
+          "P2FKTCJ"
+        ],
+        "amount_minor": 16800,
+        "currency": "EUR"
+      },
+      "causal_note": "The clerk applied less of the receipt to the invoice than the policy requires and left the rest unapplied.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LH3E777",
+          "field": "credit_minor",
+          "before": 22000,
+          "after": 5200
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LJZ6QDP",
+            "timestamp": "2026-11-12T09:26:00+00:00",
+            "account": "unapplied_receipts",
+            "debit_minor": 0,
+            "credit_minor": 16800,
+            "currency": "EUR",
+            "entity_id": "E4JGG7F",
+            "invoice_id": null,
+            "payment_id": "P2FKTCJ"
+          }
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-7",
+      "family": "fx_mismatch",
+      "error": {
+        "family": "fx_mismatch",
+        "payment_id": "PPTVSGH",
+        "rate": "0.85500",
+        "rate_source": "2026-10-06"
+      },
+      "expected": {
+        "type": "fx_mismatch",
+        "affected_ids": [
+          "PPTVSGH"
+        ],
+        "amount_minor": 181,
+        "currency": "EUR"
+      },
+      "causal_note": "The clerk translated the receipt at a rate the policy does not select.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LCE5VB5",
+          "field": "credit_minor",
+          "before": 1,
+          "after": 182
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LDS8W8Y",
+          "field": "debit_minor",
+          "before": 22001,
+          "after": 22182
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-8",
+      "family": "fx_mismatch",
+      "error": {
+        "family": "fx_mismatch",
+        "payment_id": "PT6NGSS",
+        "rate": "0.94654",
+        "rate_source": "2026-10-19"
+      },
+      "expected": {
+        "type": "fx_mismatch",
+        "affected_ids": [
+          "PT6NGSS"
+        ],
+        "amount_minor": 304,
+        "currency": "EUR"
+      },
+      "causal_note": "The clerk translated the receipt at a rate the policy does not select.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LJPCFWU",
+          "field": "debit_minor",
+          "before": 13000,
+          "after": 13304
+        },
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LJUQTDA",
+            "timestamp": "2026-10-16T06:43:00+00:00",
+            "account": "unapplied_receipts",
+            "debit_minor": 0,
+            "credit_minor": 304,
+            "currency": "EUR",
+            "entity_id": "EQAU48X",
+            "invoice_id": null,
+            "payment_id": "PT6NGSS"
+          }
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-9",
+      "family": "fx_mismatch",
+      "error": {
+        "family": "fx_mismatch",
+        "payment_id": "PF8D3KB",
+        "rate": "0.84577",
+        "rate_source": "2026-12-20"
+      },
+      "expected": {
+        "type": "fx_mismatch",
+        "affected_ids": [
+          "PF8D3KB"
+        ],
+        "amount_minor": 66,
+        "currency": "GBP"
+      },
+      "causal_note": "The clerk translated the receipt at a rate the policy does not select.",
+      "changes": [
+        {
+          "op": "insert",
+          "table": "ledger",
+          "record": {
+            "row_id": "LCTECMY",
+            "timestamp": "2026-12-23T15:42:00+00:00",
+            "account": "unapplied_receipts",
+            "debit_minor": 0,
+            "credit_minor": 66,
+            "currency": "GBP",
+            "entity_id": "EJ6XXXR",
+            "invoice_id": null,
+            "payment_id": "PF8D3KB"
+          }
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LTWYB5P",
+          "field": "debit_minor",
+          "before": 24000,
+          "after": 24066
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-10",
+      "family": "cutoff",
+      "error": {
+        "family": "cutoff",
+        "invoice_id": "IBF5UXN",
+        "posted_at": "2027-01-04T10:42:00+00:00"
+      },
+      "expected": {
+        "type": "cutoff",
+        "affected_ids": [
+          "IBF5UXN"
+        ],
+        "amount_minor": 75000,
+        "currency": "USD"
+      },
+      "causal_note": "The invoice was posted with a date on the other side of the period boundary.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "L7M2WUB",
+          "field": "timestamp",
+          "before": "2026-12-31T19:48:00+00:00",
+          "after": "2027-01-04T10:42:00+00:00"
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LS9CPW4",
+          "field": "timestamp",
+          "before": "2026-12-31T19:48:00+00:00",
+          "after": "2027-01-04T10:42:00+00:00"
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-11",
+      "family": "cutoff",
+      "error": {
+        "family": "cutoff",
+        "invoice_id": "INRNYNR",
+        "posted_at": "2026-10-02T11:06:00+00:00"
+      },
+      "expected": {
+        "type": "cutoff",
+        "affected_ids": [
+          "INRNYNR"
+        ],
+        "amount_minor": 192000,
+        "currency": "GBP"
+      },
+      "causal_note": "The invoice was posted with a date on the other side of the period boundary.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "L6FF4UF",
+          "field": "timestamp",
+          "before": "2026-09-28T09:39:00+00:00",
+          "after": "2026-10-02T11:06:00+00:00"
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LUKPCUD",
+          "field": "timestamp",
+          "before": "2026-09-28T09:39:00+00:00",
+          "after": "2026-10-02T11:06:00+00:00"
+        }
+      ]
+    },
+    {
+      "injection_id": "inj-12",
+      "family": "cutoff",
+      "error": {
+        "family": "cutoff",
+        "invoice_id": "IHXQ8EX",
+        "posted_at": "2026-12-31T19:02:00+00:00"
+      },
+      "expected": {
+        "type": "cutoff",
+        "affected_ids": [
+          "IHXQ8EX"
+        ],
+        "amount_minor": 22000,
+        "currency": "EUR"
+      },
+      "causal_note": "The invoice was posted with a date on the other side of the period boundary.",
+      "changes": [
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LBMW9AY",
+          "field": "timestamp",
+          "before": "2027-01-04T09:17:00+00:00",
+          "after": "2026-12-31T19:02:00+00:00"
+        },
+        {
+          "op": "update",
+          "table": "ledger",
+          "id": "LS6N2YQ",
+          "field": "timestamp",
+          "before": "2027-01-04T09:17:00+00:00",
+          "after": "2026-12-31T19:02:00+00:00"
+        }
+      ]
+    }
+  ],
+  "generator": {
+    "seed": 209,
+    "config": {
+      "base_currency": "EUR",
+      "foreign_currencies": [
+        "USD",
+        "JPY",
+        "GBP"
+      ],
+      "timezone": "UTC",
+      "period": "2026-Q4",
+      "invoices": 100,
+      "ledger_rows": 2000,
+      "head_days": 6,
+      "tail_days": 7
+    },
+    "inject": {
+      "duplicate_invoice": 3,
+      "payment_allocation": 3,
+      "fx_mismatch": 3,
+      "cutoff": 3,
+      "interactions": []
+    }
+  },
+  "status": "faulty",
+  "families": [
+    "cutoff",
+    "duplicate_invoice",
+    "fx_mismatch",
+    "payment_allocation"
+  ],
+  "split": "dev"
+}
