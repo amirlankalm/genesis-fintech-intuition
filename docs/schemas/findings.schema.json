@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "findings.schema.json",
+  "title": "findings.json: the submit payload and the second argument of score_episode",
+  "description": "Structure only: what this schema refuses is an invalid submit (episode ends, return -1, the other six metrics null). Everything it accepts is scored; a well-typed finding with an unknown type, a currency differing by case or space, ids that do not exist, an empty affected_ids or a huge amount is a false positive, not a structural error. affected_ids and evidence_ids are sets (order and repeats do not matter) but the 10-id cap is checked on the list as sent. Unknown extra keys are ignored. The validator is genesis_audit.schemas.parse_findings_document.",
+  "type": "object",
+  "required": [
+    "findings"
+  ],
+  "properties": {
+    "episode_id": {
+      "type": "string",
+      "description": "Optional. When present it must equal manifest.episode_id (otherwise the submit is invalid)."
+    },
+    "findings": {
+      "type": "array",
+      "maxItems": 30,
+      "items": {
+        "$ref": "#/$defs/finding"
+      }
+    }
+  },
+  "$defs": {
+    "finding": {
+      "type": "object",
+      "required": [
+        "type",
+        "affected_ids",
+        "claimed_amount_minor",
+        "currency",
+        "evidence_ids",
+        "explanation"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "One of manifest.issue_types: duplicate_invoice, payment_allocation, fx_mismatch, cutoff. Any other string is unmatched (FP)."
+        },
+        "affected_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The issue's canonical affected set (see docs/ADAPTER.md, error types). A set; exact equality is required for a TP."
+        },
+        "claimed_amount_minor": {
+          "type": "integer",
+          "description": "A JSON integer in minor units of `currency` (not a bool, string or fraction)."
+        },
+        "currency": {
+          "type": "string",
+          "description": "Exact code as in manifest.currencies; no case folding or trimming."
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 10,
+          "description": "At most 10 as sent (repeats count). A set; it must include one acceptable evidence set, and every id must be a ledger row_id, a document doc_id or an fx key date|source|target of this episode, else the finding is unmatched."
+        },
+        "explanation": {
+          "type": "string",
+          "maxLength": 1000,
+          "description": "At most 1000 Unicode code points; not scored."
+        }
+      }
+    }
+  }
+}

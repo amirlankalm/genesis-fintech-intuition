@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Generator config for generate_episode(seed, config, output_dir) and the train-mode team_config",
+  "description": "Both sections are optional; {} is a clean company with the default settings. Unknown keys at any level are refused with a message naming them. The parser is genesis_audit.shipped.parse_config. Conditions JSON Schema cannot express, also refused with a message: base_currency and foreign_currencies must all differ; Asia/Almaty needs the period start minus head_days on or after 2024-03-01 (the zone was UTC+06:00 before); the counts of all issues together must stay within 0..12; a company that has no place left for a requested error refuses it ('... left to ...'). The seed is a separate argument: a non-negative integer.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "generator": {
+      "description": "The company. Every key is optional; an absent key takes its default. null is the same as {}.",
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "base_currency": {"enum": ["KZT", "USD", "EUR", "GBP", "JPY", "KWD"], "default": "KZT", "description": "Currency of the books. Minor-unit exponents: KZT, USD, EUR, GBP 2; JPY 0; KWD 3."},
+        "foreign_currencies": {"type": "array", "items": {"enum": ["KZT", "USD", "EUR", "GBP", "JPY", "KWD"]}, "minItems": 1, "maxItems": 5, "uniqueItems": true, "default": ["USD"], "description": "At least one; none equal to base_currency."},
+        "timezone": {"enum": ["Asia/Almaty", "Asia/Tokyo", "Asia/Dubai", "Asia/Kolkata", "America/Bogota", "Africa/Lagos", "UTC"], "default": "Asia/Almaty", "description": "A zone without daylight-saving time. Printed offsets: +05:00, +09:00, +04:00, +05:30, -05:00, +01:00, +00:00."},
+        "period": {"type": "string", "pattern": "^(20[0-9]{2}|2100)-(0[1-9]|1[0-2]|Q[1-4])$", "default": "2026-10", "description": "One month 'YYYY-MM' or one quarter 'YYYY-Qn', years 2000..2100."},
+        "invoices": {"type": "integer", "minimum": 12, "maximum": 110, "default": 40, "description": "Target number of invoices."},
+        "ledger_rows": {"type": "integer", "minimum": 200, "maximum": 2000, "default": 400, "description": "Target ledger size; the result is within about fifteen rows of it, never exactly on it, and never outside 200..2000."},
+        "head_days": {"type": "integer", "minimum": 3, "maximum": 12, "default": 6, "description": "Days of records before the period starts."},
+        "tail_days": {"type": "integer", "minimum": 3, "maximum": 12, "default": 7, "description": "Days of records after the period ends. 10 or more leaves more settled invoices near the period end."}
+      }
+    },
+    "inject": {
+      "description": "What the clerk got wrong. Every count is optional and defaults to 0; each family can be switched on alone. The truth type of a sub-kind key is its family's type. null is the same as {}.",
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "duplicate_invoice": {"$ref": "#/$defs/count", "description": "One obligation recorded as a second invoice record (truth type duplicate_invoice)."},
+        "payment_allocation": {"$ref": "#/$defs/count", "description": "A receipt under-applied to its invoice; missing (nothing applied) or partial is drawn from the seed (truth type payment_allocation)."},
+        "payment_allocation_missing": {"$ref": "#/$defs/count", "description": "A receipt that names an open invoice with no allocation row at all (truth type payment_allocation)."},
+        "payment_allocation_partial": {"$ref": "#/$defs/count", "description": "A receipt applied for more than 0 and less than required (truth type payment_allocation)."},
+        "fx_mismatch": {"$ref": "#/$defs/count", "description": "A receipt in another currency translated at a rate the policy does not select; another date's rate or a mistyped rate is drawn (truth type fx_mismatch)."},
+        "fx_mismatch_date": {"$ref": "#/$defs/count", "description": "Translated at the fx.csv rate of another date (often the date printed on the receipt) (truth type fx_mismatch)."},
+        "fx_mismatch_rate": {"$ref": "#/$defs/count", "description": "Translated at a rate that is on no fx.csv row of the pair and gives an amount no row gives (truth type fx_mismatch)."},
+        "cutoff": {"$ref": "#/$defs/count", "description": "An invoice's revenue row posted on another side of the period than its issued_at (truth type cutoff)."},
+        "interactions": {
+          "type": "array",
+          "description": "Interacting errors, each giving two issues. A bare name draws every parameter from the seed; an object fixes the parameters it names and draws the others from the seed, except that fx_then_allocation without an allocation parameter is always partial (as its bare name always was).",
+          "items": {
+            "oneOf": [
+              {"enum": ["cutoff_and_allocation", "duplicate_then_cutoff", "fx_then_allocation"]},
+              {
+                "title": "Interaction 1: cutoff_and_allocation. An invoice posted on the wrong side of a period boundary whose receipt is also under-applied (issues: cutoff, payment_allocation). The case's own example is {\"allocation\": \"partial\", \"receipt_currency\": \"foreign\"}.",
+                "type": "object", "additionalProperties": false, "required": ["name"],
+                "properties": {
+                  "name": {"const": "cutoff_and_allocation"},
+                  "boundary": {"enum": ["start", "end"]},
+                  "allocation": {"enum": ["missing", "partial"]},
+                  "receipt_currency": {"enum": ["same", "foreign"]}
+                }
+              },
+              {
+                "title": "Interaction 2: duplicate_then_cutoff. A duplicate invoice record whose revenue row is also on the wrong side of a period boundary (issues: duplicate_invoice, cutoff).",
+                "type": "object", "additionalProperties": false, "required": ["name"],
+                "properties": {
+                  "name": {"const": "duplicate_then_cutoff"},
+                  "boundary": {"enum": ["start", "end"]},
+                  "copy_offset": {"enum": ["same", "other"]}
+                }
+              },
+              {
+                "title": "Extra: fx_then_allocation. A receipt translated at a wrong rate and the recorded amount under-applied (issues: fx_mismatch, payment_allocation).",
+                "type": "object", "additionalProperties": false, "required": ["name"],
+                "properties": {
+                  "name": {"const": "fx_then_allocation"},
+                  "fx_error": {"enum": ["date", "rate"]},
+                  "allocation": {"enum": ["missing", "partial"]}
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "count": {"type": "integer", "minimum": 0, "maximum": 12}
+  }
+}

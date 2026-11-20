@@ -1,0 +1,51 @@
+{
+  "seeds": [
+    0,
+    399
+  ],
+  "group_size": 4,
+  "episodes": {
+    "teaching_b": {
+      "rollouts": 400,
+      "reward_histogram": {
+        "-1.000": 400
+      },
+      "share_of_rollouts_with_any_finding": 0.275,
+      "groups": 100,
+      "flat_fraction": 1.0
+    },
+    "teaching_b_p5": {
+      "rollouts": 400,
+      "reward_histogram": {
+        "-1.000": 400
+      },
+      "share_of_rollouts_with_any_finding": 0.275,
+      "groups": 100,
+      "flat_fraction": 1.0
+    },
+    "teaching_b_both": {
+      "rollouts": 400,
+      "reward_histogram": {
+        "-1.000": 400
+      },
+      "share_of_rollouts_with_any_finding": 0.275,
+      "groups": 100,
+      "flat_fraction": 1.0
+    },
+    "teaching_b_clean": {
+      "rollouts": 400,
+      "reward_histogram": {
+        "-1.000": 110,
+        "0.984": 39,
+        "0.986": 44,
+        "0.988": 42,
+        "0.990": 51,
+        "0.992": 44,
+        "0.994": 70
+      },
+      "share_of_rollouts_with_any_finding": 0.275,
+      "groups": 100,
+      "flat_fraction": 0.0
+    }
+  }
+}

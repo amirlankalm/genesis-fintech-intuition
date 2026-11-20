@@ -1,0 +1,643 @@
+{
+  "host": "Darwin arm64, Python 3.11.15",
+  "backend": "seatbelt",
+  "envelope": {
+    "seconds_per_episode": 60,
+    "memory_bytes": 4294967296,
+    "max_steps": 100
+  },
+  "largest_episode": "train_10",
+  "build_largest_from_seed": {
+    "seconds": 0.9371,
+    "peak_python_bytes": 9018980
+  },
+  "peak_resident_bytes": {
+    "evaluator": 48824320,
+    "largest_policy_process": 21233664
+  },
+  "slowest_solver_episode_seconds": 0.0657,
+  "most_steps_to_read_everything": 52,
+  "within_envelope": true,
+  "episodes": {
+    "teaching_b": {
+      "ledger_rows": 12,
+      "documents": 5,
+      "fx_rates": 3,
+      "issues": 1,
+      "pages": {
+        "ledger": 1,
+        "invoices": 1,
+        "payments": 1,
+        "fx": 1
+      },
+      "steps_to_read_everything": 4,
+      "solver_steps": 4,
+      "solver_f1": 1.0,
+      "solver_reward": 0.994,
+      "evidence_fetches_for_every_issue": 3,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0008,
+      "solver_episode_seconds": 0.0352
+    },
+    "teaching_b_p5": {
+      "ledger_rows": 12,
+      "documents": 5,
+      "fx_rates": 3,
+      "issues": 1,
+      "pages": {
+        "ledger": 1,
+        "invoices": 1,
+        "payments": 1,
+        "fx": 1
+      },
+      "steps_to_read_everything": 4,
+      "solver_steps": 4,
+      "solver_f1": 1.0,
+      "solver_reward": 0.994,
+      "evidence_fetches_for_every_issue": 3,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0004,
+      "solver_episode_seconds": 0.0351
+    },
+    "teaching_b_both": {
+      "ledger_rows": 12,
+      "documents": 5,
+      "fx_rates": 3,
+      "issues": 2,
+      "pages": {
+        "ledger": 1,
+        "invoices": 1,
+        "payments": 1,
+        "fx": 1
+      },
+      "steps_to_read_everything": 4,
+      "solver_steps": 4,
+      "solver_f1": 1.0,
+      "solver_reward": 0.994,
+      "evidence_fetches_for_every_issue": 6,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0005,
+      "solver_episode_seconds": 0.0345
+    },
+    "teaching_b_clean": {
+      "ledger_rows": 12,
+      "documents": 5,
+      "fx_rates": 3,
+      "issues": 0,
+      "pages": {
+        "ledger": 1,
+        "invoices": 1,
+        "payments": 1,
+        "fx": 1
+      },
+      "steps_to_read_everything": 4,
+      "solver_steps": 4,
+      "solver_f1": 1.0,
+      "solver_reward": 0.994,
+      "evidence_fetches_for_every_issue": 0,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0004,
+      "solver_episode_seconds": 0.0354
+    },
+    "fixture_clean": {
+      "ledger_rows": 45,
+      "documents": 17,
+      "fx_rates": 4,
+      "issues": 0,
+      "pages": {
+        "ledger": 1,
+        "invoices": 1,
+        "payments": 1,
+        "fx": 1
+      },
+      "steps_to_read_everything": 4,
+      "solver_steps": 5,
+      "solver_f1": 1.0,
+      "solver_reward": 0.992,
+      "evidence_fetches_for_every_issue": 0,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0009,
+      "solver_episode_seconds": 0.0363
+    },
+    "fixture_duplicate": {
+      "ledger_rows": 47,
+      "documents": 18,
+      "fx_rates": 4,
+      "issues": 1,
+      "pages": {
+        "ledger": 1,
+        "invoices": 1,
+        "payments": 1,
+        "fx": 1
+      },
+      "steps_to_read_everything": 4,
+      "solver_steps": 5,
+      "solver_f1": 1.0,
+      "solver_reward": 0.992,
+      "evidence_fetches_for_every_issue": 2,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0008,
+      "solver_episode_seconds": 0.036
+    },
+    "fixture_allocation": {
+      "ledger_rows": 45,
+      "documents": 17,
+      "fx_rates": 4,
+      "issues": 1,
+      "pages": {
+        "ledger": 1,
+        "invoices": 1,
+        "payments": 1,
+        "fx": 1
+      },
+      "steps_to_read_everything": 4,
+      "solver_steps": 5,
+      "solver_f1": 1.0,
+      "solver_reward": 0.992,
+      "evidence_fetches_for_every_issue": 2,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0008,
+      "solver_episode_seconds": 0.0356
+    },
+    "fixture_fx": {
+      "ledger_rows": 46,
+      "documents": 17,
+      "fx_rates": 4,
+      "issues": 2,
+      "pages": {
+        "ledger": 1,
+        "invoices": 1,
+        "payments": 1,
+        "fx": 1
+      },
+      "steps_to_read_everything": 4,
+      "solver_steps": 5,
+      "solver_f1": 1.0,
+      "solver_reward": 0.992,
+      "evidence_fetches_for_every_issue": 6,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0008,
+      "solver_episode_seconds": 0.0366
+    },
+    "fixture_cutoff": {
+      "ledger_rows": 45,
+      "documents": 17,
+      "fx_rates": 4,
+      "issues": 1,
+      "pages": {
+        "ledger": 1,
+        "invoices": 1,
+        "payments": 1,
+        "fx": 1
+      },
+      "steps_to_read_everything": 4,
+      "solver_steps": 5,
+      "solver_f1": 1.0,
+      "solver_reward": 0.992,
+      "evidence_fetches_for_every_issue": 2,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0008,
+      "solver_episode_seconds": 0.0355
+    },
+    "fixture_x_fx_allocation": {
+      "ledger_rows": 46,
+      "documents": 17,
+      "fx_rates": 4,
+      "issues": 2,
+      "pages": {
+        "ledger": 1,
+        "invoices": 1,
+        "payments": 1,
+        "fx": 1
+      },
+      "steps_to_read_everything": 4,
+      "solver_steps": 5,
+      "solver_f1": 1.0,
+      "solver_reward": 0.992,
+      "evidence_fetches_for_every_issue": 5,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0008,
+      "solver_episode_seconds": 0.0356
+    },
+    "fixture_x_duplicate_cutoff": {
+      "ledger_rows": 47,
+      "documents": 18,
+      "fx_rates": 4,
+      "issues": 2,
+      "pages": {
+        "ledger": 1,
+        "invoices": 1,
+        "payments": 1,
+        "fx": 1
+      },
+      "steps_to_read_everything": 4,
+      "solver_steps": 5,
+      "solver_f1": 1.0,
+      "solver_reward": 0.992,
+      "evidence_fetches_for_every_issue": 3,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0008,
+      "solver_episode_seconds": 0.0362
+    },
+    "train_01": {
+      "ledger_rows": 208,
+      "documents": 37,
+      "fx_rates": 49,
+      "issues": 0,
+      "pages": {
+        "ledger": 5,
+        "invoices": 1,
+        "payments": 1,
+        "fx": 1
+      },
+      "steps_to_read_everything": 8,
+      "solver_steps": 9,
+      "solver_f1": 1.0,
+      "solver_reward": 0.984,
+      "evidence_fetches_for_every_issue": 0,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0017,
+      "solver_episode_seconds": 0.0382
+    },
+    "train_02": {
+      "ledger_rows": 209,
+      "documents": 37,
+      "fx_rates": 49,
+      "issues": 2,
+      "pages": {
+        "ledger": 5,
+        "invoices": 1,
+        "payments": 1,
+        "fx": 1
+      },
+      "steps_to_read_everything": 8,
+      "solver_steps": 9,
+      "solver_f1": 1.0,
+      "solver_reward": 0.984,
+      "evidence_fetches_for_every_issue": 5,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0018,
+      "solver_episode_seconds": 0.0389
+    },
+    "train_03": {
+      "ledger_rows": 416,
+      "documents": 63,
+      "fx_rates": 98,
+      "issues": 2,
+      "pages": {
+        "ledger": 9,
+        "invoices": 1,
+        "payments": 1,
+        "fx": 2
+      },
+      "steps_to_read_everything": 13,
+      "solver_steps": 14,
+      "solver_f1": 1.0,
+      "solver_reward": 0.974,
+      "evidence_fetches_for_every_issue": 4,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.003,
+      "solver_episode_seconds": 0.042
+    },
+    "train_04": {
+      "ledger_rows": 595,
+      "documents": 101,
+      "fx_rates": 220,
+      "issues": 2,
+      "pages": {
+        "ledger": 12,
+        "invoices": 2,
+        "payments": 1,
+        "fx": 5
+      },
+      "steps_to_read_everything": 20,
+      "solver_steps": 21,
+      "solver_f1": 1.0,
+      "solver_reward": 0.96,
+      "evidence_fetches_for_every_issue": 6,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0045,
+      "solver_episode_seconds": 0.0465
+    },
+    "train_05": {
+      "ledger_rows": 285,
+      "documents": 52,
+      "fx_rates": 46,
+      "issues": 2,
+      "pages": {
+        "ledger": 6,
+        "invoices": 1,
+        "payments": 1,
+        "fx": 1
+      },
+      "steps_to_read_everything": 9,
+      "solver_steps": 10,
+      "solver_f1": 1.0,
+      "solver_reward": 0.982,
+      "evidence_fetches_for_every_issue": 4,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0021,
+      "solver_episode_seconds": 0.0394
+    },
+    "train_06": {
+      "ledger_rows": 795,
+      "documents": 123,
+      "fx_rates": 98,
+      "issues": 4,
+      "pages": {
+        "ledger": 16,
+        "invoices": 2,
+        "payments": 2,
+        "fx": 2
+      },
+      "steps_to_read_everything": 22,
+      "solver_steps": 23,
+      "solver_f1": 1.0,
+      "solver_reward": 0.956,
+      "evidence_fetches_for_every_issue": 10,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0049,
+      "solver_episode_seconds": 0.048
+    },
+    "train_07": {
+      "ledger_rows": 489,
+      "documents": 73,
+      "fx_rates": 49,
+      "issues": 3,
+      "pages": {
+        "ledger": 10,
+        "invoices": 1,
+        "payments": 1,
+        "fx": 1
+      },
+      "steps_to_read_everything": 13,
+      "solver_steps": 14,
+      "solver_f1": 1.0,
+      "solver_reward": 0.974,
+      "evidence_fetches_for_every_issue": 7,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0029,
+      "solver_episode_seconds": 0.0427
+    },
+    "train_08": {
+      "ledger_rows": 357,
+      "documents": 55,
+      "fx_rates": 96,
+      "issues": 2,
+      "pages": {
+        "ledger": 8,
+        "invoices": 1,
+        "payments": 1,
+        "fx": 2
+      },
+      "steps_to_read_everything": 12,
+      "solver_steps": 13,
+      "solver_f1": 1.0,
+      "solver_reward": 0.976,
+      "evidence_fetches_for_every_issue": 3,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0026,
+      "solver_episode_seconds": 0.0416
+    },
+    "train_09": {
+      "ledger_rows": 1196,
+      "documents": 152,
+      "fx_rates": 109,
+      "issues": 0,
+      "pages": {
+        "ledger": 24,
+        "invoices": 2,
+        "payments": 2,
+        "fx": 3
+      },
+      "steps_to_read_everything": 31,
+      "solver_steps": 32,
+      "solver_f1": 1.0,
+      "solver_reward": 0.938,
+      "evidence_fetches_for_every_issue": 0,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0063,
+      "solver_episode_seconds": 0.053
+    },
+    "train_10": {
+      "ledger_rows": 1998,
+      "documents": 174,
+      "fx_rates": 96,
+      "issues": 3,
+      "pages": {
+        "ledger": 40,
+        "invoices": 3,
+        "payments": 2,
+        "fx": 2
+      },
+      "steps_to_read_everything": 47,
+      "solver_steps": 48,
+      "solver_f1": 1.0,
+      "solver_reward": 0.906,
+      "evidence_fetches_for_every_issue": 8,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0096,
+      "solver_episode_seconds": 0.0635
+    },
+    "dev_01": {
+      "ledger_rows": 257,
+      "documents": 49,
+      "fx_rates": 48,
+      "issues": 2,
+      "pages": {
+        "ledger": 6,
+        "invoices": 1,
+        "payments": 1,
+        "fx": 1
+      },
+      "steps_to_read_everything": 9,
+      "solver_steps": 10,
+      "solver_f1": 1.0,
+      "solver_reward": 0.982,
+      "evidence_fetches_for_every_issue": 4,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.002,
+      "solver_episode_seconds": 0.041
+    },
+    "dev_02": {
+      "ledger_rows": 892,
+      "documents": 129,
+      "fx_rates": 48,
+      "issues": 0,
+      "pages": {
+        "ledger": 18,
+        "invoices": 2,
+        "payments": 1,
+        "fx": 1
+      },
+      "steps_to_read_everything": 22,
+      "solver_steps": 23,
+      "solver_f1": 1.0,
+      "solver_reward": 0.956,
+      "evidence_fetches_for_every_issue": 0,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0051,
+      "solver_episode_seconds": 0.0519
+    },
+    "dev_03": {
+      "ledger_rows": 445,
+      "documents": 79,
+      "fx_rates": 98,
+      "issues": 0,
+      "pages": {
+        "ledger": 9,
+        "invoices": 1,
+        "payments": 1,
+        "fx": 2
+      },
+      "steps_to_read_everything": 13,
+      "solver_steps": 14,
+      "solver_f1": 1.0,
+      "solver_reward": 0.974,
+      "evidence_fetches_for_every_issue": 0,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0036,
+      "solver_episode_seconds": 0.0487
+    },
+    "dev_04": {
+      "ledger_rows": 447,
+      "documents": 79,
+      "fx_rates": 98,
+      "issues": 3,
+      "pages": {
+        "ledger": 9,
+        "invoices": 1,
+        "payments": 1,
+        "fx": 2
+      },
+      "steps_to_read_everything": 13,
+      "solver_steps": 14,
+      "solver_f1": 1.0,
+      "solver_reward": 0.974,
+      "evidence_fetches_for_every_issue": 8,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0033,
+      "solver_episode_seconds": 0.044
+    },
+    "dev_05": {
+      "ledger_rows": 702,
+      "documents": 97,
+      "fx_rates": 49,
+      "issues": 3,
+      "pages": {
+        "ledger": 15,
+        "invoices": 2,
+        "payments": 1,
+        "fx": 1
+      },
+      "steps_to_read_everything": 19,
+      "solver_steps": 20,
+      "solver_f1": 1.0,
+      "solver_reward": 0.962,
+      "evidence_fetches_for_every_issue": 8,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.004,
+      "solver_episode_seconds": 0.0471
+    },
+    "dev_06": {
+      "ledger_rows": 1000,
+      "documents": 137,
+      "fx_rates": 216,
+      "issues": 4,
+      "pages": {
+        "ledger": 20,
+        "invoices": 2,
+        "payments": 2,
+        "fx": 5
+      },
+      "steps_to_read_everything": 29,
+      "solver_steps": 30,
+      "solver_f1": 1.0,
+      "solver_reward": 0.942,
+      "evidence_fetches_for_every_issue": 8,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0064,
+      "solver_episode_seconds": 0.052
+    },
+    "dev_07": {
+      "ledger_rows": 316,
+      "documents": 51,
+      "fx_rates": 49,
+      "issues": 2,
+      "pages": {
+        "ledger": 7,
+        "invoices": 1,
+        "payments": 1,
+        "fx": 1
+      },
+      "steps_to_read_everything": 10,
+      "solver_steps": 11,
+      "solver_f1": 1.0,
+      "solver_reward": 0.98,
+      "evidence_fetches_for_every_issue": 5,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0023,
+      "solver_episode_seconds": 0.0408
+    },
+    "dev_08": {
+      "ledger_rows": 1503,
+      "documents": 164,
+      "fx_rates": 49,
+      "issues": 3,
+      "pages": {
+        "ledger": 31,
+        "invoices": 2,
+        "payments": 2,
+        "fx": 1
+      },
+      "steps_to_read_everything": 36,
+      "solver_steps": 37,
+      "solver_f1": 1.0,
+      "solver_reward": 0.928,
+      "evidence_fetches_for_every_issue": 7,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0076,
+      "solver_episode_seconds": 0.0583
+    },
+    "dev_09": {
+      "ledger_rows": 1994,
+      "documents": 181,
+      "fx_rates": 330,
+      "issues": 12,
+      "pages": {
+        "ledger": 40,
+        "invoices": 3,
+        "payments": 2,
+        "fx": 7
+      },
+      "steps_to_read_everything": 52,
+      "solver_steps": 53,
+      "solver_f1": 1.0,
+      "solver_reward": 0.896,
+      "evidence_fetches_for_every_issue": 30,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0114,
+      "solver_episode_seconds": 0.0657
+    },
+    "dev_10": {
+      "ledger_rows": 244,
+      "documents": 36,
+      "fx_rates": 49,
+      "issues": 0,
+      "pages": {
+        "ledger": 5,
+        "invoices": 1,
+        "payments": 1,
+        "fx": 1
+      },
+      "steps_to_read_everything": 8,
+      "solver_steps": 9,
+      "solver_f1": 1.0,
+      "solver_reward": 0.984,
+      "evidence_fetches_for_every_issue": 0,
+      "every_issue_reachable_within_budget": true,
+      "load_and_validate_seconds": 0.0018,
+      "solver_episode_seconds": 0.0394
+    }
+  }
+}

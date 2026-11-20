@@ -1,0 +1,1738 @@
+[
+  {
+    "policy": "always_abstain",
+    "episode": "teaching_b",
+    "trajectory_digest": "c7a6abdfcb49cd06705bcd9ede658270aa7cba6053c012421836a8ea739e9ef7",
+    "reward_exact": "-1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "teaching_b_p5",
+    "trajectory_digest": "b4b0054c9ddbfb416730709baf7d4a9fe792ae67dceff4dac49ff24aa6121735",
+    "reward_exact": "-1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "teaching_b_both",
+    "trajectory_digest": "e09ef7e8a87ce5064c07d6eb6da13c819791cac98b9050dcf8d70a28996b0b1a",
+    "reward_exact": "-1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "teaching_b_clean",
+    "trajectory_digest": "35158014bb734662a4b6b03403d0b262eb14738a0243ac899909dbf86ced8885",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "fixture_clean",
+    "trajectory_digest": "8735352779267b7e7775c1e552bc003637f84d971df2bad79c4f9c68ab268d0b",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "fixture_duplicate",
+    "trajectory_digest": "906cb681e1ba762c44f98f4a9e71449754abe7703307a50cc22d34a18a563661",
+    "reward_exact": "-1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "fixture_allocation",
+    "trajectory_digest": "ecc096ccb0a9b2d78b2ab3037f8ae54a343f2ebbfe9ed105d778ff0ea18d70d4",
+    "reward_exact": "-1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "fixture_fx",
+    "trajectory_digest": "6fb5d71d1cdce39caa30b92fdeee2014c3bf99ac6ae26cfae875f1b7ac8c1eca",
+    "reward_exact": "-1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "fixture_cutoff",
+    "trajectory_digest": "13a40027386fc4a12bd5a40cf0773f9a7aab23ff92f060742b05f841c02b3ec4",
+    "reward_exact": "-1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "fixture_x_fx_allocation",
+    "trajectory_digest": "ed769dc8e4058a17b43b55de392a65c4f84e52ce58efd7d4f88db60c37a992fa",
+    "reward_exact": "-1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "fixture_x_duplicate_cutoff",
+    "trajectory_digest": "e1948867091f84102cc827bd7e933d5de49a976388704421debb806ab630a4b2",
+    "reward_exact": "-1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "train_01",
+    "trajectory_digest": "f8eaac878b12c242afb554d8e1a3a779f88918c8a7f237a8291de8958b63b990",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "train_02",
+    "trajectory_digest": "10c9c64d095bfd403f979e4a4b8d857add80f3f5a7aad9f4c66f706fdf63808c",
+    "reward_exact": "-1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "train_03",
+    "trajectory_digest": "ece750b47c11a1927dbc58ebf30e62b69e05b3c65921c62cf97b6d52ee4c7c18",
+    "reward_exact": "-1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "train_04",
+    "trajectory_digest": "c65bc0b9c601a64ecf7e11a00dec4c7d8140a5159bdbbe546456ce2349e9d6ab",
+    "reward_exact": "-1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "train_05",
+    "trajectory_digest": "a23f19e0e687b5f96458e56a64293f543d3a8044517593d657ef93b202eb2430",
+    "reward_exact": "-1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "train_06",
+    "trajectory_digest": "6fba2c45befa6e890041134599a8bbaf670ad960b6840117e1d27622a304dced",
+    "reward_exact": "-1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "train_07",
+    "trajectory_digest": "27e980166c96bb765c0dbdbe8f87f1c695c1bbc03740b30d08fda081089d027d",
+    "reward_exact": "-1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "train_08",
+    "trajectory_digest": "d04e06b48cc68dc497a936d989f47111f5f4bd75e1b29ae2f6b9a948ebf05031",
+    "reward_exact": "-1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "train_09",
+    "trajectory_digest": "3c2c31fb454ed47137203ab598aff52d653cf72c56dd5d7ba9b874d18ae670a2",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "train_10",
+    "trajectory_digest": "935f0b176f063003fa30f042ae622926fc83116c0733f90d78b64eea6800217a",
+    "reward_exact": "-1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "dev_01",
+    "trajectory_digest": "252d91a5bed031aa43923e55b717a969ef5ea4ab4145d62a071b215ce030ccc8",
+    "reward_exact": "-1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "dev_02",
+    "trajectory_digest": "425a6756b9c97db5da78d618e1e6b9c1961ff24fe190db95b56876c3b34d1cec",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "dev_03",
+    "trajectory_digest": "e931fb94076d71d02be8e9baa5f6b8150c8b6f04c50a9133756e8f479b4f1292",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "dev_04",
+    "trajectory_digest": "4454e3e798fd4f246314e7889f4ea988f9caca63ee27f6b23e815de35028660b",
+    "reward_exact": "-1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "dev_05",
+    "trajectory_digest": "230e3d083702959f5059aac56647c7a6090e9a4af12e661dbcdd1ef3e4cbff54",
+    "reward_exact": "-1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "dev_06",
+    "trajectory_digest": "dfe1d1339f90e45909c128ec6141c573108355c6fde3fbe1d262495eb060ac8b",
+    "reward_exact": "-1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "dev_07",
+    "trajectory_digest": "0e36514b62a31d84091c9d31149c6957464842a911482d22cee7b09d3914006f",
+    "reward_exact": "-1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "dev_08",
+    "trajectory_digest": "d1cdcdaa77f63efe45b7edf554a88d6684dac1870a0e88989e9deb337c40a201",
+    "reward_exact": "-1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "dev_09",
+    "trajectory_digest": "772153614432a8d4772e86eec295e902f8d7e8a1fe01a15a5b15b4cefb65127a",
+    "reward_exact": "-1",
+    "steps_used": 1
+  },
+  {
+    "policy": "always_abstain",
+    "episode": "dev_10",
+    "trajectory_digest": "d8bca7d2d951c7b8ca40a0d0155f13495899600e2a20b58fb5baf3557d9b39c8",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "never_acts",
+    "episode": "teaching_b",
+    "trajectory_digest": "fb93704e7e2fc3cc975aa39f79dff60de56d7b618017d612fcc08ee2c01078d7",
+    "reward_exact": "-1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "teaching_b_p5",
+    "trajectory_digest": "3bc0d98a45282eb3caf4a1d434a8721cf33bc9955b2a02f326831cad8526d74e",
+    "reward_exact": "-1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "teaching_b_both",
+    "trajectory_digest": "88af2819d017dccbd4b31dc3e36acc889cfbe60b7d3ccfd5497f94198c814b24",
+    "reward_exact": "-1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "teaching_b_clean",
+    "trajectory_digest": "d4e17c5f08b9998f534e76ee0c3dea7849d1c92b52c367749303e1cdc76e3ad1",
+    "reward_exact": "1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "fixture_clean",
+    "trajectory_digest": "9585863334309fa5ad592288b19cc28683c7972842b4a5eaa2ae5ecdc748e443",
+    "reward_exact": "1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "fixture_duplicate",
+    "trajectory_digest": "1706f139e6dec0e82b50a491c92b0eed4ea40e156e83508da441d55abbcb639a",
+    "reward_exact": "-1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "fixture_allocation",
+    "trajectory_digest": "956f06b73f8a3f163b8ca4a6130232aeb306be0e7dbf828bffff8a0ea53555ed",
+    "reward_exact": "-1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "fixture_fx",
+    "trajectory_digest": "dbdb8f11cd7848567036a128cee9ac895500a6dc9355b5decaa662036a3120b3",
+    "reward_exact": "-1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "fixture_cutoff",
+    "trajectory_digest": "42eebec01665319f14262788deec7600473f63b154d437f6e38a9feebde24f11",
+    "reward_exact": "-1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "fixture_x_fx_allocation",
+    "trajectory_digest": "7185264266af051d31b9631e92bb53047bfc070948f13e1c97c549895ed6b436",
+    "reward_exact": "-1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "fixture_x_duplicate_cutoff",
+    "trajectory_digest": "7261238a9b668c59306a4efe04b2ac41e832b140012c7e708b303fc2ea8aa508",
+    "reward_exact": "-1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "train_01",
+    "trajectory_digest": "c90b79e55e5524d98a3a684132472665a4be8204a65d058aeb81e0221fe4bdea",
+    "reward_exact": "1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "train_02",
+    "trajectory_digest": "68a714f061ba2f0987f6d230e467f6503fe01f157533f96fcddffb797acdc7ca",
+    "reward_exact": "-1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "train_03",
+    "trajectory_digest": "2aaf719e371b97a37e3427a6d12aca56027c079a34a071c68ed573b143ce5d32",
+    "reward_exact": "-1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "train_04",
+    "trajectory_digest": "470dc2a6ab7c42169bd05d7eced8fdedacafcfd66e3983486def2b91db1d3b34",
+    "reward_exact": "-1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "train_05",
+    "trajectory_digest": "fbbc2f9ceb185de1757d1ad1d7a1f333d1f12c6490230c27101ba6f4a89fc86e",
+    "reward_exact": "-1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "train_06",
+    "trajectory_digest": "0d4d2233358e529dfe8c3fbba0087203d27c2f9e06f8ea336c56413984f5adfc",
+    "reward_exact": "-1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "train_07",
+    "trajectory_digest": "385a7542ed0c904cd25e4a9527c8e64b6b11eac3e4b9a1f49cf254af767548d3",
+    "reward_exact": "-1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "train_08",
+    "trajectory_digest": "ede00ef43bca3ce527d40ef9d1f526949d2e018094d95b292a89b6849b1d815a",
+    "reward_exact": "-1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "train_09",
+    "trajectory_digest": "50c9ff105e1e38825087f3f21b3180dc9837d14b9030f238accf8e3590cb7009",
+    "reward_exact": "1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "train_10",
+    "trajectory_digest": "f8eb5e54a48a3b9ce56c97045702dc20e7e000a9a9f84fc5ccf2c6cc7508b3b9",
+    "reward_exact": "-1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "dev_01",
+    "trajectory_digest": "5077455d92c10479fb93ba8fe2357b63c23abc203aefe43e905dcce509e5647f",
+    "reward_exact": "-1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "dev_02",
+    "trajectory_digest": "53894e8c11962e451dbd7922b3d9cdc9253b89eccd77f93662f6161b54461f0e",
+    "reward_exact": "1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "dev_03",
+    "trajectory_digest": "153e0d8520ad9b2abfd228a798865ff31e00b196eb5639c244eb7c8496553607",
+    "reward_exact": "1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "dev_04",
+    "trajectory_digest": "9bbb5d2933c3338792ef783250a2c9fed04e9a5ee57be8538bd3422ee7919386",
+    "reward_exact": "-1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "dev_05",
+    "trajectory_digest": "47b7acc884cdf21928cf670d4c5a44844d34aa9fd578bd53526144016bfe47f6",
+    "reward_exact": "-1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "dev_06",
+    "trajectory_digest": "fde51d435296b5685e165c24fe34c36c813d044557eacec1514f081b8c558412",
+    "reward_exact": "-1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "dev_07",
+    "trajectory_digest": "87b66653b70ccf1addbffbd7d6b61db329667528b75f2014c0f149a3dff7475a",
+    "reward_exact": "-1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "dev_08",
+    "trajectory_digest": "eeb8a7b57201395f068faced71fe91f4f0110b695f16415af7039420816ea5fa",
+    "reward_exact": "-1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "dev_09",
+    "trajectory_digest": "de1667e4bfda244231dc8f7f0f6cd2f43717eb31ecb91598e465d6fd8449eb7a",
+    "reward_exact": "-1",
+    "steps_used": 0
+  },
+  {
+    "policy": "never_acts",
+    "episode": "dev_10",
+    "trajectory_digest": "ca793844c89456ae9c50f5cb8fbc7dfcae1b2205a4784993f088f2dc54b00067",
+    "reward_exact": "1",
+    "steps_used": 0
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "teaching_b",
+    "trajectory_digest": "01d47bd22ee66fdc82af55ec0d601e2a5d6c90a7ab5b02b0f6a6ff9fbae55ba0",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "teaching_b_p5",
+    "trajectory_digest": "68d3d3778d2b621a1d3b6a9a2095cd279d2d1f0a7f4d41602e93759fbc6764b7",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "teaching_b_both",
+    "trajectory_digest": "86e43a2d7896a7d3c4fe698643d018785d3733bb42b7a0e52ee0f3b864e33298",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "teaching_b_clean",
+    "trajectory_digest": "c6b6b558632c044152472ea0a6864be78a5fbb16456f6465c885fc27bacafffb",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "fixture_clean",
+    "trajectory_digest": "3f887527ee582866a3549a303b97d75d1882a6372c15cb70d1c09eaecefcc0ad",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "fixture_duplicate",
+    "trajectory_digest": "184249a6717d0f8aa100df0456ccc1c1f10733e4f58f4fcb3fddf4d9c45908b1",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "fixture_allocation",
+    "trajectory_digest": "3a08fd45b0d2b42c9eb5339901995790442af576410e69103e37c3f18e69ef94",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "fixture_fx",
+    "trajectory_digest": "ec64fbbc2344a8b81c4731781711c6c1fefe24e7859401fbfaa78638d1f1d5d6",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "fixture_cutoff",
+    "trajectory_digest": "66f17cb2321633900cf4f7db2ada104e02e1e387a9b9b21a2c3d2edb3db1c596",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "fixture_x_fx_allocation",
+    "trajectory_digest": "50ed6c653e0095378cfe37482b3520d7d4eb1834caffb829eb78dd276f234880",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "fixture_x_duplicate_cutoff",
+    "trajectory_digest": "cdaeb01f0aa2c03917895447191f9708eb53070404d0d4950a22e5a03fc3eefb",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "train_01",
+    "trajectory_digest": "7237afc9c6bd95f4ad17ba110337470043e29c19d0bfa6a819e1018f05f89e59",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "train_02",
+    "trajectory_digest": "b3319517e87249d499cf93f9c3901cfdc1dbd09fba7ef0990c4f0a7a091cb326",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "train_03",
+    "trajectory_digest": "7079d4188e11aa5b320c85051e675d33c0ca25150a3d2c364350ada21ad88db5",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "train_04",
+    "trajectory_digest": "d7e966a8f409043680901d7046a5b11890fcd3b6bb56c7f9d440527a3b754241",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "train_05",
+    "trajectory_digest": "0deceaca858cf2550ba2421410bde37eac7a71d73e6a0a72d46b8c48dfcae2d1",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "train_06",
+    "trajectory_digest": "8754a4540ca1e55ae9baec26c33a9e0454705b39db3317825fc56842b257f8d8",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "train_07",
+    "trajectory_digest": "c1fa73870e8887b905bb677091c44c9b7601ac20b19926bf038969ab6ca7b62b",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "train_08",
+    "trajectory_digest": "979eb6fa2072f8736236162b7b8183eb576a71c06a098a4ffc750018ae2aaebf",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "train_09",
+    "trajectory_digest": "eeaed5b3ecf4fbbc974831177ffc7884878664d33a1d77dc2c81337172533899",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "train_10",
+    "trajectory_digest": "79f85b9c96caae45c008998fe345f4e6320de4df1ad3c94f7447ff111bfede53",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "dev_01",
+    "trajectory_digest": "172cc16a4466f428be83497e392d3ce40069ba45e2797d5c7d2184f21ceb90f4",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "dev_02",
+    "trajectory_digest": "b2bb18bf87f9f560d2a44f77fb20668fab50569bef2cd38504c2f234f70d5cbd",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "dev_03",
+    "trajectory_digest": "d63281ef9f50ea4c18d8b18887ddbfe1b4cc9a70d21e48052914ad0ce76879bf",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "dev_04",
+    "trajectory_digest": "05197cb72238f118fd58d18534b7d71be4dc79cecdc9f82c94d27909a72aad60",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "dev_05",
+    "trajectory_digest": "010d759b5c9702da57313d1270118bb8487c81ff70f2fe04fbfbdc7dc0cea1de",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "dev_06",
+    "trajectory_digest": "b2527f5c1cfc60daadd0555750a372e97f4fd1731d49babb55cd1ae9b1a933b0",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "dev_07",
+    "trajectory_digest": "8d0d88c548ff4c725f62f504fb79a4beec46b1b84b86949972c47f5e10df4ea3",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "dev_08",
+    "trajectory_digest": "d11c024862c5fabafad74c95a3ae5e9b9baecf8ed011b51bf92078cbf6022165",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "dev_09",
+    "trajectory_digest": "c78217b308b27b23e14e4625355215397040b9a77469ed32bb096032de417178",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "random_inspector",
+    "episode": "dev_10",
+    "trajectory_digest": "5dedef153ae4ae2655c26d92974902e41ebc6f56d014ea3369d204b208344652",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "teaching_b",
+    "trajectory_digest": "cdb90084f31b9a50d61aa7a3aaf3f413465d011be03935fab3a3c70f84973f23",
+    "reward_exact": "-1",
+    "steps_used": 4
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "teaching_b_p5",
+    "trajectory_digest": "f495f5a650415a1265d5cb29825e95643a698d370db3a73ab71b5fc9b678f121",
+    "reward_exact": "-1",
+    "steps_used": 4
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "teaching_b_both",
+    "trajectory_digest": "0c9cb36f4698fa36b9fcc949f7c23a96fafae07796fe30b79204029835bd186a",
+    "reward_exact": "-1",
+    "steps_used": 4
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "teaching_b_clean",
+    "trajectory_digest": "e17d83104b473d04e852821e2d9cd45553a809386917d3b4a96d71721ecc7d0d",
+    "reward_exact": "-1",
+    "steps_used": 4
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "fixture_clean",
+    "trajectory_digest": "1cb55610e173fd526b8c23836807ec1fd4e850e139fccfed90ec60eec561b8af",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "fixture_duplicate",
+    "trajectory_digest": "64417ebe42696f1fc1947b1d4294e73c08fb8dd0241f15d075d9e5be9ad1e49b",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "fixture_allocation",
+    "trajectory_digest": "96c328b0d0ef06a79096bea72abb93da724b5459534ef98c2aef1e8af605bb9d",
+    "reward_exact": "-127/250",
+    "steps_used": 5
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "fixture_fx",
+    "trajectory_digest": "8a3a5d5dc7471fb3aed3e0bc8e0ce557598be6397c8a1c3bea0516d4544510a4",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "fixture_cutoff",
+    "trajectory_digest": "4097c92c4f35cfce4e813a266c3bb3edb3f9a8879ab66ed57cda6eb4da3a72bd",
+    "reward_exact": "-127/250",
+    "steps_used": 5
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "fixture_x_fx_allocation",
+    "trajectory_digest": "ade42dff871dec9910493086f7746f268b8174ed4b8125b15e11563bf01bd2c1",
+    "reward_exact": "-1",
+    "steps_used": 5
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "fixture_x_duplicate_cutoff",
+    "trajectory_digest": "2a4c1989cd212f23f934bd43cb4cd570d9608bf5e32436f180a291a873132ac1",
+    "reward_exact": "-26/125",
+    "steps_used": 5
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "train_01",
+    "trajectory_digest": "a3c6cf8970afa6eb3466eeb83b1f95fe4cb217369cbfcbbe6f3e6e3d894e2592",
+    "reward_exact": "-1",
+    "steps_used": 9
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "train_02",
+    "trajectory_digest": "e01deaa1fdb5e86108449141b77081ce5033244d9189b9430cd654cd17915e76",
+    "reward_exact": "-643/1125",
+    "steps_used": 9
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "train_03",
+    "trajectory_digest": "db8299ac922d30b203d287fc27a1160ddb7faa25cadfca80a38bfd0afbab6bfa",
+    "reward_exact": "-313/500",
+    "steps_used": 14
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "train_04",
+    "trajectory_digest": "b618452548c4e7af88bcb8b6956c8e89640f8956967238828eb9fe60bfbf904d",
+    "reward_exact": "-1",
+    "steps_used": 21
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "train_05",
+    "trajectory_digest": "6c6c25cbf2ed68c755dd90cf02f0715be04fee4a083fa8162c4bb21d69202a0f",
+    "reward_exact": "-2581/4500",
+    "steps_used": 10
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "train_06",
+    "trajectory_digest": "39e9a2a1ce985388fdda4b80db50157c48f573cd0fee1459938055eb43d378dc",
+    "reward_exact": "-6091/7750",
+    "steps_used": 23
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "train_07",
+    "trajectory_digest": "0326c4e1f63caed4ade50e360241cde34ab3a12e2fb4e287a8bb3661755cfc18",
+    "reward_exact": "-1339/1500",
+    "steps_used": 14
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "train_08",
+    "trajectory_digest": "26c4bdaaa6b94412a67e95c7f3a60268f98079b0fa234e0270a9b39cca4fb8e8",
+    "reward_exact": "-1932/2375",
+    "steps_used": 13
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "train_09",
+    "trajectory_digest": "83ab448b39f300157b9450ea2e4e1792b303d8bf5bc607fb11eb06324671de95",
+    "reward_exact": "-1",
+    "steps_used": 32
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "train_10",
+    "trajectory_digest": "ad1901d033397c057412147e212ab950a7e6ae777ed0a72d8efc600c43e38e8b",
+    "reward_exact": "-1",
+    "steps_used": 48
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "dev_01",
+    "trajectory_digest": "8db266219fed3cdf9ed844cbbc729bdb125745d7583add3966b2fa72659f79c8",
+    "reward_exact": "-1",
+    "steps_used": 10
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "dev_02",
+    "trajectory_digest": "90102b0d5e2a7567bc0f4e86f7592a359ca645edcefc26c2482632986ef761fe",
+    "reward_exact": "-1",
+    "steps_used": 23
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "dev_03",
+    "trajectory_digest": "7a531d87b65c56c2bb326ea41273c06046d9f8936f5f2eb127e9a33ca28c26f4",
+    "reward_exact": "-1",
+    "steps_used": 14
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "dev_04",
+    "trajectory_digest": "80c3798a3a9c50b316dd69ff2e18a05943d7d29505c274d44ad68649890b5382",
+    "reward_exact": "-4669/6500",
+    "steps_used": 14
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "dev_05",
+    "trajectory_digest": "5010cc747928a813d8bb5c2d9a9652dc039a571602bd8085f5eef27b2f643013",
+    "reward_exact": "-3709/5500",
+    "steps_used": 20
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "dev_06",
+    "trajectory_digest": "4e79e6c1dc44e33f118949aca3e8ca00c5a48ead7966c889434c2b8084f8cefa",
+    "reward_exact": "-1",
+    "steps_used": 30
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "dev_07",
+    "trajectory_digest": "06cdd284180ee4f34175048282d66479388d0c6deb2077cd18450b4b2ca69042",
+    "reward_exact": "-1",
+    "steps_used": 11
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "dev_08",
+    "trajectory_digest": "6039488882ba83cbc0a8279d1e50ab7564dcd5e8514977e1e7f3d3955744a04d",
+    "reward_exact": "-1",
+    "steps_used": 37
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "dev_09",
+    "trajectory_digest": "c0f429bf0827c43123fd30c817394232719b92cc8a24c8078422316ac236ffc2",
+    "reward_exact": "-716/875",
+    "steps_used": 53
+  },
+  {
+    "policy": "reconciliation_naive",
+    "episode": "dev_10",
+    "trajectory_digest": "06a23069bea3e380c84f6c32480e71783d6686fb3418c5d8229c55dc2987a6ea",
+    "reward_exact": "-1",
+    "steps_used": 9
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "teaching_b",
+    "trajectory_digest": "1775b5c8ef69676b395bf613e83bec06499495285ec2931e73076f0ebf5062ed",
+    "reward_exact": "497/500",
+    "steps_used": 4
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "teaching_b_p5",
+    "trajectory_digest": "3509709fa65b0409a671bc3c0e102ea15d2ff8657a300e65f1cdb9bfba9c069e",
+    "reward_exact": "497/500",
+    "steps_used": 4
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "teaching_b_both",
+    "trajectory_digest": "d09ee3219d9d764db0f091ee642e8cff9af7841c0643695f532039de33a31c97",
+    "reward_exact": "497/500",
+    "steps_used": 4
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "teaching_b_clean",
+    "trajectory_digest": "a7ae57b083dbea4690044d06e4419fa6e3b7d78f449916a0883becf8b29258dc",
+    "reward_exact": "497/500",
+    "steps_used": 4
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "fixture_clean",
+    "trajectory_digest": "c2fec021796fb625fdd6b34dca05311addffa0d3ab00c6f9116c4b50754f4dd4",
+    "reward_exact": "124/125",
+    "steps_used": 5
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "fixture_duplicate",
+    "trajectory_digest": "74e01e12e5ffdc816d6acc24549f0f9c8e437b631cba80699a8f1517d996d215",
+    "reward_exact": "124/125",
+    "steps_used": 5
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "fixture_allocation",
+    "trajectory_digest": "1e8726b5de747eee1ff0fc6e57413ca82f3133ba2947fea44f5e2c62534d7306",
+    "reward_exact": "124/125",
+    "steps_used": 5
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "fixture_fx",
+    "trajectory_digest": "d94ea5d9133f3a96201e773bd661bef7bd06273aebe4e55db8d39c78213cbaab",
+    "reward_exact": "124/125",
+    "steps_used": 5
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "fixture_cutoff",
+    "trajectory_digest": "6fd1e94ce7e9996de094c43f2b25bdbd06ce5dda0a332e9a0606ca46b35e9550",
+    "reward_exact": "124/125",
+    "steps_used": 5
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "fixture_x_fx_allocation",
+    "trajectory_digest": "2ca8a819200e58b7b1d2b16897d86c76f2b77b1b3cdb62f34bdb7002d84b1b48",
+    "reward_exact": "124/125",
+    "steps_used": 5
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "fixture_x_duplicate_cutoff",
+    "trajectory_digest": "7e52de18b2bb32e53f927bd6d74db4e418b2297a7d9babfa8291f1c0d12fa0fc",
+    "reward_exact": "124/125",
+    "steps_used": 5
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "train_01",
+    "trajectory_digest": "44dcca4e7ce95dbeb5e3814b37f3ce561a1ef211942afc81692b176ffac7dc2a",
+    "reward_exact": "123/125",
+    "steps_used": 9
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "train_02",
+    "trajectory_digest": "147dbbd93815abb09c94c93b1bd61a9e6f9783488a0f843109f3572c23e0f754",
+    "reward_exact": "123/125",
+    "steps_used": 9
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "train_03",
+    "trajectory_digest": "3c29da1e55fe51743d53cf25903afec451917a70216ab5dec66e3fd6626632fb",
+    "reward_exact": "487/500",
+    "steps_used": 14
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "train_04",
+    "trajectory_digest": "f80193ba3f39cd62bc730ce769e9850ce3c27e0601512c9fb56b7569e96c8e4a",
+    "reward_exact": "24/25",
+    "steps_used": 21
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "train_05",
+    "trajectory_digest": "6102fd8982d751b5dc8f1ea92a8af26d88cf21daf3d89898cbd4801c576dd8b5",
+    "reward_exact": "491/500",
+    "steps_used": 10
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "train_06",
+    "trajectory_digest": "5188902a167275c73f5d832dd1be40971b4338e0495076941e1d59c1ded041fd",
+    "reward_exact": "239/250",
+    "steps_used": 23
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "train_07",
+    "trajectory_digest": "aec34800e1575d6e31ea0029c8c5d350409778aa935d9390ccfb2169bb896e89",
+    "reward_exact": "487/500",
+    "steps_used": 14
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "train_08",
+    "trajectory_digest": "5b1eb76775d1bdabd91b8385636d093b701b069620505387608b4e8d3306961a",
+    "reward_exact": "122/125",
+    "steps_used": 13
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "train_09",
+    "trajectory_digest": "2ebfa323a5519b2f945bc95e75b4a2f784b392bbae6caa4b1c3a743174fe7596",
+    "reward_exact": "469/500",
+    "steps_used": 32
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "train_10",
+    "trajectory_digest": "1cccb71f30286152c1f6344923b40ae88aa07cdb6225751e4d3f6e1eac57ca57",
+    "reward_exact": "453/500",
+    "steps_used": 48
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "dev_01",
+    "trajectory_digest": "1cdb0c445d224d9c5fbadec3898b8f1f3f541ac0b6df277a79522880337f4ebf",
+    "reward_exact": "491/500",
+    "steps_used": 10
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "dev_02",
+    "trajectory_digest": "b5c0b8b1a34f34c7f2d173cab975c9319eda8e1936b4402d229cc319fac5a8f4",
+    "reward_exact": "239/250",
+    "steps_used": 23
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "dev_03",
+    "trajectory_digest": "709aa49bcd281edfc915458fea0ad93209245b31e23d9f7abeae60b703f4e808",
+    "reward_exact": "487/500",
+    "steps_used": 14
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "dev_04",
+    "trajectory_digest": "a11d572222035a172e2d2e296d6e850a953a0c0926206df48e41b15faff73716",
+    "reward_exact": "487/500",
+    "steps_used": 14
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "dev_05",
+    "trajectory_digest": "cbc0c30684f20a143b50e7e91614e53b9488d512b3a726ec08934e265853c0b7",
+    "reward_exact": "481/500",
+    "steps_used": 20
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "dev_06",
+    "trajectory_digest": "f9bec68c5dc303cb3416f208fa6f5bad7fb193241442115be43a17a094808100",
+    "reward_exact": "471/500",
+    "steps_used": 30
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "dev_07",
+    "trajectory_digest": "891eb848d3b1bc5b7cb06f83eab8b1a1e53da3299db35a207b3493c7d5fa4175",
+    "reward_exact": "49/50",
+    "steps_used": 11
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "dev_08",
+    "trajectory_digest": "35cb5284dcd0e96fe8e680f26fbf8c0011728ab2415e74d95f2c1c26dd519ea9",
+    "reward_exact": "116/125",
+    "steps_used": 37
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "dev_09",
+    "trajectory_digest": "2a5e10a0b027babde1ce12a4b783a8d6fbd3896b03887d91446b020ee0756b85",
+    "reward_exact": "112/125",
+    "steps_used": 53
+  },
+  {
+    "policy": "reconciliation",
+    "episode": "dev_10",
+    "trajectory_digest": "a4d4af198d6769f2b1b2629403ead3e795c79c272ada77d34bb99ad506360906",
+    "reward_exact": "123/125",
+    "steps_used": 9
+  },
+  {
+    "policy": "flag_all",
+    "episode": "teaching_b",
+    "trajectory_digest": "ae6c60d27acf71c92c6254d18b692deec1c824fc4998c1dd5900c5540776a1b8",
+    "reward_exact": "-403/500",
+    "steps_used": 4
+  },
+  {
+    "policy": "flag_all",
+    "episode": "teaching_b_p5",
+    "trajectory_digest": "863868b7f3a8eb1e12cad651bd9f77ad6fb6a50768979225bb1d3e92f11191a7",
+    "reward_exact": "-1",
+    "steps_used": 4
+  },
+  {
+    "policy": "flag_all",
+    "episode": "teaching_b_both",
+    "trajectory_digest": "036b1dad2e5a691759cc668d967f7dfed27f41a414474cdc559aa29e4a09809d",
+    "reward_exact": "-3527/4500",
+    "steps_used": 4
+  },
+  {
+    "policy": "flag_all",
+    "episode": "teaching_b_clean",
+    "trajectory_digest": "9bf95b2c2e7f847de235234194af168f15e7e16af4b446f32a0f31229c7b32ca",
+    "reward_exact": "-1",
+    "steps_used": 4
+  },
+  {
+    "policy": "flag_all",
+    "episode": "fixture_clean",
+    "trajectory_digest": "33842f27bfd727b1851e440301d16a05ec7e5caa90d42152c3ac3a0bc056ce9e",
+    "reward_exact": "-1",
+    "steps_used": 4
+  },
+  {
+    "policy": "flag_all",
+    "episode": "fixture_duplicate",
+    "trajectory_digest": "39b7e8d7bfb82f7e5f8c1030479b57e986dfa8cab630e21eb6d1b31c7c2701cd",
+    "reward_exact": "-11581/13500",
+    "steps_used": 4
+  },
+  {
+    "policy": "flag_all",
+    "episode": "fixture_allocation",
+    "trajectory_digest": "76fb23af678ee20f5c200261ed40a9028f8eca1d59d013d9b1c96bcddf8cbf51",
+    "reward_exact": "-9569/11500",
+    "steps_used": 4
+  },
+  {
+    "policy": "flag_all",
+    "episode": "fixture_fx",
+    "trajectory_digest": "eb30858b463258e23eca5749715467ff09a6c271fa54e9d69dd2bd73069fe8ac",
+    "reward_exact": "-1",
+    "steps_used": 4
+  },
+  {
+    "policy": "flag_all",
+    "episode": "fixture_cutoff",
+    "trajectory_digest": "36fda3b12674f0d6e7a9308c6059282362d24dfad420047df0b6f148fc608a8c",
+    "reward_exact": "-9569/11500",
+    "steps_used": 4
+  },
+  {
+    "policy": "flag_all",
+    "episode": "fixture_x_fx_allocation",
+    "trajectory_digest": "2ff6c7551484dbabfb5cda96a4543e7405a31a1f382ea6b1b79fdac8feceb626",
+    "reward_exact": "-1",
+    "steps_used": 4
+  },
+  {
+    "policy": "flag_all",
+    "episode": "fixture_x_duplicate_cutoff",
+    "trajectory_digest": "5f1b0b11c0835817d8474d5c9eb9849a946920193c3e39621b8c219049961258",
+    "reward_exact": "-4539/6500",
+    "steps_used": 4
+  },
+  {
+    "policy": "flag_all",
+    "episode": "train_01",
+    "trajectory_digest": "5eafb7388d457e97abdc3cf9eb573040425b6cc79e625a45e4c581e3f0061216",
+    "reward_exact": "-1",
+    "steps_used": 8
+  },
+  {
+    "policy": "flag_all",
+    "episode": "train_02",
+    "trajectory_digest": "7fc7e9c3e15b72fe9b7c5b16b655ede57112b6c49c53a6df648a2c5e42d02920",
+    "reward_exact": "-1",
+    "steps_used": 8
+  },
+  {
+    "policy": "flag_all",
+    "episode": "train_03",
+    "trajectory_digest": "c5f77adb31586d6cad0acf8d6bb8c7a327cec3d67905ac08b09dba7e9dc0a928",
+    "reward_exact": "-1",
+    "steps_used": 12
+  },
+  {
+    "policy": "flag_all",
+    "episode": "train_04",
+    "trajectory_digest": "dd1250051a7f3e11e94d00b722daa570f76b65a220f09f1ed996fb62d8f4c2e0",
+    "reward_exact": "-1",
+    "steps_used": 16
+  },
+  {
+    "policy": "flag_all",
+    "episode": "train_05",
+    "trajectory_digest": "11b34cc9c928a08c43bdaa2964d18161625cafc2c9737ae621b85035a38e3ab7",
+    "reward_exact": "-891/1000",
+    "steps_used": 9
+  },
+  {
+    "policy": "flag_all",
+    "episode": "train_06",
+    "trajectory_digest": "3faf581263e608674fa6d941827f8e851eafa17a8b6565fc843b0b0673a4938d",
+    "reward_exact": "-1",
+    "steps_used": 21
+  },
+  {
+    "policy": "flag_all",
+    "episode": "train_07",
+    "trajectory_digest": "0fae152ce91b2aec942975bdc8d42d94dff2176f76e32a0f15d5b283a653a1a5",
+    "reward_exact": "-3224/4125",
+    "steps_used": 13
+  },
+  {
+    "policy": "flag_all",
+    "episode": "train_08",
+    "trajectory_digest": "31cd244da0d1fa1f12ab759fb2d955541cc6abafb1e6f6cb9fbeef6516ffe5ea",
+    "reward_exact": "-1",
+    "steps_used": 11
+  },
+  {
+    "policy": "flag_all",
+    "episode": "train_09",
+    "trajectory_digest": "006889972bccc9196d3edf8c85405eb97984d3b078ba4b476d6130f99dd8458d",
+    "reward_exact": "-1",
+    "steps_used": 29
+  },
+  {
+    "policy": "flag_all",
+    "episode": "train_10",
+    "trajectory_digest": "f966620a64dd50a3ddb56f494f91afdfdc711a3ddf6e9bbeec69bc71448a22a0",
+    "reward_exact": "-3197/3300",
+    "steps_used": 46
+  },
+  {
+    "policy": "flag_all",
+    "episode": "dev_01",
+    "trajectory_digest": "8105e2bec4d4b8185ef746a9851482c75d218e6ca0e77a3129a42f8d7dce0c54",
+    "reward_exact": "-891/1000",
+    "steps_used": 9
+  },
+  {
+    "policy": "flag_all",
+    "episode": "dev_02",
+    "trajectory_digest": "004b4efb94cd678e7efb3dbd7fdca18dc59246a6b47833ebfe13729df924bcc2",
+    "reward_exact": "-1",
+    "steps_used": 22
+  },
+  {
+    "policy": "flag_all",
+    "episode": "dev_03",
+    "trajectory_digest": "190e1253a78d81dfb81d1d9f992b4cc0e28e0332238113e849a016988cf1a151",
+    "reward_exact": "-1",
+    "steps_used": 12
+  },
+  {
+    "policy": "flag_all",
+    "episode": "dev_04",
+    "trajectory_digest": "370cfc01ddc19e2cd27dd314b8dd1164c327cf2e4333a6975f59b231c18b4c29",
+    "reward_exact": "-1",
+    "steps_used": 12
+  },
+  {
+    "policy": "flag_all",
+    "episode": "dev_05",
+    "trajectory_digest": "a5f3b036da3c96fe08857a31c1b5e1a61ac0bb859b3c03555b490a444c2e877b",
+    "reward_exact": "-7547/8250",
+    "steps_used": 19
+  },
+  {
+    "policy": "flag_all",
+    "episode": "dev_06",
+    "trajectory_digest": "d33c030245efae1435ec87f068c36ca85620487dbaab5a8ee0b13f758e371a78",
+    "reward_exact": "-1",
+    "steps_used": 25
+  },
+  {
+    "policy": "flag_all",
+    "episode": "dev_07",
+    "trajectory_digest": "776530dfde907cedf79630d4b67af7a8540f78395fa4ae49c6df192b16ec3303",
+    "reward_exact": "-1",
+    "steps_used": 10
+  },
+  {
+    "policy": "flag_all",
+    "episode": "dev_08",
+    "trajectory_digest": "669e439ca08391b1afce3dc1645fe747691df69c3028a02d111792d2f5d94d82",
+    "reward_exact": "-1",
+    "steps_used": 36
+  },
+  {
+    "policy": "flag_all",
+    "episode": "dev_09",
+    "trajectory_digest": "5f63a4233deea7880935ab7503384aaaab3ce68f57467d294c7ccf5eebddae26",
+    "reward_exact": "-2089/2100",
+    "steps_used": 46
+  },
+  {
+    "policy": "flag_all",
+    "episode": "dev_10",
+    "trajectory_digest": "d4d1dc1ed945f4636364daf8000730ae84868d065f8b5a72ecd01c337a6353e7",
+    "reward_exact": "-1",
+    "steps_used": 8
+  },
+  {
+    "policy": "oracle",
+    "episode": "teaching_b",
+    "trajectory_digest": "e5ea6639d0cb4caf3c96a489dffd49007eb17941936bfd25b6fe9f60809c4f03",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "teaching_b_p5",
+    "trajectory_digest": "7578ab569886a35af858daf76c07edccd1c7f60b692f9bb755bcdc989ec0fac1",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "teaching_b_both",
+    "trajectory_digest": "321ee228681c716998f5de9269ec91f429b7d0b94ec49a20082149ce097295f9",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "teaching_b_clean",
+    "trajectory_digest": "35158014bb734662a4b6b03403d0b262eb14738a0243ac899909dbf86ced8885",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "fixture_clean",
+    "trajectory_digest": "8735352779267b7e7775c1e552bc003637f84d971df2bad79c4f9c68ab268d0b",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "fixture_duplicate",
+    "trajectory_digest": "9dbedd0e63154ace1b5d3527067488820a617dfa9a5d4f17ede8ce421f89473f",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "fixture_allocation",
+    "trajectory_digest": "aec7920bb72784ac416788a3aec87abb649f09de67e8587896d892373a9ef37c",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "fixture_fx",
+    "trajectory_digest": "725e21fad3675532a0c605dfb9b94143938fd4a0531331d8d9e3c443d6d4bc9a",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "fixture_cutoff",
+    "trajectory_digest": "cc33067b5101db7393ca9d94329035fb749e52e027398573c79d5d8746db0173",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "fixture_x_fx_allocation",
+    "trajectory_digest": "93f250d7d41025dbe6d914f774cde3b1d2357a95ca24c90ae2c7b97058ec6b06",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "fixture_x_duplicate_cutoff",
+    "trajectory_digest": "e1ce47c18e0581efef2d736ffc7ae6a31e71c91c24f3aa50074e3b96efa83fa5",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "train_01",
+    "trajectory_digest": "f8eaac878b12c242afb554d8e1a3a779f88918c8a7f237a8291de8958b63b990",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "train_02",
+    "trajectory_digest": "8a8b93a231c50229adc4da34c9ac57e67cab59a3d696f2b2e90e15845af60008",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "train_03",
+    "trajectory_digest": "9de1b4d3c641da80fed775bc71c6c0d4c0ce87a40722b862f93bfd0932915a90",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "train_04",
+    "trajectory_digest": "5d3ef7744608c214aa91587e7d0a5be2f00b937d2b5374bd9e774236688b46d8",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "train_05",
+    "trajectory_digest": "294afe7ab466859e0051b6a24dfb19e893fbd03a77d44da326cff338e6e6ce45",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "train_06",
+    "trajectory_digest": "99dd81a1b5323bafe4140f43b514a40e4960d345d8de5fc3a2677c0d042f8e40",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "train_07",
+    "trajectory_digest": "e3eb1c36f9f486761238ff2422c1b872081d26eedd063da586056422e4c22ec6",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "train_08",
+    "trajectory_digest": "04586f5e0627ae083aadacabe4b5dc2187e37e55ada68798280b2876f7bbc069",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "train_09",
+    "trajectory_digest": "3c2c31fb454ed47137203ab598aff52d653cf72c56dd5d7ba9b874d18ae670a2",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "train_10",
+    "trajectory_digest": "64d2dd150544df3cc4b709013f61fb4876d72b9f5f75a1034076af471f9408b2",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "dev_01",
+    "trajectory_digest": "ff3dd18ed35f9ad7ffc3ab537576a997c8ee957253658860fcbcc5ad0b35fe68",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "dev_02",
+    "trajectory_digest": "425a6756b9c97db5da78d618e1e6b9c1961ff24fe190db95b56876c3b34d1cec",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "dev_03",
+    "trajectory_digest": "e931fb94076d71d02be8e9baa5f6b8150c8b6f04c50a9133756e8f479b4f1292",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "dev_04",
+    "trajectory_digest": "9109fce3969bb014f90a53fb3105363d91a8a54ad50d50e5399a84c6b770ffbd",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "dev_05",
+    "trajectory_digest": "24de0bba4a685bf6773bd7d75611563f8f3207999b75a37859a18370a67c3936",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "dev_06",
+    "trajectory_digest": "6eec8e48b5f424b0766fa18532e75260067b5da533aa4bd5d0469751d41c8cb2",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "dev_07",
+    "trajectory_digest": "8beaed94843ceaba7b41d1843fb9cdfeaa32c2f540a8ddf8bc081097a5e914ee",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "dev_08",
+    "trajectory_digest": "88209b40ac64a4713a23a67a323615cc317e9766df353400fc5690cb76305f5d",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "dev_09",
+    "trajectory_digest": "722ec0d6bd48f0989719901d571a29a19da26fb719e4415f8deda855035ed5f1",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle",
+    "episode": "dev_10",
+    "trajectory_digest": "d8bca7d2d951c7b8ca40a0d0155f13495899600e2a20b58fb5baf3557d9b39c8",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "teaching_b",
+    "trajectory_digest": "a3c4315f5998be21ab5e986f8844177aea463e85a85154508f1b35125f5f9b88",
+    "reward_exact": "497/500",
+    "steps_used": 4
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "teaching_b_p5",
+    "trajectory_digest": "0ffa93370c0fe1af939a327089edea55efa8756340d92efd8461890a397fe621",
+    "reward_exact": "497/500",
+    "steps_used": 4
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "teaching_b_both",
+    "trajectory_digest": "5a86166e6091e16d04274562f9e2b1822c2e0f37bbb9f1e692bb5c3a13297267",
+    "reward_exact": "247/250",
+    "steps_used": 7
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "teaching_b_clean",
+    "trajectory_digest": "35158014bb734662a4b6b03403d0b262eb14738a0243ac899909dbf86ced8885",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "fixture_clean",
+    "trajectory_digest": "8735352779267b7e7775c1e552bc003637f84d971df2bad79c4f9c68ab268d0b",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "fixture_duplicate",
+    "trajectory_digest": "bb009e9f03615ffb343cee3e06026918340c2fe2ba4f88075634b040cdbf1136",
+    "reward_exact": "249/250",
+    "steps_used": 3
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "fixture_allocation",
+    "trajectory_digest": "70455373018a007428901504538caf3bca1dc635adb4e854b779ce7756fae97c",
+    "reward_exact": "249/250",
+    "steps_used": 3
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "fixture_fx",
+    "trajectory_digest": "6e2d678e49eb54d98b29b23fade37ff04642c9b1fef90ed48f845d6a32be6671",
+    "reward_exact": "247/250",
+    "steps_used": 7
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "fixture_cutoff",
+    "trajectory_digest": "4d2f967af387e8da1b869388bd5dc6573dba837e9bdf812b8b06c4333ca1c23a",
+    "reward_exact": "249/250",
+    "steps_used": 3
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "fixture_x_fx_allocation",
+    "trajectory_digest": "2e14ec81c8310a48a31ddb4263ce7c13dcd2a9efbb04a2aac833c1b461df7155",
+    "reward_exact": "99/100",
+    "steps_used": 6
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "fixture_x_duplicate_cutoff",
+    "trajectory_digest": "0c183f2a7f09b915273735a8e41111c2b59e01959155218642936eff8adfe65e",
+    "reward_exact": "497/500",
+    "steps_used": 4
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "train_01",
+    "trajectory_digest": "f8eaac878b12c242afb554d8e1a3a779f88918c8a7f237a8291de8958b63b990",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "train_02",
+    "trajectory_digest": "59b32b49833cecc7839062441ef3aaaa39076ad3405616fd4193b83e246c4645",
+    "reward_exact": "99/100",
+    "steps_used": 6
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "train_03",
+    "trajectory_digest": "b7608f330963a52da073c42e78f2f2b66f7739c74b8609c1906347c497a1f021",
+    "reward_exact": "124/125",
+    "steps_used": 5
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "train_04",
+    "trajectory_digest": "080ac9b0166ada571711f687c0c4291ff4732e90277d178eeb559f0433145d2a",
+    "reward_exact": "247/250",
+    "steps_used": 7
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "train_05",
+    "trajectory_digest": "f9ce8aad7763f8adaccacda133a24b99d4f5161798fb5b07bcd191cdebaf82cb",
+    "reward_exact": "124/125",
+    "steps_used": 5
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "train_06",
+    "trajectory_digest": "13410f9ac19776ea7ae6e4bd47541a9c511a0f8ecac1390c608686e2672ce9ba",
+    "reward_exact": "49/50",
+    "steps_used": 11
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "train_07",
+    "trajectory_digest": "9f691cbf0a5a67714d51aa798e633f3c6a2bacb38e02b2066c4cffed83c1884b",
+    "reward_exact": "493/500",
+    "steps_used": 8
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "train_08",
+    "trajectory_digest": "01dd0f037299dab3335428f660455201a4093b8ccbca6e08b83896d6ebc81561",
+    "reward_exact": "497/500",
+    "steps_used": 4
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "train_09",
+    "trajectory_digest": "3c2c31fb454ed47137203ab598aff52d653cf72c56dd5d7ba9b874d18ae670a2",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "train_10",
+    "trajectory_digest": "e784332c56a0f9065e87e8d06a882a8846851ebf795962bd53cfed9b3d07a50c",
+    "reward_exact": "123/125",
+    "steps_used": 9
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "dev_01",
+    "trajectory_digest": "383aa0018c8de96b462ab2532636cc838261979ec81dc18fb5e5e74b8af5034b",
+    "reward_exact": "124/125",
+    "steps_used": 5
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "dev_02",
+    "trajectory_digest": "425a6756b9c97db5da78d618e1e6b9c1961ff24fe190db95b56876c3b34d1cec",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "dev_03",
+    "trajectory_digest": "e931fb94076d71d02be8e9baa5f6b8150c8b6f04c50a9133756e8f479b4f1292",
+    "reward_exact": "1",
+    "steps_used": 1
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "dev_04",
+    "trajectory_digest": "e43627288793477cf6bcd302b6d857b83c8c4fb886552ae1a193073e000df368",
+    "reward_exact": "123/125",
+    "steps_used": 9
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "dev_05",
+    "trajectory_digest": "6b332df3ae1e9b028f99e76177b926fea83020fb78a9554d051b0efe4294e2fc",
+    "reward_exact": "123/125",
+    "steps_used": 9
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "dev_06",
+    "trajectory_digest": "416034b4099da3cc4e389d0d7b35937773b6a402cd7ab87711934b62f9de7b99",
+    "reward_exact": "123/125",
+    "steps_used": 9
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "dev_07",
+    "trajectory_digest": "e5af84e85d58c23ffb9f4d9f5a88e1d77bc502ec64cf5681fa17fe5268e29224",
+    "reward_exact": "99/100",
+    "steps_used": 6
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "dev_08",
+    "trajectory_digest": "e6e198f67a94e69d5202576b577b3c503306eceba94bfbaf8af22faa8633a173",
+    "reward_exact": "493/500",
+    "steps_used": 8
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "dev_09",
+    "trajectory_digest": "0438fffddf45e68a2abf30ae0767efb9fd724bec32767464398e267282b8807b",
+    "reward_exact": "47/50",
+    "steps_used": 31
+  },
+  {
+    "policy": "oracle_fetching",
+    "episode": "dev_10",
+    "trajectory_digest": "d8bca7d2d951c7b8ca40a0d0155f13495899600e2a20b58fb5baf3557d9b39c8",
+    "reward_exact": "1",
+    "steps_used": 1
+  }
+]

@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "action.schema.json",
+  "title": "The action passed to JudgeEnv.step(action)",
+  "description": "Exactly {\"name\", \"args\"}. Anything else costs one step: an unknown name gives error unknown_action, a broken envelope invalid_action, wrong arguments bad_arguments. The exception is a submit: an object whose name is \"submit\" is a submit attempt however broken, and a broken one ends the episode with error invalid_submission (return -1).",
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "args"
+      ],
+      "properties": {
+        "name": {
+          "const": "list_records"
+        },
+        "args": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "table"
+          ],
+          "properties": {
+            "table": {
+              "enum": [
+                "ledger",
+                "invoices",
+                "payments",
+                "fx"
+              ]
+            },
+            "cursor": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 64,
+              "description": "null for the first page, then next_cursor from the previous result."
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50,
+              "description": "Optional; default and maximum manifest.limits.page_limit (50)."
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "args"
+      ],
+      "properties": {
+        "name": {
+          "const": "get_record"
+        },
+        "args": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "table",
+            "id"
+          ],
+          "properties": {
+            "table": {
+              "enum": [
+                "ledger",
+                "invoices",
+                "payments",
+                "fx"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "description": "ledger: row_id; invoices: invoice_id; payments: payment_id; fx: date|source_currency|target_currency."
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "args"
+      ],
+      "properties": {
+        "name": {
+          "const": "get_document"
+        },
+        "args": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "doc_id"
+          ],
+          "properties": {
+            "doc_id": {
+              "type": "string",
+              "description": "The doc_id of an invoice or payment document."
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "args"
+      ],
+      "properties": {
+        "name": {
+          "const": "calculator"
+        },
+        "args": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "expression"
+          ],
+          "properties": {
+            "expression": {
+              "type": "string",
+              "description": "Decimal arithmetic: numbers, + - * / and parentheses."
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "args"
+      ],
+      "properties": {
+        "name": {
+          "const": "submit"
+        },
+        "args": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "findings"
+          ],
+          "properties": {
+            "findings": {
+              "$ref": "findings.schema.json"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

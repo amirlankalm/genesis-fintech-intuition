@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "truth.schema.json",
+  "title": "truth.json: the closed answer key of one episode (jury side only)",
+  "description": "Key order does not matter. Parsed by genesis_audit.truth.parse_truth: our loader refuses unknown keys when strict and ignores them (with an evaluator-log warning) on the jury path. An empty issues list is a clean episode.",
+  "type": "object",
+  "required": [
+    "issues"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "issues": {
+      "type": "array",
+      "maxItems": 30,
+      "items": {
+        "$ref": "#/$defs/issue"
+      }
+    }
+  },
+  "$defs": {
+    "issue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "issue_id",
+        "type",
+        "affected_ids",
+        "expected_amount_minor",
+        "currency",
+        "acceptable_evidence_sets"
+      ],
+      "properties": {
+        "issue_id": {
+          "type": "string",
+          "description": "Unique within the file. Matching ties are broken by issue_id in Unicode code-point order. Never shown to a policy."
+        },
+        "type": {
+          "type": "string",
+          "description": "duplicate_invoice, payment_allocation, fx_mismatch or cutoff in our episodes."
+        },
+        "affected_ids": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 20,
+          "items": {
+            "type": "string"
+          },
+          "description": "The canonical affected set: invoice_id / payment_id values (see docs/ADAPTER.md)."
+        },
+        "expected_amount_minor": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991,
+          "description": "Maps to the finding's claimed_amount_minor; matched within the manifest's tolerance for the currency (0 in our episodes)."
+        },
+        "currency": {
+          "type": "string"
+        },
+        "acceptable_evidence_sets": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "description": "A finding is a TP only if its evidence_ids include one of these sets in full."
+        }
+      }
+    }
+  }
+}

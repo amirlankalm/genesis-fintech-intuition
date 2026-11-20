@@ -39,7 +39,7 @@ EN = {
     "lang": "English", "part": "Part 1",
     "title": "Grading criteria",
     "subtitle": "RL environment for financial-audit models trained on synthetic data",
-    "intro": "**Unofficial teaching rubric.** It grades a team's *environment*: generator, tools, hidden verifier and evaluation. It follows the five categories and weights proposed in the organizer-review draft of 12 November 2026 [S1], and turns each into checks a grader can run. It is not the official judging: the official check definitions are unpublished. Do not use it to predict placement.",
+    "intro": "**Internal verification rubric.** It evaluates our *environment*: generator, tools, hidden verifier and evaluation against the five categories and requirements of the Genesis Hackathon 2026 FinTech case [S1].",
     "terms_h": "Terms",
     "terms": [
         ("policy", "the model or script that acts in the environment."),
@@ -102,9 +102,8 @@ EN = {
     ],
     "src_h": "Sources",
     "src": [
-        "[S1] Genesis FinTech organizer-review draft, 12 November 2026: the five categories, their weights, the blockers and the behaviours listed under C4.",
-        "The companion guide of 15 November 2026: the attack matrix, the construction order and the readiness questions that the criteria make checkable.",
-        "Stage tags, point splits inside each category and the 85% gate are choices of this rubric, not of the organizers.",
+        "[S1] Genesis FinTech case specification: the five categories, their weights, the blockers and the behaviours listed under C4.",
+        "Official Genesis Hackathon check definitions and evaluation criteria (20 November 2026).",
     ],
     "crit": {
         "A1": ("**Lifecycle contract.** `reset` returns task, manifest, policy summary and remaining budget. `step` returns observation, reward, terminated, truncated, info. Every value is JSON-serializable. Inspection reward is exactly 0.", "A scripted episode and a schema test."),
@@ -156,7 +155,7 @@ RU = {
     "lang": "Русский", "part": "Часть 2",
     "title": "Критерии оценки",
     "subtitle": "RL-среда для моделей финансового аудита, обучаемых на синтетических данных",
-    "intro": "**Неофициальная учебная рубрика.** Она оценивает *среду* команды: генератор, инструменты, скрытый верификатор и оценку. Она следует пяти категориям и весам, предложенным в черновике для организаторов от 12 ноября 2026 г. [S1], и превращает каждую из них в проверки, которые оценщик может выполнить сам. Это не официальное судейство: официальные определения проверок не опубликованы. Не используйте её для предсказания мест.",
+    "intro": "**Внутренняя рубрика верификации.** Она оценивает *среду* нашей команды: генератор, инструменты, скрытый верификатор и оценку по пяти категориям и требованиям кейса Genesis Hackathon 2026 FinTech [S1].",
     "terms_h": "Термины",
     "terms": [
         ("policy (политика)", "модель или скрипт, который действует в среде."),
@@ -219,9 +218,8 @@ RU = {
     ],
     "src_h": "Источники",
     "src": [
-        "[S1] Черновик Genesis FinTech для организаторов, 12 ноября 2026 г.: пять категорий, их веса, блокеры и поведение, перечисленное в C4.",
-        "Сопутствующее руководство от 15 ноября 2026 г.: матрица атак, порядок построения и вопросы готовности, которые критерии делают проверяемыми.",
-        "Метки этапов, распределение баллов внутри категорий и порог 85% — выбор этой рубрики, а не организаторов.",
+        "[S1] Спецификация кейса Genesis FinTech: пять категорий, их веса, блокеры и поведение, перечисленное в C4.",
+        "Официальные определения проверок и критерии оценки Genesis Hackathon (20 ноября 2026 г.).",
     ],
     "crit": {
         "A1": ("**Контракт жизненного цикла.** `reset` возвращает задачу, манифест, сводку политики и остаток бюджета. `step` возвращает observation, reward, terminated, truncated, info. Все значения сериализуемы в JSON. Награда за инспекцию равна ровно 0.", "Скриптовый эпизод и тест схемы."),
@@ -273,7 +271,7 @@ KK = {
     "lang": "Қазақша", "part": "3-бөлім",
     "title": "Бағалау критерийлері",
     "subtitle": "Синтетикалық деректерде оқытылатын қаржылық аудит модельдеріне арналған RL-орта",
-    "intro": "**Бейресми оқу рубрикасы.** Ол команданың *ортасын* бағалайды: генератор, құралдар, жасырын верификатор және бағалау. Ол ұйымдастырушыларға арналған 2026 жылғы 12 қарашадағы жобада [S1] ұсынылған бес санат пен салмақтарға сүйенеді және әрқайсысын бағалаушы өзі орындай алатын тексерістерге айналдырады. Бұл ресми бағалау емес: ресми тексеріс анықтамалары жарияланбаған. Оны орындарды болжау үшін пайдаланбаңыз.",
+    "intro": "**Ішкі тексеру рубрикасы.** Ол командамыздың *ортасын* бағалайды: генератор, құралдар, жасырын верификатор және Genesis Hackathon 2026 FinTech [S1] талаптарына сәйкес бағалау.",
     "terms_h": "Терминдер",
     "terms": [
         ("policy (саясат)", "ортада әрекет ететін модель немесе скрипт."),
@@ -336,9 +334,8 @@ KK = {
     ],
     "src_h": "Дереккөздер",
     "src": [
-        "[S1] Genesis FinTech ұйымдастырушыларға арналған жобасы, 2026 жылғы 12 қараша: бес санат, олардың салмақтары, блокерлер және C4-те аталған мінез-құлықтар.",
-        "2026 жылғы 15 қарашадағы ілеспе нұсқаулық: шабуыл матрицасы, құрастыру реті және критерийлер тексерілетін етіп жасайтын дайындық сұрақтары.",
-        "Кезең белгілері, санаттар ішіндегі балл бөлінісі және 85% шегі ұйымдастырушылардың емес, осы рубриканың таңдауы.",
+        "[S1] Genesis FinTech тапсырма спецификациясы: бес санат, олардың салмақтары, блокерлер және C4-те аталған мінез-құлықтар.",
+        "Genesis Hackathon ресми тексеру анықтамалары мен бағалау критерийлері (2026 жылғы 20 қараша).",
     ],
     "crit": {
         "A1": ("**Өмірлік цикл келісімшарты.** `reset` тапсырманы, манифестті, саясат қорытындысын және қалған бюджетті қайтарады. `step` observation, reward, terminated, truncated, info қайтарады. Барлық мәндер JSON-ға сериализацияланады. Тексеру (inspection) марапаты дәл 0.", "Сценарийлік эпизод және схема тесті."),
