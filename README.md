@@ -4,70 +4,63 @@
 
 **Team Intuition · Genesis Hackathon 2026 (FinTech Case: "RL environments for post-training financial-audit models")**
 
-We are **Team Intuition**. Here is our solution: a complete, reproducible Reinforcement Learning (RL) practice world for post-training and evaluating AI financial auditors. 
+We are **Team Intuition**. Here is our solution: a reproducible, Gym-compatible Reinforcement Learning (RL) practice world designed for post-training and evaluating AI financial auditors.
 
-In financial auditing, AI models cannot simply guess or hallucinate text: every finding must be backed by concrete mathematical evidence, and false accusations are just as damaging as missed errors. We built a gym-compatible environment where a seeded generator writes a synthetic company's books for a reporting period, injects subtle accounting errors alongside realistic decoys, lets an AI agent investigate via 5 narrow tools, and scores findings against ground truth using a strict one-to-one bipartite matching algorithm and the case's standardized reward function.
+In financial auditing, autonomous agents cannot rely on ungrounded generation or speculative reasoning: every discrepancy must be backed by immutable documentary evidence, and false positives carry severe audit risk. We implemented an environment where a seeded generator constructs a company's complete financial records for a reporting period, introduces subtle accounting discrepancies alongside realistic decoys, exposes five narrow inspection tools, and scores findings against hidden ground truth using a strict one-to-one maximum bipartite matching algorithm and a step-penalized return function.
 
 > [!NOTE]
-> **100% Synthetic & Private:** Everything is generated purely in-memory from deterministic seeds. No real company, individual, bank, card, or payment data is used.
+> **Synthetic Data Invariant:** All entities, counterparties, banking records, and transactions are generated in-memory from deterministic PRNG seeds. No real-world company or payment data is used.
 
-**Hackathon Timeline:** Built and validated during the hackathon (19–20 November 2026). Fully aligned with the final case specifications and the official check definitions published on 20 November (`judge_adapter.py`, matcher conventions M01–M12, scenarios D01–D20).
+**Timeline:** Built and verified during the hackathon (19–20 November 2026). Conforms to the case specification and the official check definitions published on 20 November (`judge_adapter.py`, matcher conventions M01–M12, scenarios D01–D20).
 
 ---
 
-## ⚡ Run it: One Command
+## Quickstart
+
+### Local Execution (Python 3.11+, uv)
 
 ```bash
-make check
+uv sync --frozen   # install locked development dependencies
+make check         # lint, mypy type checks, pytest with coverage, self-check
+make judge         # evaluate baselines & solver via judge_adapter.py + conformance tests
 ```
 
-Runs code formatting, types, unit tests with coverage, and self-checks.
+### Containerized Execution (Offline Envelope: 2 CPUs, 4 GB RAM, No Network)
 
-To run the four benchmark baselines and our solver through the official judge adapter:
-```bash
-make judge
-```
-
-### Docker (Evaluator Envelope: 2 CPUs, 4 GB RAM, No Network)
 ```bash
 make docker-check
 ```
-Or directly with plain Docker:
+
+Or using standalone Docker without `make`:
+
 ```bash
 docker build -t genesis-audit-env . && docker run --rm --network none --cpus 2 --memory 4g genesis-audit-env
 ```
 
-Without Docker (macOS or Linux, with [uv](https://docs.astral.sh/uv/) installed):
-```bash
-uv sync --frozen   # Python 3.11+; dev tools locked in uv.lock
-make check         # lint, mypy types, tests with coverage, self-check
-make judge         # run baselines & solver via judge_adapter.py + conformance tests
-```
-
-Working directory is the repository root (`/app` inside the container). No network is needed after `uv sync`, and no GPU or external paid API is required.
+All operations run locally from the repository root (`/app` within the container). No network access is required after dependency installation, and no external APIs or GPU acceleration are utilized.
 
 ---
 
-## 📦 What We Submit (Case Section 09)
+## Deliverables (Case Section 09)
 
-| Required Deliverable | Location in Repository |
+| Required Deliverable | Repository Location |
 |---|---|
 | **Source & Pinned Dependencies** (generator & RL environment) | [`src/genesis_audit/`](src/genesis_audit/), [`LICENSE`](LICENSE) (MIT), [`uv.lock`](uv.lock) |
 | **README & Dockerfile** (container instructions + single check command) | [`README.md`](README.md), [`Dockerfile`](Dockerfile), [`Makefile`](Makefile) |
 | **Matcher, Reward, Schemas & Policies** | [`src/genesis_audit/matching.py`](src/genesis_audit/matching.py), [`scoring.py`](src/genesis_audit/scoring.py), [`schemas.py`](src/genesis_audit/schemas.py); [`docs/schemas/`](docs/schemas/) |
 | **10 Train & 10 Dev Episodes** | [`episodes/`](episodes/), split index [`episodes/splits.json`](episodes/splits.json) |
-| **Comprehensive Test Suite** | [`tests/`](tests/) (~1,240 tests, validating every official check by ID) |
-| **Four Benchmark Baselines + Our Solver** | [`baselines/`](baselines/): random explorer, simple reconciliation, flag-all, oracle, solver |
+| **Comprehensive Test Suite** | [`tests/`](tests/) (~1,240 tests validating contract and scenario checks) |
+| **Benchmark Baselines + Rule-Following Solver** | [`baselines/`](baselines/): random explorer, simple reconciliation, flag-all, oracle, solver |
 | **Trajectory File** (`trajectories.jsonl`) | [`trajectories.jsonl`](trajectories.jsonl) |
 | **Design Documentation** | [`docs/DESIGN.md`](docs/DESIGN.md) ([Русский](docs/DESIGN.ru.md)), [`docs/SPEC.md`](docs/SPEC.md) |
-| **Video Demonstration** | [`demo/`](demo/): recorded terminal walkthrough of the environment |
-| **Official Judge Adapter** | [`judge_adapter.py`](judge_adapter.py), documentation [`docs/ADAPTER.md`](docs/ADAPTER.md) |
+| **Video Demonstration** | [`demo/`](demo/): recorded terminal walkthrough |
+| **Judge Adapter** | [`judge_adapter.py`](judge_adapter.py), documentation [`docs/ADAPTER.md`](docs/ADAPTER.md) |
 
 ---
 
-## 🧠 How It Works
+## System Architecture
 
-We structured the solution into 5 core layers:
+The environment architecture separates business logic, state mutation, agent inspection, and formal evaluation into five distinct layers:
 
 ```
 Seed + Config ──► Latent Business Simulation ──► Double-Entry Clean Books
@@ -81,121 +74,121 @@ Seed + Config ──► Latent Business Simulation ──► Double-Entry Clean 
 AI Auditor ◄── 5 Tools (reset/step) ── Public Books ──► Bipartite Matcher ──► Return
 ```
 
-1. **Latent Company Simulation:** Before creating invoices, we simulate the business lifecycle: customers, currencies, timezones, and transactions. Clean double-entry ledger books are posted from this history, guaranteeing that debits and credits balance by construction.
-2. **Deterministic Error Injection:** Errors represent realistic human bookkeeping mistakes (duplicate invoices, unallocated receipts, FX translation mistakes, period cutoff mismatches). Each injected error records its exact diff in `provenance.json`—reversing it perfectly restores clean books.
-3. **Decoys and Realistic Complexity:** A company isn't just full of errors—it has legitimate edge cases! We generate split payments, refunds, recurring identical subscriptions, and timezone offsets so models cannot cheat with trivial heuristic rules.
-4. **Agent Observation & Interaction:** Following standard Gym / Farama design, the agent interacts through `reset()` and `step()`. To keep execution secure and bounded, the agent gets exactly 5 tools:
-   - `list_records(table, cursor, limit)`: Paginated view over `ledger`, `invoices`, `payments`, `fx`.
-   - `get_record(table, record_id)`: Fetches a single ledger row or FX rate.
-   - `get_document(doc_type, doc_id)`: Fetches original source documents (invoice/payment JSONs).
-   - `calculator(expression)`: Safe string calculator for exact arithmetic (e.g. `"0.1+0.2"` → `"0.3"`).
-   - `submit(findings)`: Submits the final audit findings report.
-5. **Rigorous Bipartite Matching & Scoring:** An audit finding is only a True Positive if its error type, affected IDs, amount, currency, and evidence documents all match. We formulate evaluation as a Maximum Bipartite Matching problem with formal tie-breaking. Precision, Recall, F1, and a step inspection tax are combined into a final Return in `[-1.0, 1.0]`.
+1. **Latent Company Simulation:** Generates customer entities, transaction schedules, multi-currency pricing, and exchange rate series. Standard double-entry ledger entries (`ledger.csv`, `invoices.jsonl`, `payments.jsonl`, `fx.csv`) are posted from this timeline, ensuring debits and credits reconcile by construction. All currency amounts are represented as exact integers in minor units to eliminate floating-point imprecision.
+2. **Deterministic Error Injection:** Applies realistic operational discrepancies (duplicate billing, partial settlement allocation, foreign exchange translation errors, cutoff misallocations). Each mutation records its exact diff in `provenance.json`—inverting provenance mathematically reconstructs the original balanced books.
+3. **Decoys and Complex Invariants:** Incorporates valid business edge-cases to prevent models from learning trivial heuristics: legitimate recurring billing schedules, multi-part split payments, refunds, and cross-timezone postings.
+4. **Agent Observation & Interaction:** Conforms to standard Gym lifecycle semantics (`reset` and `step`). The action space is strictly bounded to five inspection tools:
+   - `list_records(table, cursor, limit)`: Deterministic paginated traversal over ledger entries, invoices, payments, or FX tables (maximum 50 rows per page).
+   - `get_record(table, record_id)`: Point lookup by primary key.
+   - `get_document(doc_type, doc_id)`: Retrieval of primary source JSON documents.
+   - `calculator(expression)`: Deterministic string arithmetic calculator.
+   - `submit(findings)`: Final submission of structured audit findings.
+5. **Bipartite Matching & Scoring:** A submitted finding is evaluated as a True Positive if its error type, affected IDs, calculated amount, currency, and documentary evidence match ground truth exactly. Matching is formulated as Maximum Bipartite Matching with deterministic tie-breaking. Precision ($P$), Recall ($R$), and an inspection step cost are combined into a bounded return in $[-1.0, 1.0]$.
 
 ---
 
-## 🔍 The Four Error Families
+## Accounting Error Families
 
-Each error rule is specified in the episode's `policy.json` and is strictly decidable using only public evidence:
+Every discrepancy rule is explicitly defined in `policy.json` and is decidable from public documentary evidence:
 
-| Case Error Type | Environment `type` | `affected_ids` | `claimed_amount_minor` | Required Minimal Evidence |
+| Error Family | Environment `type` | `affected_ids` | `claimed_amount_minor` | Minimal Evidence Set |
 |---|---|---|---|---|
-| **Duplicate Invoices** | `duplicate_invoice` | `{invoice_id}` for every record of duplicate obligation | `total × (records - 1)` | Document ID of each duplicated record |
-| **Payment Allocation** | `payment_allocation` | `{invoice_id, payment_id}` | `required - recorded` allocation | Invoice doc, payment doc, accounts receivable rows (+ FX row if cross-currency) |
-| **FX Rate / Date Mismatch** | `fx_mismatch` | `{payment_id}` | `abs(recorded - required translation)` | Payment doc, FX table key selected by policy, `fx_clearing` ledger row |
-| **Wrong Reporting Period** | `cutoff` | `{invoice_id}` | Invoice total | Invoice doc, corresponding revenue ledger row |
+| **Duplicate Invoices** | `duplicate_invoice` | `{invoice_id}` of every record of the duplicated obligation | $\text{total} \times (\text{records} - 1)$ | `doc_id` of each duplicated invoice |
+| **Payment Allocation** | `payment_allocation` | `{invoice_id, payment_id}` | $\text{required} - \text{recorded}$ allocation | Invoice document, payment document, accounts receivable rows (+ FX row if foreign currency) |
+| **FX Rate / Date Mismatch** | `fx_mismatch` | `{payment_id}` | $|\text{recorded} - \text{required translation}|$ | Payment document, selected FX rate entry, `fx_clearing` ledger row |
+| **Reporting Period Cutoff** | `cutoff` | `{invoice_id}` | Invoice total | Invoice document, corresponding revenue ledger entry |
 
-### Complex Compound Scenarios
-- `cutoff_and_allocation`: An invoice posted in the wrong reporting period whose receipt is also partially allocated in a foreign currency across period boundaries.
-- `duplicate_then_cutoff`: An invoice duplicated, where the copied invoice is mistakenly shifted into the wrong period.
+### Compound Interaction Scenarios
+- `cutoff_and_allocation`: An invoice posted outside the reporting period combined with a cross-currency partial payment allocation across period boundaries.
+- `duplicate_then_cutoff`: An invoice duplicated, where the duplicate record is erroneously recorded in a different accounting period.
 
 ---
 
-## ⚖️ Official Judge Adapter (`judge_adapter.py`)
+## Judge Adapter Interface (`judge_adapter.py`)
 
-Our submission provides [`judge_adapter.py`](judge_adapter.py) implementing the official case check specification:
+[`judge_adapter.py`](judge_adapter.py) implements the automated evaluation interface defined by the case specification:
 
 ```python
 import judge_adapter
 
-# 1. Generate an episode with seed and config
+# 1. Generate an episode from a seed and configuration
 judge_adapter.generate_episode(seed=42, config=config, output_dir="out/episodes/eval_01")
 
-# 2. Instantiate the environment
+# 2. Instantiate the standardized environment
 env = judge_adapter.make_env()
 obs, info = env.reset(seed=42, options={"mode": "closed", "episode_dir": "out/episodes/eval_01"})
 
-# 3. Step through tools (closed mode hides intermediate rewards)
+# 3. Step through the tool interface (closed mode suppresses intermediate reward)
 obs, reward, terminated, truncated, info = env.step({
     "name": "list_records",
     "args": {"table": "ledger", "cursor": None, "limit": 50}
 })
 
-# 4. Evaluate findings against hidden truth
+# 4. Score audit findings externally against hidden truth
 score = judge_adapter.score_episode("out/episodes/eval_01", findings=findings, inspection_steps=18)
 # Returns {"tp": ..., "fp": ..., "fn": ..., "precision": ..., "recall": ..., "f1": ..., "return": ...}
 ```
 
-- **Closed Evaluation Mode:** During testing, the agent sees `reward = 0.0` at every step, preventing reward hacking or state leakage. The true score is computed externally by the judge adapter.
-- **Strict Budgets:** Max 100 steps (including submit) and 60 seconds per episode.
-- **Evidence Limit:** Maximum 10 evidence document IDs per finding.
+- **Closed Evaluation Mode:** During evaluation, intermediate rewards are fixed at `0.0` and `info` is empty to prevent state leakage.
+- **Resource Constraints:** 100 steps total (including `submit`) and 60 seconds wall-clock budget per episode.
+- **Evidence Cap:** Maximum 10 evidence IDs per finding.
 
 ---
 
-## 📊 Benchmark Results
+## Benchmark Results
 
-Evaluated in closed mode across all 20 shipped train and dev episodes (`make judge`):
+Evaluation across all 20 shipped train and dev episodes in closed mode (`make judge`):
 
 <!-- RESULTS:START -->
-| Policy | Precision | Recall | F1 Score | Return | Mean Inspection Steps | Mean Time / Episode (s) |
+| Policy | Precision | Recall | F1 Score | Return | Mean Inspection Steps | Mean Wall Time / Episode |
 |---|---|---|---|---|---|---|
 | **Random Explorer** | 0.000 | 0.000 | 0.000 | -1.000 | 4.0 | 0.005 s |
 | **Simple Reconciliation** | 0.041 | 0.313 | 0.071 | -0.874 | 19.7 | 0.013 s |
 | **Flag-All Attack** | 0.012 | 0.121 | 0.021 | -0.972 | 17.6 | 0.014 s |
-| **Oracle** (reads hidden truth) | 0.750 | 0.750 | 1.000 | 1.000 | 0.0 | 0.010 s |
+| **Oracle** (reads hidden truth) | 0.750 | 0.750 | 1.000 | 1.000 | 0.0 | 0.009 s |
 | **Our Rule-Following Solver** (reads zero truth) | **0.750** | **0.750** | **1.000** | **0.961** | **19.7** | **0.012 s** |
 <!-- RESULTS:END -->
 
-> [!TIP]
-> **Understanding the Scores:** On completely clean episodes with zero errors, Precision and Recall are defined as 0.0 by the case rules, which is why mean P and R across all episodes are 0.75. On all episodes with errors, our solver achieves a **perfect 1.0 F1 score**, only losing 0.039 from the inspection step tax ($0.002 \times 19.7$). Naive baselines score near the $-1.0$ floor because our realistic decoys defeat simple heuristics!
+> [!NOTE]
+> On clean episodes containing zero accounting errors, Precision and Recall are defined as `0.0` by the case rules, resulting in a mean $P$ and $R$ of `0.75` across the mixed dataset. On all episodes containing errors, our rule-following solver achieves an **$F_1$ score of 1.000**, with return only penalized by the inspection step cost ($0.002 \times 19.7 = 0.039$).
 
-Detailed per-episode breakdowns are available in [`docs/RESULTS.md`](docs/RESULTS.md).
+Detailed per-episode and per-family breakdowns are provided in [`docs/RESULTS.md`](docs/RESULTS.md).
 
 ---
 
-## 🧪 Comprehensive Verification Suite
+## Testing and Verification
 
 ```bash
-uv run pytest                 # Full suite: ~1,240 tests passing
-uv run pytest tests/jury      # Conformance tests for the official checks
+uv run pytest                 # Full test suite: ~1,240 tests passing
+uv run pytest tests/jury      # Conformance tests for official check definitions
 ```
 
-- **Official Case Checks:** Implements and verifies every single test ID (contract checks C01–C20, scenario episodes D01–D20, matcher checks M01–M12, and paired checks P01–P20).
-- **Core Behavioral Invariants:**
-  - Supported evidence beats silence on faulty books.
-  - Silence beats false alarms on clean books.
-  - Repeated findings earn zero credit and generate false positives.
-  - Guessed IDs and invalid evidence structures are penalized.
-  - Every episode regenerates byte-for-byte identically from its seed.
+- **Official Check IDs:** Validates contract checks C01–C20, scenario episodes D01–D20, matcher invariants M01–M12, and paired checks P01–P20.
+- **Core Verification Invariants:**
+  - True findings with complete evidence strictly outperform silence on faulty books.
+  - Silence strictly outperforms speculative flagging on clean books.
+  - Duplicate claims receive zero credit and are penalized as false positives.
+  - Guessed IDs or invalid structural payloads are penalized.
+  - Every episode regenerates byte-for-byte from its PRNG seed.
 
 ---
 
-## 🗺️ Repository Structure
+## Repository Structure
 
-| Path | Description |
+| Path | Purpose |
 |---|---|
-| `src/genesis_audit/env.py`, `store.py`, `calculator.py` | Gym environment, 5 inspection tools, budgets, error isolation |
-| `src/genesis_audit/schemas.py`, `matching.py`, `scoring.py` | Observation/action schemas, maximum bipartite matching, reward computation |
-| `src/genesis_audit/families.py` | The four accounting error family definitions and decider logic |
-| `src/genesis_audit/world.py`, `books.py`, `shipped.py` | Seeded business generator, double-entry bookkeeping, shipped episodes |
-| `judge_adapter.py`, `baselines/`, `tools/judge_run.py` | Official judge adapter interface, benchmark baselines, execution harness |
-| `tools/independent_checker.py` | Independent cross-verification script validating ground truth from public data |
-| `episodes/` | 10 train and 10 dev generated episodes with complete data files |
-| `docs/` | [Design note](docs/DESIGN.md), [Adapter spec](docs/ADAPTER.md), [Full specification](docs/SPEC.md), [Results](docs/RESULTS.md) |
-| `NOTES.md` | Our team's engineering log and technical design journal |
+| `src/genesis_audit/env.py`, `store.py`, `calculator.py` | Gym environment, inspection tools, step budgets, error bounds |
+| `src/genesis_audit/schemas.py`, `matching.py`, `scoring.py` | Schema validation, maximum bipartite matching, reward computation |
+| `src/genesis_audit/families.py` | Implementation of the four accounting error family rules |
+| `src/genesis_audit/world.py`, `books.py`, `shipped.py` | Business simulation generator, double-entry ledgers, shipped episodes |
+| `judge_adapter.py`, `baselines/`, `tools/judge_run.py` | Official judge adapter interface, baseline policies, benchmark runner |
+| `tools/independent_checker.py` | Independent verification tool deriving ground truth from public data |
+| `episodes/` | 10 train and 10 dev episodes with complete public and private halves |
+| `docs/` | [Design note](docs/DESIGN.md), [Adapter spec](docs/ADAPTER.md), [Specification](docs/SPEC.md), [Results](docs/RESULTS.md) |
+| `NOTES.md` | Team engineering journal and implementation notes |
 
 ---
 
-## ⚖️ License
+## License
 
 MIT License. See [`LICENSE`](LICENSE) for details.
