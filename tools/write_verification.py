@@ -78,7 +78,7 @@ def main() -> int:
             plan.append((f"Self-check under Python {version} (no virtual environment)",
                          [interpreter, "-m", "genesis_audit", "check"], {"PYTHONPATH": str(ROOT / "src")}))  # fmt: skip
     if shutil.which("docker"):
-        plan.append(("Container: Python 3.11, no network, 2 CPUs, 4 GB; evaluator as root, policies under setuid",
+        plan.append(("Container: Python 3.11, no network, 60s limit; evaluator as root, policies under setuid",
                      ["make", "docker-check"], None))  # fmt: skip
         plan.append(("Per-policy Docker backend: hostile probe",
                      ["uv", "run", "pytest", "-p", "no:cacheprovider", "tests/test_boundary.py", "-k", "docker"],

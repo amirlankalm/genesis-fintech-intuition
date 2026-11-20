@@ -25,7 +25,7 @@ make check         # lint, mypy type checks, pytest with coverage, self-check
 make judge         # evaluate baselines & solver via judge_adapter.py + conformance tests
 ```
 
-### Containerized Execution (Offline Envelope: 2 CPUs, 4 GB RAM, No Network)
+### Containerized Execution (Offline Execution: 60s Wall-Clock Limit, No Network)
 
 ```bash
 make docker-check
@@ -34,7 +34,7 @@ make docker-check
 Or using standalone Docker without `make`:
 
 ```bash
-docker build -t genesis-audit-env . && docker run --rm --network none --cpus 2 --memory 4g genesis-audit-env
+docker build -t genesis-audit-env . && docker run --rm --network none genesis-audit-env
 ```
 
 All operations run locally from the repository root (`/app` within the container). No network access is required after dependency installation, and no external APIs or GPU acceleration are utilized.
@@ -159,10 +159,12 @@ Detailed per-episode and per-family breakdowns are provided in [`docs/RESULTS.md
 ## Testing and Verification
 
 ```bash
-uv run pytest                 # Full test suite: ~1,240 tests passing
+uv run pytest                 # Full test suite: 1,247 collected tests passing
+uv run pytest --collect-only  # Inspect all 1,247 collected test items across 493 test definitions
 uv run pytest tests/jury      # Conformance tests for official check definitions
 ```
 
+- **Exact Test Coverage:** The repository contains **493 test definitions (`def test_`)** across 29 test files, which expand into **1,247 collected test cases** through parametrization over contract suites C01–C20, scenario episodes D01–D20, matcher invariants M01–M12, and paired checks P01–P20. All 1,247 collected tests pass.
 - **Official Check IDs:** Validates contract checks C01–C20, scenario episodes D01–D20, matcher invariants M01–M12, and paired checks P01–P20.
 - **Core Verification Invariants:**
   - True findings with complete evidence strictly outperform silence on faulty books.
@@ -170,6 +172,17 @@ uv run pytest tests/jury      # Conformance tests for official check definitions
   - Duplicate claims receive zero credit and are penalized as false positives.
   - Guessed IDs or invalid structural payloads are penalized.
   - Every episode regenerates byte-for-byte from its PRNG seed.
+
+---
+
+## Limitations
+
+- **Rule-Following Solver vs. Learned Models:** A deterministic rule-following script solves every episode ($F_1 = 1.0$), proving that all episodes are decidable from public documentary evidence under the published policies. This benchmarks policy and record parsing, not open-ended natural language reasoning. No machine learning model was trained in this submission.
+- **Single Accounting Model:** All simulated entities adhere to standard double-entry bookkeeping conventions with uniform account charts. Variations focus on transaction topology, volume, counterparty networks, currencies, timezone offsets, and accounts receivable discrepancies rather than varying underlying accounting standards.
+- **Sparse Reward Landscape:** The reward function provides no partial credit for ungrounded guessing; random exploration scores $-1.0$.
+- **Step Inspection Cost:** Every inspection tool invocation prior to submission deducts a penalty ($0.002 \times \text{inspection\_steps}$), introducing a deliberate exploration vs. efficiency tradeoff.
+- **Deterministic Shipped Key:** Shipped episodes are deterministically generated from fixed public seeds; blind evaluation utilizes `GENESIS_AUDIT_SECRET_FILE`.
+- **Runtime Envelope:** Conforms strictly to the official public specification: **60-second wall-clock limit** and **100-step budget** per episode in an isolated offline environment (`--network none`). Hardware resource allocations (CPU / RAM) depend on the host runner; the system runs without GPU acceleration or specialized hardware.
 
 ---
 

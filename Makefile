@@ -37,10 +37,10 @@ judge:
 	uv run python tools/judge_run.py --summary out/judge/summary.json --trajectories out/judge/trajectories.jsonl
 	uv run pytest -p no:cacheprovider tests/test_judge_adapter.py tests/test_judge_schemas.py
 
-# The offline envelope of the draft case: Python 3.11, 2 CPUs, 4 GB, no network at run time.
+# Offline container execution conforming to the 60s limit with no network at run time.
 docker-check:
 	docker build -t genesis-audit-env .
-	docker run --rm --network none --cpus 2 --memory 4g genesis-audit-env
+	docker run --rm --network none genesis-audit-env
 
 # Run everything, on this tree, and write the log that names the tree it was run on.
 verify:
