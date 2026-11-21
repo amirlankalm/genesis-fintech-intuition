@@ -433,3 +433,35 @@ These design questions were addressed during development. The final case (19 Nov
 
 - **OQ-6** For `limit` above 50: clamp or error? The case says only that a page holds at most 50 rows, and [K] C05 pages with `limit=50`. Neither text decides between a clamp and an error. Here it is an error, `bad_limit` (PC-4), which is consistent with both.
 - **OQ-13** Is a final line that is not valid JSON a malformed submission (-1) or an invalid action? [K] does not say. On the jury path the question does not arise, because `step` receives a Python object. On our JSON-lines bridge, PC-19 decides.
+
+## 12. Limitations and Honest Scope
+
+This section addresses the honest limitations of the environment (aligned with Criterion E5):
+
+1. **Rule-Following Solver vs. Learned Models.**
+   - A deterministic rule-following script (`baselines/solver.py`) scores $F_1 = 1.0$ and return $0.961$ across all shipped train and dev episodes. This proves that every scenario is decidable from public records under the published policy rules.
+   - However, this benchmarks structured record parsing and compliance logic, not generalized natural language understanding or ambiguous real-world accounting judgment.
+   - No machine learning model or neural network was trained in this submission, and no training claims are made.
+
+2. **Containment Boundary and What It Does Not Protect.**
+   - In container execution (`make docker-check`), the evaluator runs as `root` and policies run under an unprivileged user (`setuid`). On macOS, policies run under `sandbox-exec` (Seatbelt).
+   - What is protected: The policy process cannot read `truth.json`, `provenance.json`, private generator seeds, evaluator memory, or host filesystem paths outside `/app/policies`. Network access is disabled via `--network none`. Hostile probes attempting these operations are denied and verified in tests.
+   - What is not protected: Process confinement relies on OS privilege separation and Seatbelt/Docker isolation. It does not patch host kernel vulnerabilities, prevent memory exhaustion if external cgroup limits are absent, or isolate against physical side-channels.
+
+3. **Calculated vs. Measured Quantities.**
+   - Exact structural quantities: Step budgets (100 steps maximum), reading costs (52 steps maximum required to exhaustively read the largest episode), and decimal minor unit representations are exact by construction.
+   - Measured empirical quantities: Wall-clock execution durations (< 0.13 s for the slowest solver episode) and peak resident set size (evaluator ~43 MB, policy ~28 MB) recorded in `docs/measurements/scale.json` are empirical measurements on the test machine and will vary with host hardware.
+
+4. **Memorisation vs. Generalization.**
+   - A memoriser policy that stores and replays known answers achieves $F_1 = 0.000$ and return $-1.000$ on unseen twin episodes with renamed identifiers and shuffled rows (scoring identically to an abstaining policy at $-1.000$).
+   - This proves the benchmark cannot be solved by memorising static identifiers.
+
+5. **Generator and Accounting Model Boundaries.**
+   - All simulated companies use a uniform double-entry bookkeeping model with standardized charts of accounts and accounts receivable flows.
+   - The generator supports scales from 200 to 2,000 ledger rows across 6 fiat currencies. It does not model complex corporate consolidations, inventory valuation methods (FIFO/LIFO), or taxation jurisdictions.
+
+6. **Accounting Identities vs. Audit Ground Truth.**
+   - Double-entry balance ($\sum \text{Debits} = \sum \text{Credits}$) is validated by construction. Balanced books do not imply error-free records: clerk mistakes such as wrong cutoff dates, unapplied cash receipts, and exchange rate misstatements persist within mathematically balanced ledgers.
+
+7. **Official Runtime Envelope.**
+   - Conforms strictly to the official public check specification (20 Nov 2026): **60-second execution timeout** and **100-step budget** per episode in an isolated offline environment (`--network none`). Hardware resources (CPU / RAM) depend on the evaluating platform; the environment imposes no hardcoded resource requirements.

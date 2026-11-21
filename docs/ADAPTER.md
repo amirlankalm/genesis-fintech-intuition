@@ -13,7 +13,7 @@ environment `genesis-audit-env/0.2.0` (`judge_adapter.ADAPTER_VERSION`, `judge_a
 | Import | `uv run python -c "import judge_adapter"` | `python -c "import judge_adapter"` (any cwd: `PYTHONPATH=/app:/app/src`) |
 | Baselines through the adapter | `make judge` | part of the image `CMD` |
 | Adapter conformance tests | `uv run pytest tests/test_judge_adapter.py tests/test_judge_schemas.py` | part of the image `CMD` |
-| Everything, one command | `make docker-check` (`docker build -t genesis-audit-env . && docker run --rm --network none --cpus 2 --memory 4g genesis-audit-env`) | |
+| Everything, one command | `make docker-check` (`docker build -t genesis-audit-env . && docker run --rm --network none genesis-audit-env`) | |
 
 `judge_adapter.py` puts the repository's `src/` on `sys.path` itself, so it imports the right package
 whether or not the package is installed. Only Python 3.11+ and the standard library are needed at run time.
@@ -410,17 +410,26 @@ report together with `"judge": {adapter_version, env_version, seed, config, epis
 holds the termination cause, steps_used, inspection_steps, the score, the counts, the per-finding verdicts
 with reasons, the unmatched issue ids and the trajectory digest.
 
-## 9. Budgets
+## 9. Budgets and Official Public Specification
 
-- **100 steps.** Every step call counts, including errors and the submit. A submit on step 100 is accepted.
-  An inspection on step 100 ends the episode with `truncated=true` and empty findings.
-- **inspection_steps.** This counts every step call before the submit, including errors, and excludes the
-  submit itself. After 100 inspections it is 100. Pass this number to `score_episode`.
-- **60 s per episode.** The clock is `time.monotonic` and the window opens at the top of `reset`, before the
-  episode is loaded or generated. Policy time is included. The first step after the window has closed is not
-  executed, even a submit. It returns `{"result": null, "error": null, ...}` with `truncated=true`, and the
-  findings are empty. Count `{"findings": []}` as the result. The check happens when `step` is called, so a
-  policy that hangs must be stopped by the jury's harness.
+The adapter conforms strictly to the official Genesis FinTech check definitions published on 20 November 2026:
+
+- **100-step budget.** Every step call counts, including bounded errors, tool lookups and the final submit. A submit on step 100 is accepted (`terminated=true`). An inspection on step 100 ends the episode with `truncated=true` and empty findings.
+- **inspection_steps.** This counts every step call strictly before the submit, including errors, and excludes the submit itself. After 100 inspections it is 100. Pass this exact integer to `score_episode`.
+- **60 s wall-clock limit.** The clock uses `time.monotonic` and the window opens at the top of `reset`, before the episode is loaded or generated. Policy execution time is included. The first step invoked after the 60-second window has expired is not executed (even if it is a submit): it returns `{"result": null, "error": null, ...}` with `truncated=true`, and findings are scored as empty.
+- **Offline network isolation.** Execution in containers must run with `--network none`.
+- **Host hardware alignment.** The official public specification states: *"Лимит времени: 60 секунд на эпизод... Характеристики машины объявляются отдельно и одинаковы для всех."* The environment claims no unconfirmed hardware specifications (e.g., "2 CPU / 4GB"); it executes comfortably within lightweight footprints (<100 MB RSS, <<60s).
+
+### Adapter Edge Cases & Boundary Handling
+
+1. **Keyword vs. Positional Arguments:** All three top-level functions (`generate_episode`, `make_env`, `score_episode`) accept positional and keyword invocations identically.
+2. **Closed Mode Isolation:** `reset(config={"mode": "closed", "episode_dir": "..."})` ignores any passed `seed` and `team_config`, loading only the specified directory. Repeated `reset` calls discard previous internal states and restart cleanly.
+3. **Observation & Info Sanitization:** In closed mode, `reward` is strictly `0.0` at every step, and `info` is strictly `{}`. No ground truth, provenance, seed, or file paths leak into policy-visible outputs.
+4. **Step Action Dispatch:** `step({"name": "...", "args": {...}})` requires `name` and `args`. Unknown action names or missing arguments return bounded public errors and cost one step without crashing the environment process.
+5. **Submission Precedence:**
+   - A well-formed submit ends the episode (`terminated=true`) and returns `{"accepted": true}`.
+   - A malformed submit (invalid JSON shape, missing keys, or exceeded array limits) immediately ends the episode with `terminated=true`, sets `return = -1.0`, leaves all metric fields as `null` in `score_episode`, and records the validation failure exclusively in the evaluator log.
+6. **Time Limit Truncation:** If wall-clock time exceeds 60 seconds, the environment halts with `truncated=true`, and empty findings `{"findings": []}` are scored.
 
 ## 10. Matcher conventions
 

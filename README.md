@@ -49,7 +49,7 @@ All operations run locally from the repository root (`/app` within the container
 | **README & Dockerfile** (container instructions + single check command) | [`README.md`](README.md), [`Dockerfile`](Dockerfile), [`Makefile`](Makefile) |
 | **Matcher, Reward, Schemas & Policies** | [`src/genesis_audit/matching.py`](src/genesis_audit/matching.py), [`scoring.py`](src/genesis_audit/scoring.py), [`schemas.py`](src/genesis_audit/schemas.py); [`docs/schemas/`](docs/schemas/) |
 | **10 Train & 10 Dev Episodes** | [`episodes/`](episodes/), split index [`episodes/splits.json`](episodes/splits.json) |
-| **Comprehensive Test Suite** | [`tests/`](tests/) (~1,240 tests validating contract and scenario checks) |
+| **Comprehensive Test Suite** | [`tests/`](tests/) (1,247 collected tests across 493 test definitions: 1,245 passed, 2 skipped) |
 | **Benchmark Baselines + Rule-Following Solver** | [`baselines/`](baselines/): random explorer, simple reconciliation, flag-all, oracle, solver |
 | **Trajectory File** (`trajectories.jsonl`) | [`trajectories.jsonl`](trajectories.jsonl) |
 | **Design Documentation** | [`docs/DESIGN.md`](docs/DESIGN.md) ([Русский](docs/DESIGN.ru.md)), [`docs/SPEC.md`](docs/SPEC.md) |
@@ -177,12 +177,13 @@ uv run pytest tests/jury      # Conformance tests for official check definitions
 
 ## Limitations
 
-- **Rule-Following Solver vs. Learned Models:** A deterministic rule-following script solves every episode ($F_1 = 1.0$), proving that all episodes are decidable from public documentary evidence under the published policies. This benchmarks policy and record parsing, not open-ended natural language reasoning. No machine learning model was trained in this submission.
-- **Single Accounting Model:** All simulated entities adhere to standard double-entry bookkeeping conventions with uniform account charts. Variations focus on transaction topology, volume, counterparty networks, currencies, timezone offsets, and accounts receivable discrepancies rather than varying underlying accounting standards.
-- **Sparse Reward Landscape:** The reward function provides no partial credit for ungrounded guessing; random exploration scores $-1.0$.
-- **Step Inspection Cost:** Every inspection tool invocation prior to submission deducts a penalty ($0.002 \times \text{inspection\_steps}$), introducing a deliberate exploration vs. efficiency tradeoff.
-- **Deterministic Shipped Key:** Shipped episodes are deterministically generated from fixed public seeds; blind evaluation utilizes `GENESIS_AUDIT_SECRET_FILE`.
-- **Runtime Envelope:** Conforms strictly to the official public specification: **60-second wall-clock limit** and **100-step budget** per episode in an isolated offline environment (`--network none`). Hardware resource allocations (CPU / RAM) depend on the host runner; the system runs without GPU acceleration or specialized hardware.
+- **Rule-Following Solver vs. Learned Models:** A deterministic rule-following script solves every episode ($F_1 = 1.0$), proving that all episodes are decidable from public documentary evidence under the published policies. This benchmarks policy compliance and record parsing, not open-ended natural language reasoning. No machine learning model or neural network was trained in this submission, and no empirical learning claims are made.
+- **Process Isolation & Containment Boundary:** Process confinement (setuid unprivileged execution under Docker, Seatbelt sandboxing on macOS) strictly confines policy processes to `/app/policies` and standard system binaries, preventing reads of `truth.json`, `provenance.json`, private keys, evaluator memory, network interfaces, or arbitrary host paths. However, this confinement relies on OS user/process boundaries; it does not protect against host kernel vulnerabilities or unconstrained memory allocation if external cgroup limits are omitted.
+- **Calculated vs. Measured Quantities:** Step bounds (100 steps max, 52 steps maximum required to read any company in full) and algorithmic complexity are exact structural invariants. Clock runtimes (slowest solver episode < 0.13 s) and memory peaks (evaluator ~43 MB, policy ~28 MB) recorded in `docs/measurements/scale.json` are empirical measurements on the test host and vary across hardware.
+- **Memorisation vs. Generalization:** Memorisation fails completely under perturbation. A memorising agent that replays stored findings achieves $F_1 = 0.000$ and return $-1.000$ on unseen twin episodes with renamed identifiers and shuffled rows (scoring identically to an abstaining policy, $-1.000$), demonstrating that evaluation cannot be bypassed by rote memorisation.
+- **Accounting & Generator Scope:** All simulated businesses operate under a uniform double-entry accounting standard with standard charts of accounts. Variations cover transaction graph topology, volume (200 to 2,000 ledger rows), counterparty networks, currency translations (6 currencies), and timezone offsets (+09:00 to -05:00) rather than diverse legal accounting frameworks.
+- **Accounting Identities vs. Audit Ground Truth:** All clean and mutated episodes maintain internal double-entry balance ($\text{Debits} = \text{Credits}$). Balanced books do not imply error-free records; subtle cutoff shifts, missing allocations, and exchange rate misstatements persist within mathematically balanced ledgers.
+- **Official Runtime Envelope:** Conforms strictly to the official public specification: **60-second wall-clock limit** and **100-step budget** per episode in an isolated offline environment (`--network none`). Hardware resource allocations (CPU / RAM) depend on the host runner; the system runs without GPU acceleration or specialized hardware.
 
 ---
 

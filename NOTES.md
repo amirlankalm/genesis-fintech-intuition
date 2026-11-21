@@ -89,9 +89,9 @@ We evaluated our rule-following solver against standard reference baselines on a
 
 During our build, we established rigorous automated tests to ensure 100% reproducibility:
 - **Lint & Types:** Ruff (lint + format) and Mypy strict type-checking across all source modules (`make lint`).
-- **Unit & Integration Tests:** ~1,240 tests covering contract checks C01–C20, scenario episodes D01–D20, matcher invariants M01–M12, and paired checks P01–P20 (`pytest`).
+- **Unit & Integration Tests:** 1,247 collected tests across 493 test definitions (`def test_`) in 29 test files (1,245 passed, 2 skipped container boundary probes), covering contract checks C01–C20, scenario episodes D01–D20, matcher invariants M01–M12, and paired checks P01–P20 (`pytest`).
 - **Deterministic Replay:** Verified that every shipped episode regenerates byte-for-byte identically from its PRNG seed (`make check`).
-- **Container Isolation:** Validated within Docker under the specified resource constraints (Python 3.11, 2 CPUs, 4 GB RAM, `--network none`).
+- **Container Isolation:** Validated within Docker under the official offline constraints: Python 3.11, 60s wall-clock limit, 100-step budget, and `--network none`.
 
 ---
 

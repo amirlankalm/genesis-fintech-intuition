@@ -1,7 +1,7 @@
 # Offline check in the envelope the draft case names: Python 3.11, no GPU.
 # Build needs the network once (pytest); the run does not:
 #   docker build -t genesis-audit-env .
-#   docker run --rm --network none --cpus 2 --memory 4g genesis-audit-env
+#   docker run --rm --network none genesis-audit-env
 FROM python:3.11-slim
 
 # /app on the path: `import judge_adapter` works from /app and from a jury script anywhere in the container.
