@@ -14,11 +14,12 @@ import platform
 import shutil
 import subprocess
 import sys
+from datetime import UTC, datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 LOG = ROOT / "docs" / "VERIFICATION.md"
-TAIL_LINES = 14
+TAIL_LINES = 24
 DOCKER_IMAGE = "python:3.11-slim"
 
 
@@ -64,6 +65,16 @@ def run(label: str, command: list[str], env_extra: dict[str, str] | None = None,
     return f"### {label}\n\n`{' '.join(command)}` -> **{status}**\n\n```\n{tail}\n```\n", status
 
 
+def commit_sha() -> str:
+    """Full commit SHA of HEAD."""
+    return (
+        subprocess.run(
+            ["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True, check=False
+        ).stdout.strip()
+        or "no commit"
+    )
+
+
 def main() -> int:
     digest, count = tree_digest()
     sections, statuses = [], []
@@ -71,6 +82,26 @@ def main() -> int:
         ("Lint, format and types", ["make", "lint"], None),
         ("Tests with coverage (gate 80%)", ["make", "test"], None),
         ("Self-check on this machine", ["uv", "run", "python", "-m", "genesis_audit", "check"], None),
+        (
+            "Isolation and boundary probe (Seatbelt, Docker, Process)",
+            ["uv", "run", "pytest", "-p", "no:cacheprovider", "tests/test_boundary.py"],
+            None,
+        ),
+        (
+            "Replay and paired perturbation checks",
+            [
+                "uv",
+                "run",
+                "pytest",
+                "-p",
+                "no:cacheprovider",
+                "tests/test_bridge.py",
+                "tests/test_perturb.py",
+                "-k",
+                "replay or perturb or twin",
+            ],
+            None,
+        ),
     ]
     for version in ("3.12", "3.13"):
         interpreter = shutil.which(f"python{version}")
@@ -90,12 +121,16 @@ def main() -> int:
         sys.stdout.write(f"{status:12s} {label}\n")
         sys.stdout.flush()
     after, _ = tree_digest()
+    full_sha = commit_sha()
+    now_utc = datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S UTC")
     header = [
         "# Verification log",
         "",
-        "Written by `python tools/write_verification.py`. Every block is the tail of a command that was run on",
-        "the tree named below. Nothing here is typed in by hand.",
+        "Written by `make reproduce` (calling `python tools/write_verification.py`). Every block is the tail of a command",
+        "that was run on the tree named below. Nothing here is typed in by hand.",
         "",
+        f"- **Commit SHA:** `{full_sha}`",
+        f"- **Date:** {now_utc}",
         f"- **Tree digest:** `{digest}` over {count} files (everything git would commit, this log excluded).",
         f"- **Tree unchanged by the run:** {'yes' if after == digest else 'NO - the commands modified files'}.",
         f"- **Host:** {platform.system()} {platform.machine()}, Python {platform.python_version()} for this script.",

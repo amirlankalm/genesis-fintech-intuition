@@ -1,5 +1,8 @@
-# One command reproduces every number this repository reports:  make check
-.PHONY: check lint test selfcheck results fixtures harness pages rubric-pdf docker-check verify measurements judge
+# One command reproduces every number this repository reports:  make reproduce
+.PHONY: check lint test selfcheck results fixtures harness pages rubric-pdf docker-check verify measurements judge reproduce
+
+reproduce:
+	uv run python tools/write_verification.py
 
 check: lint test selfcheck
 
