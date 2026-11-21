@@ -3,12 +3,12 @@
 Written by `make reproduce` (calling `python tools/write_verification.py`). Every block is the tail of a command
 that was run on the tree named below. Nothing here is typed in by hand.
 
-- **Commit SHA:** `3cfefaa8e76e584e8f290e3dcb7784769b90ac1b`
-- **Date:** 2026-11-21 12:56:47 UTC
-- **Tree digest:** `b677234ecef710e3fa091f9911a42ec87a7641139bf9fa41a97c705129ea7d77` over 404 files (everything git would commit, this log excluded).
+- **Commit SHA:** `66c14f7a917bf9e049910c79dcfa0ec47b0d37b4`
+- **Date:** 2026-11-21 13:28:38 UTC
+- **Tree digest:** `d4fc5a479d0306c3cce30742428d0325cb4f93788445a3d26249f270bdf6f408` over 404 files (everything git would commit, this log excluded).
 - **Tree unchanged by the run:** yes.
 - **Host:** Darwin arm64, Python 3.11.15 for this script.
-- **Git state when run:** HEAD `3cfefaa` on `main`, 2 uncommitted path(s) on top of it.
+- **Git state when run:** HEAD `66c14f7` on `main`, working tree clean apart from this log.
   The digest above identifies the tree whether or not it is committed. Recompute it with `tree_digest` in this script.
 - **Result:** 9 of 9 commands exited 0.
 
@@ -53,7 +53,7 @@ src/genesis_audit/world.py          572     15    210     16    96%   179, 314, 
 TOTAL                              4105    215   1224     83    94%
 9 files skipped due to complete coverage.
 Required test coverage of 80% reached. Total coverage: 93.77%
-1249 passed, 2 skipped in 298.36s (0:04:58)
+1270 passed, 2 skipped in 281.47s (0:04:41)
 ```
 
 ### Self-check on this machine
@@ -74,7 +74,7 @@ PASS  a truth-blind investigator finds every issue on every episode, and a memor
 PASS  docs/RESULTS.md is reproduced exactly: 248 runs re-measured
 PASS  docs/DIGESTS.json is reproduced exactly: 248 transition digests and exact rewards
 PASS  docs/trajectories.jsonl.gz is reproduced exactly: 2022 transitions of 248 runs, policy-visible fields only
-PASS  docs/measurements/scale.json agrees with a fresh measurement, and that is inside the envelope: 52 steps at most to read an episode in full; slowest solver episode 0.08 s of 60; clock and memory readings are not compared
+PASS  docs/measurements/scale.json agrees with a fresh measurement, and that is inside the envelope: 52 steps at most to read an episode in full; slowest solver episode 0.06 s of 60; clock and memory readings are not compared
 PASS  docs/measurements/random_inspector_sweep.json is consistent with a re-run of its first seeds: 12 seeds on each teaching episode, each reward found in the stored histogram
 PASS  truth-blind policies keep their counts and steps under id renaming and row shuffling: 5 policies x 4 teaching episodes x 3 seeds
 16/16 checks passed
@@ -85,8 +85,8 @@ PASS  truth-blind policies keep their counts and steps under id renaming and row
 `uv run pytest -p no:cacheprovider tests/test_boundary.py` -> **exit 0**
 
 ```
-....ss......                                                             [100%]
-10 passed, 2 skipped in 1.12s
+....ss.......                                                            [100%]
+11 passed, 2 skipped in 0.85s
 ```
 
 ### Replay and paired perturbation checks
@@ -95,7 +95,7 @@ PASS  truth-blind policies keep their counts and steps under id renaming and row
 
 ```
 .............                                                            [100%]
-13 passed, 58 deselected in 5.47s
+13 passed, 58 deselected in 5.19s
 ```
 
 ### Self-check under Python 3.12 (no virtual environment)
@@ -116,7 +116,7 @@ PASS  a truth-blind investigator finds every issue on every episode, and a memor
 PASS  docs/RESULTS.md is reproduced exactly: 248 runs re-measured
 PASS  docs/DIGESTS.json is reproduced exactly: 248 transition digests and exact rewards
 PASS  docs/trajectories.jsonl.gz is reproduced exactly: 2022 transitions of 248 runs, policy-visible fields only
-PASS  docs/measurements/scale.json agrees with a fresh measurement, and that is inside the envelope: 52 steps at most to read an episode in full; slowest solver episode 0.09 s of 60; clock and memory readings are not compared
+PASS  docs/measurements/scale.json agrees with a fresh measurement, and that is inside the envelope: 52 steps at most to read an episode in full; slowest solver episode 0.08 s of 60; clock and memory readings are not compared
 PASS  docs/measurements/random_inspector_sweep.json is consistent with a re-run of its first seeds: 12 seeds on each teaching episode, each reward found in the stored histogram
 PASS  truth-blind policies keep their counts and steps under id renaming and row shuffling: 5 policies x 4 teaching episodes x 3 seeds
 16/16 checks passed
@@ -140,7 +140,7 @@ PASS  a truth-blind investigator finds every issue on every episode, and a memor
 PASS  docs/RESULTS.md is reproduced exactly: 248 runs re-measured
 PASS  docs/DIGESTS.json is reproduced exactly: 248 transition digests and exact rewards
 PASS  docs/trajectories.jsonl.gz is reproduced exactly: 2022 transitions of 248 runs, policy-visible fields only
-PASS  docs/measurements/scale.json agrees with a fresh measurement, and that is inside the envelope: 52 steps at most to read an episode in full; slowest solver episode 0.08 s of 60; clock and memory readings are not compared
+PASS  docs/measurements/scale.json agrees with a fresh measurement, and that is inside the envelope: 52 steps at most to read an episode in full; slowest solver episode 0.16 s of 60; clock and memory readings are not compared
 PASS  docs/measurements/random_inspector_sweep.json is consistent with a re-run of its first seeds: 12 seeds on each teaching episode, each reward found in the stored histogram
 PASS  truth-blind policies keep their counts and steps under id renaming and row shuffling: 5 policies x 4 teaching episodes x 3 seeds
 16/16 checks passed
@@ -151,8 +151,8 @@ PASS  truth-blind policies keep their counts and steps under id renaming and row
 `make docker-check` -> **exit 0**
 
 ```
-1245 passed, 6 skipped in 360.36s (0:06:00)
-65 passed in 0.49s
+1266 passed, 6 skipped in 388.42s (0:06:28)
+65 passed in 0.76s
 16/16 checks passed
 ...
   "envelope": {
@@ -162,14 +162,14 @@ PASS  truth-blind policies keep their counts and steps under id renaming and row
   },
   "largest_episode": "train_10",
   "build_largest_from_seed": {
-    "seconds": 1.5104,
+    "seconds": 1.5368,
     "peak_python_bytes": 9018734
   },
   "peak_resident_bytes": {
-    "evaluator": 43548672,
-    "largest_policy_process": 27987968
+    "evaluator": 43491328,
+    "largest_policy_process": 27975680
   },
-  "slowest_solver_episode_seconds": 0.1111,
+  "slowest_solver_episode_seconds": 0.114,
   "most_steps_to_read_everything": 52,
   "within_envelope": true,
   "episodes": {
@@ -187,5 +187,5 @@ DEPRECATED: The legacy builder is deprecated and will be removed in a future rel
 
 ```
 .                                                                        [100%]
-1 passed, 11 deselected in 0.37s
+1 passed, 12 deselected in 0.56s
 ```
