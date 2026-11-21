@@ -89,7 +89,7 @@ AI Auditor ◄── 5 Tools (reset/step) ── Public Books ──► Bipartit
 
 ## Accounting Error Families
 
-Every discrepancy rule is explicitly defined in `policy.json` and is decidable from public documentary evidence:
+Every discrepancy rule is explicitly defined in `policy.json` and is verified to be decidable from public documentary evidence across the shipped episodes:
 
 | Error Family | Environment `type` | `affected_ids` | `claimed_amount_minor` | Minimal Evidence Set |
 |---|---|---|---|---|
@@ -116,7 +116,7 @@ judge_adapter.generate_episode(seed=42, config=config, output_dir="out/episodes/
 
 # 2. Instantiate the standardized environment
 env = judge_adapter.make_env()
-obs, info = env.reset(seed=42, options={"mode": "closed", "episode_dir": "out/episodes/eval_01"})
+obs, info = env.reset(seed=42, config={"mode": "closed", "episode_dir": "out/episodes/eval_01"})
 
 # 3. Step through the tool interface (closed mode suppresses intermediate reward)
 obs, reward, terminated, truncated, info = env.step({
@@ -150,7 +150,7 @@ Evaluation across all 20 shipped train and dev episodes in closed mode (`make ju
 <!-- RESULTS:END -->
 
 > [!NOTE]
-> On clean episodes containing zero accounting errors, Precision and Recall are defined as `0.0` by the case rules, resulting in a mean $P$ and $R$ of `0.75` across the mixed dataset. On all episodes containing errors, our rule-following solver achieves an **$F_1$ score of 1.000**, with return only penalized by the inspection step cost ($0.002 \times 19.7 = 0.039$).
+> On the 20 shipped train and dev episodes evaluated via `make judge`, our rule-following solver achieves an **$F_1$ score of 1.000** on all faulty episodes (mean return `0.961` across all 20 episodes, penalized only by the inspection step cost: $0.002 \times 19.7 = 0.039$; on clean episodes containing zero accounting errors, Precision and Recall are defined as `0.0` by the case rules, giving a mean $P$ and $R$ of `0.75`). Across the full test harness verification log, the truth-blind solver achieves $F_1 = 1.0$ on 138 evaluation runs over all 31 shipped episodes (including perturbed twins, with worst return `0.896`). This is a finite empirical evaluation on the 31 shipped episodes, not a formal proof for all possible cases or unconstrained company configurations.
 
 Detailed per-episode and per-family breakdowns are provided in [`docs/RESULTS.md`](docs/RESULTS.md).
 
@@ -159,12 +159,12 @@ Detailed per-episode and per-family breakdowns are provided in [`docs/RESULTS.md
 ## Testing and Verification
 
 ```bash
-uv run pytest                 # Full test suite: 1,247 collected tests passing
+uv run pytest                 # Full test suite: 1,247 collected tests (1,245 passed, 2 skipped)
 uv run pytest --collect-only  # Inspect all 1,247 collected test items across 493 test definitions
 uv run pytest tests/jury      # Conformance tests for official check definitions
 ```
 
-- **Exact Test Coverage:** The repository contains **493 test definitions (`def test_`)** across 29 test files, which expand into **1,247 collected test cases** through parametrization over contract suites C01–C20, scenario episodes D01–D20, matcher invariants M01–M12, and paired checks P01–P20. All 1,247 collected tests pass.
+- **Exact Test Coverage:** The repository contains **493 test definitions (`def test_`)** across 29 test files, which expand into **1,247 collected test cases** through parametrization over contract suites C01–C20, scenario episodes D01–D20, matcher invariants M01–M12, and paired checks P01–P20. In test execution (`uv run pytest`), **1,245 passed and 2 were skipped** (the 2 skipped are Docker boundary probes in `test_boundary.py` that require a container environment and execute in `make docker-check`).
 - **Official Check IDs:** Validates contract checks C01–C20, scenario episodes D01–D20, matcher invariants M01–M12, and paired checks P01–P20.
 - **Core Verification Invariants:**
   - True findings with complete evidence strictly outperform silence on faulty books.
@@ -177,7 +177,7 @@ uv run pytest tests/jury      # Conformance tests for official check definitions
 
 ## Limitations
 
-- **Rule-Following Solver vs. Learned Models:** A deterministic rule-following script solves every episode ($F_1 = 1.0$), proving that all episodes are decidable from public documentary evidence under the published policies. This benchmarks policy compliance and record parsing, not open-ended natural language reasoning. No machine learning model or neural network was trained in this submission, and no empirical learning claims are made.
+- **Rule-Following Solver vs. Learned Models:** The rule-following script solves the 20 shipped train and dev case episodes ($F_1 = 1.000$, return $0.961$ in `make judge`), and reaches $F_1 = 1.0$ across 138 evaluation runs over all 31 shipped episodes (including perturbed twins) in the verification self-check. This is a finite empirical evaluation on the 31 shipped episodes, not a proof for all possible cases or arbitrary corporate topologies. It benchmarks policy compliance and structured record parsing against published rules, not open-ended natural language reasoning. No machine learning model or neural network was trained in this submission, and no empirical learning claims are made.
 - **Process Isolation & Containment Boundary:** Process confinement (setuid unprivileged execution under Docker, Seatbelt sandboxing on macOS) strictly confines policy processes to `/app/policies` and standard system binaries, preventing reads of `truth.json`, `provenance.json`, private keys, evaluator memory, network interfaces, or arbitrary host paths. However, this confinement relies on OS user/process boundaries; it does not protect against host kernel vulnerabilities or unconstrained memory allocation if external cgroup limits are omitted.
 - **Calculated vs. Measured Quantities:** Step bounds (100 steps max, 52 steps maximum required to read any company in full) and algorithmic complexity are exact structural invariants. Clock runtimes (slowest solver episode < 0.13 s) and memory peaks (evaluator ~43 MB, policy ~28 MB) recorded in `docs/measurements/scale.json` are empirical measurements on the test host and vary across hardware.
 - **Memorisation vs. Generalization:** Memorisation fails completely under perturbation. A memorising agent that replays stored findings achieves $F_1 = 0.000$ and return $-1.000$ on unseen twin episodes with renamed identifiers and shuffled rows (scoring identically to an abstaining policy, $-1.000$), demonstrating that evaluation cannot be bypassed by rote memorisation.

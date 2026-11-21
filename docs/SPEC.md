@@ -439,7 +439,8 @@ These design questions were addressed during development. The final case (19 Nov
 This section addresses the honest limitations of the environment (aligned with Criterion E5):
 
 1. **Rule-Following Solver vs. Learned Models.**
-   - A deterministic rule-following script (`baselines/solver.py`) scores $F_1 = 1.0$ and return $0.961$ across all shipped train and dev episodes. This proves that every scenario is decidable from public records under the published policy rules.
+   - A deterministic rule-following script (`baselines/solver.py`) scores $F_1 = 1.000$ and return $0.961$ across the 20 shipped train and dev episodes, and achieves $F_1 = 1.0$ across 138 self-check runs over all 31 shipped episodes (including perturbed twins).
+   - This finite empirical evaluation on the 31 shipped episodes demonstrates that the shipped benchmark scenarios are solvable from public records under the published policy rules, rather than serving as a formal proof for all arbitrary cases or unconstrained accounting topologies.
    - However, this benchmarks structured record parsing and compliance logic, not generalized natural language understanding or ambiguous real-world accounting judgment.
    - No machine learning model or neural network was trained in this submission, and no training claims are made.
 

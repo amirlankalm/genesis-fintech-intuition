@@ -14,7 +14,7 @@ In financial auditing, large language models cannot simply generate open-ended p
 
 We structured our environment around three non-negotiable principles:
 1. **Mathematical Invariants First:** Synthetic company books must balance by construction using real double-entry accounting (Debits = Credits).
-2. **Reversible Error Injection:** Every accounting defect must be injected with explicit provenance (`provenance.json`), so inverting the provenance mathematically proves the baseline books are clean.
+2. **Reversible Error Injection:** Every accounting defect must be injected with explicit provenance (`provenance.json`), so inverting the provenance directly reconstructs the verified clean baseline books for that episode.
 3. **Strict One-to-One Bipartite Matching:** Evaluation must not be fooled by duplicate claims, vague amounts, or guessed IDs. Findings are matched to hidden ground truth using a maximum bipartite matching algorithm with formal tie-breaking.
 
 ---
@@ -81,7 +81,7 @@ We evaluated our rule-following solver against standard reference baselines on a
 | **Oracle** (reads hidden truth) | 0.750 | 0.750 | 1.000 | 1.000 | 0.0 |
 | **Our Rule-Following Solver** | **0.750** | **0.750** | **1.000** | **0.961** | **19.7** |
 
-*Note: Clean episodes (episodes with zero errors) have P and R defined as 0.0 by the case specification, giving a mean P and R of 0.75 across the dataset. On all episodes containing errors, our solver achieves an F1 of 1.0.*
+*Note: Clean episodes (episodes with zero errors) have P and R defined as 0.0 by the case specification, giving a mean P and R of 0.75 across the 20 shipped case episodes. On the 15 case episodes containing errors, our solver achieves F1 = 1.000 (and across all 31 shipped episodes with 138 self-check runs including perturbed twins, F1 = 1.0 in the verification log). This represents a finite empirical evaluation on the 31 shipped episodes, not a proof for all possible cases.*
 
 ---
 
