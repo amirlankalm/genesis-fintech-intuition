@@ -33,7 +33,7 @@ Three properties follow from this order and each one has a test:
 
 - **The books are consistent before the errors.** Undoing the provenance gives the clean books, in which the published rules find nothing.
 - **Truth describes a real discrepancy.** It is computed from the records, not copied from the injection label, and the expected effect of each injection is cross-checked against what the rules find.
-- **Every issue is decidable from public evidence.** Each truth entry carries the evidence sets that prove it; every id in them is reachable through the tools within the budget, and the amount can be recomputed from the set alone.
+- **Every issue across the 31 shipped episodes is verified to be decidable from public evidence.** In the 20 case episodes and 11 fixtures/teaching episodes (138 verification runs), each truth entry carries the evidence sets that document it; every id in them is reachable through the tools within the budget, and the amount can be recomputed from the set alone.
 
 Randomness comes from one keyed stream (HMAC-SHA256 over the seed and a label per draw), so the same seed, config and version give byte-identical files on any machine and Python version, and ids cannot be inverted to the seed without the evaluator's key.
 
