@@ -368,6 +368,9 @@ A separate process is structure, not secrecy: with the same user id it can read 
 
 What "private" covers: truth and provenance, the evaluator's key, and also the public records (they cost steps), the source and the tests. The only way to learn anything is through the bridge.
 
+**Evaluator Secret Requirement:**
+For official evaluation and benchmark isolation, the evaluator requires an externally supplied secret file pointed to by the `GENESIS_AUDIT_SECRET_FILE` environment variable (containing at least 16 cryptographically random bytes). This secret keys all entity, document, and episode identifier HMACs as well as the perturb mapping. Without `GENESIS_AUDIT_SECRET_FILE`, the environment falls back to `DEV_SECRET`, the published public development key, which protects nothing against pre-computation or seed inversion. The secret file must be stored outside policy-accessible directories and is verified by boundary tests to be unreachable from within confined policy processes.
+
 Two different containers appear in this repo and should not be confused. The `docker` backend starts one small container per policy, with only the policy code in it. `make docker-check` builds an image that holds the whole repo and runs the *evaluator* in it as root; there the policies run under `setuid`, and the private files are present but mode-protected.
 
 - The policy's environment variables are scrubbed, and it starts in `/`.

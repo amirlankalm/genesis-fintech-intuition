@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import json
 import os
+import shutil
 import sys
+from pathlib import Path
 
 import pytest
 
@@ -185,3 +187,65 @@ def test_the_cli_takes_its_arguments_off_its_command_line() -> None:
     report = evaluate.probe_boundary(Confinement("none"))
     assert report["attempts"]["read_evaluator_cmdline"].startswith("denied")  # and none of them was on show
     assert code  # kept for readers: the same reader is what the probe uses
+
+
+def test_evaluator_secret_and_hidden_evidence_unreachable_from_sandbox(tmp_path: Path, monkeypatch) -> None:
+    """A7/D4: Evaluator secret file and private truth/provenance files are unreachable from inside the sandbox process."""
+    import subprocess
+
+    secret_file = tmp_path / "evaluator_external.key"
+    secret_bytes = b"external-secret-key-32bytes-long!"
+    secret_file.write_bytes(secret_bytes)
+
+    monkeypatch.setenv("GENESIS_AUDIT_SECRET_FILE", str(secret_file))
+    monkeypatch.setenv("GENESIS_AUDIT_SECRET", "cannot-leak-into-policy-process")
+    assert paths.evaluator_secret() == secret_bytes
+
+    truth_file = paths.PRIVATE_ROOT / "teaching_b" / "truth.json"
+    provenance_file = paths.PRIVATE_ROOT / "teaching_b" / "provenance.json"
+
+    reader = tmp_path / "policy" / "probe_secret.py"
+    reader.parent.mkdir(parents=True, exist_ok=True)
+    reader.write_text(
+        "import os, sys, json\n"
+        "results = {}\n"
+        "for target, key in [(sys.argv[1], 'secret_file'), (sys.argv[2], 'truth_file'), (sys.argv[3], 'provenance_file')]:\n"
+        "    try:\n"
+        "        with open(target, 'rb') as f:\n"
+        "            f.read(32)\n"
+        "        results[key] = 'leaked'\n"
+        "    except Exception as exc:\n"
+        "        results[key] = f'denied:{type(exc).__name__}'\n"
+        "env_secret = os.environ.get('GENESIS_AUDIT_SECRET') or os.environ.get('GENESIS_AUDIT_SECRET_FILE')\n"
+        "results['environ'] = 'leaked' if env_secret else 'scrubbed'\n"
+        "print(json.dumps(results))\n"
+    )
+
+    private = (paths.PRIVATE_ROOT, secret_file)
+    backend = "none" if os.geteuid() == 0 else Confinement.strongest(private).backend
+    if backend == "none" and sys.platform == "darwin" and shutil.which("sandbox-exec"):
+        backend = "seatbelt"
+
+    # 1. Under confinement: all targets must be denied and environment scrubbed
+    if backend != "none":
+        argv, kwargs = Confinement(backend, private).launch(
+            reader, (str(secret_file), str(truth_file), str(provenance_file))
+        )
+        done = subprocess.run(argv, capture_output=True, text=True, check=False, **kwargs)
+        assert done.returncode == 0, f"Probe crashed: {done.stderr}"
+        res = json.loads(done.stdout.strip())
+        assert res["secret_file"].startswith("denied"), f"Secret file leaked: {res}"
+        assert res["truth_file"].startswith("denied"), f"Truth file leaked: {res}"
+        assert res["provenance_file"].startswith("denied"), f"Provenance file leaked: {res}"
+        assert res["environ"] == "scrubbed", f"Environment leaked secrets: {res}"
+
+    # 2. Control without confinement: verifies the test is sensitive
+    if os.geteuid() != 0:
+        argv_ctrl, kwargs_ctrl = Confinement("none").launch(
+            reader, (str(secret_file), str(truth_file), str(provenance_file))
+        )
+        done_ctrl = subprocess.run(argv_ctrl, capture_output=True, text=True, check=False, **kwargs_ctrl)
+        assert done_ctrl.returncode == 0
+        res_ctrl = json.loads(done_ctrl.stdout.strip())
+        assert res_ctrl["secret_file"] == "leaked"
+        assert res_ctrl["truth_file"] == "leaked"

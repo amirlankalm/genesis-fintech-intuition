@@ -52,9 +52,7 @@ This wraps the team generator: `genesis_audit.shipped.parse_config` followed by 
 - It writes the 8 files of section 4 flat into `output_dir` and creates the directory if it is missing. It
   overwrites those 8 files and leaves any other file alone. A refused request writes nothing.
 - The same (seed, config, adapter version, `GENESIS_AUDIT_SECRET_FILE`) gives byte-identical files.
-- Ids, the episode_id and the issue_ids are keyed by the evaluator secret. Without
-  `GENESIS_AUDIT_SECRET_FILE` (a file of at least 16 bytes) that is the public dev key, so anyone with the
-  repository can regenerate the episode. Set it for hidden seeds.
+- **Evaluator Secret Requirement:** Ids, the episode_id, and the issue_ids are keyed by the evaluator secret. For competitive and production evaluation, the evaluator requires an externally supplied secret file specified via `GENESIS_AUDIT_SECRET_FILE` (pointing to an external file of at least 16 cryptographically random bytes). Without `GENESIS_AUDIT_SECRET_FILE`, the adapter and environment use the known public development key (`DEV_SECRET`), which provides zero cryptographic secrecy against pre-computation. When set, `GENESIS_AUDIT_SECRET_FILE` is completely unreachable from inside sandboxed policy processes (denied under Seatbelt, setuid, and Docker). Set it for hidden seeds.
 
 ### make_env().reset(seed, config)
 
