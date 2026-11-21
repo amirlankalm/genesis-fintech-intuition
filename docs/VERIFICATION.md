@@ -3,10 +3,10 @@
 Written by `python tools/write_verification.py`. Every block is the tail of a command that was run on
 the tree named below. Nothing here is typed in by hand.
 
-- **Tree digest:** `f039161ec8f814502d194f1b1a4af9a8532f17dcba1b9a63dc115d89d8e8c135` over 403 files (everything git would commit, this log excluded).
+- **Tree digest:** `17586c0480c206561584188a7a34363ab5596c9790aacf9fff3d2c1eb4358a15` over 403 files (everything git would commit, this log excluded).
 - **Tree unchanged by the run:** yes.
 - **Host:** Darwin arm64, Python 3.12.8 for this script.
-- **Git state when run:** HEAD `50d34a9` on `main`, working tree clean apart from this log.
+- **Git state when run:** HEAD `29afa18` on `main`, working tree clean apart from this log.
   The digest above identifies the tree whether or not it is committed. Recompute it with `tree_digest` in this script.
 - **Result:** 7 of 7 commands exited 0.
 
@@ -41,7 +41,7 @@ src/genesis_audit/world.py          572     15    210     16    96%   179, 314, 
 TOTAL                              4105    215   1224     83    94%
 9 files skipped due to complete coverage.
 Required test coverage of 80% reached. Total coverage: 93.77%
-1245 passed, 2 skipped in 324.62s (0:05:24)
+1245 passed, 2 skipped in 295.47s (0:04:55)
 ```
 
 ### Self-check on this machine
@@ -80,7 +80,7 @@ PASS  a truth-blind investigator finds every issue on every episode, and a memor
 PASS  docs/RESULTS.md is reproduced exactly: 248 runs re-measured
 PASS  docs/DIGESTS.json is reproduced exactly: 248 transition digests and exact rewards
 PASS  docs/trajectories.jsonl.gz is reproduced exactly: 2022 transitions of 248 runs, policy-visible fields only
-PASS  docs/measurements/scale.json agrees with a fresh measurement, and that is inside the envelope: 52 steps at most to read an episode in full; slowest solver episode 0.09 s of 60; clock and memory readings are not compared
+PASS  docs/measurements/scale.json agrees with a fresh measurement, and that is inside the envelope: 52 steps at most to read an episode in full; slowest solver episode 0.08 s of 60; clock and memory readings are not compared
 PASS  docs/measurements/random_inspector_sweep.json is consistent with a re-run of its first seeds: 12 seeds on each teaching episode, each reward found in the stored histogram
 PASS  truth-blind policies keep their counts and steps under id renaming and row shuffling: 5 policies x 4 teaching episodes x 3 seeds
 16/16 checks passed
@@ -112,15 +112,15 @@ PASS  truth-blind policies keep their counts and steps under id renaming and row
 `make docker-check` -> **exit 0**
 
 ```
-1241 passed, 6 skipped in 340.35s (0:05:40)
-65 passed in 0.50s
+1241 passed, 6 skipped in 345.67s (0:05:45)
+65 passed in 0.51s
 16/16 checks passed
 ...
   "peak_resident_bytes": {
-    "evaluator": 43474944,
-    "largest_policy_process": 27979776
+    "evaluator": 43597824,
+    "largest_policy_process": 28004352
   },
-  "slowest_solver_episode_seconds": 0.1245,
+  "slowest_solver_episode_seconds": 0.1143,
   "most_steps_to_read_everything": 52,
   "within_envelope": true,
   "episodes": {
@@ -138,5 +138,5 @@ DEPRECATED: The legacy builder is deprecated and will be removed in a future rel
 
 ```
 .                                                                        [100%]
-1 passed, 11 deselected in 0.43s
+1 passed, 11 deselected in 0.36s
 ```
