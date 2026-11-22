@@ -308,18 +308,21 @@ class AuditEnv:
         return self._emit(state, action, self._closed_observation(state))
 
     def _finish(self, state: _EpisodeState, *, findings: tuple[Finding, ...], cause: str, truncated: bool) -> None:
-        public = state.loaded.public
         state.findings = findings
+        self._match(state)
+        state.terminated, state.truncated, state.termination_cause = not truncated, truncated, cause
+        state.elapsed_s = self._clock() - state.started_at
+
+    @staticmethod
+    def _match(state: _EpisodeState) -> None:
         state.result = result = match(
-            findings,
+            state.findings,
             state.loaded.truth,
             tolerance=state.loaded.tolerance(),
-            universe=public.accessible_ids(),  # the one universe: score_episode and validate_truth use it too
+            universe=state.loaded.public.accessible_ids(),  # the one universe: score_episode and validate_truth too
             observed=frozenset(state.observed) if state.evidence_rule == "observed" else None,
         )
         state.score = Score.from_counts(result.tp, result.fp, result.fn, state.inspection_steps)
-        state.terminated, state.truncated, state.termination_cause = not truncated, truncated, cause
-        state.elapsed_s = self._clock() - state.started_at
 
     # ------------------------------------------------------- what the policy sees
 
@@ -375,6 +378,23 @@ class AuditEnv:
     def evaluator_id_mapping(self) -> dict[str, str]:
         """Old id -> new id for a perturbed episode. Evaluator-only."""
         return dict(self._require_state().id_mapping)
+
+    def evaluator_attach_truth(self, loaded: LoadedEpisode) -> None:
+        """Give an ended episode its private half, then score the recorded findings against it. Evaluator-only.
+
+        For an environment built from the public half alone (closed mode): truth reaches this object only
+        after the policy can no longer act. A malformed submission keeps its -1, which needs no truth.
+        """
+        state = self._require_state()
+        if not state.over:
+            raise LifecycleError("truth can be attached only after the episode has ended")
+        if state.id_mapping:
+            raise LifecycleError("truth cannot be attached to a perturbed episode")
+        if loaded.public.manifest["episode_id"] != state.loaded.public.manifest["episode_id"]:
+            raise LifecycleError("the attached truth belongs to a different episode")
+        state.loaded = loaded
+        if state.result is not None:
+            self._match(state)
 
     def evaluator_report(self) -> dict[str, Any]:
         """Scoring detail for the evaluator. Never pass this to a policy during a run."""

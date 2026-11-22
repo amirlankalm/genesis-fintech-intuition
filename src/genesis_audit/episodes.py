@@ -9,6 +9,8 @@ Two layouts:
   strict=True keeps every check; strict=False keeps parsing and formats but turns the contract,
   size-envelope, tolerance and truth-versus-rules checks into evaluator-log warnings, so a
   hand-built fixture loads and is scored against its own truth.
+* load_public_dir: the public half of that flat directory only (empty truth). The closed-mode jury
+  environment is built from it, so the object a policy talks to never holds truth or provenance.
 
 Nothing here ever reaches a policy.
 """
@@ -99,9 +101,7 @@ class DirectorySource:
         return LoadedEpisode(public=public, truth=truth, provenance=provenance)
 
 
-def load_episode_dir(path: str | Path, *, strict: bool) -> LoadedEpisode:
-    """Load one episode from a single flat directory (the jury's layout). See the module docstring."""
-    directory = Path(path)
+def _list_episode_dir(directory: Path) -> list[str]:
     try:
         present = sorted(entry.name for entry in directory.iterdir())
     except OSError as exc:
@@ -109,9 +109,37 @@ def load_episode_dir(path: str | Path, *, strict: bool) -> LoadedEpisode:
     ignored = [name for name in present if name not in EPISODE_FILES]
     if ignored:
         LOG.info("episode directory %s: ignoring files %s", directory, ignored)
-    checks = Checks(strict=strict)
+    return present
+
+
+def _public_half(directory: Path, checks: Checks) -> PublicEpisode:
     public = _published_policy(parse_public(read_texts(directory, PUBLIC_FILES), checks))
     _judge(checks, "contract", validate_contract, public)
+    return public
+
+
+def load_public_dir(path: str | Path, *, strict: bool) -> LoadedEpisode:
+    """Only the six public files of a flat episode directory, with empty truth and no provenance.
+
+    This is what the environment a policy talks to needs in closed mode. truth.json and provenance.json are
+    never opened here; it only checks that truth.json is present, so a directory without it is still refused
+    up front. The jury reads the private half later with load_episode_dir, after the episode has ended.
+    """
+    directory = Path(path)
+    present = _list_episode_dir(directory)
+    if TRUTH_FILE not in present:
+        raise EpisodeError(f"the episode directory has no {TRUTH_FILE}")
+    checks = Checks(strict=strict)
+    public = _public_half(directory, checks)
+    return LoadedEpisode(public=public, truth=(), provenance=None, warnings=tuple(checks.warnings))
+
+
+def load_episode_dir(path: str | Path, *, strict: bool) -> LoadedEpisode:
+    """Load one episode from a single flat directory (the jury's layout). See the module docstring."""
+    directory = Path(path)
+    present = _list_episode_dir(directory)
+    checks = Checks(strict=strict)
+    public = _public_half(directory, checks)
     truth = read_truth(directory / TRUTH_FILE, strict=strict)
     _judge(checks, "truth against the public records", validate_truth, truth, public)
     provenance = read_provenance(directory / PROVENANCE_FILE) if PROVENANCE_FILE in present else None

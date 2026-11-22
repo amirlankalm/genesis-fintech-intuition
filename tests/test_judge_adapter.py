@@ -355,9 +355,9 @@ def test_c18_time_limit_counts_from_the_top_of_reset_with_an_injected_clock(
     clock = FakeClock()
     real_load = judge_adapter._load
 
-    def slow_load(directory: object) -> Any:
+    def slow_load(directory: object, **options: Any) -> Any:
         clock.now += 30.0  # loading spends half the budget, and it counts
-        return real_load(directory)
+        return real_load(directory, **options)
 
     monkeypatch.setattr(judge_adapter, "_load", slow_load)
     env = judge_adapter.JudgeEnv(clock=clock)

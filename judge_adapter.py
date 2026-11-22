@@ -12,7 +12,9 @@ scoring is `genesis_audit.scoring.score_submission`. The adapter translates only
 "remaining_steps"}, and the reward and info into what the official closed mode allows (0.0 and {}).
 
 Everything here belongs to the jury process. `score_episode`, `oracle_findings` and `JudgeEnv.evaluator_report`
-read the closed truth and must never be reachable by a policy. The evaluator log is the Python logger
+read the closed truth and must never be reachable by a policy. In closed mode the environment a policy talks to is
+built from the six public files alone: truth.json and provenance.json are read only by `score_episode`,
+`oracle_findings` and `evaluator_report`, which refuses to run before the episode has ended. The evaluator log is the Python logger
 "judge_adapter" (and "genesis_audit.loader" for the episode loader); configure logging to keep it.
 
 Reference: docs/ADAPTER.md.
@@ -33,7 +35,7 @@ from typing import Any
 sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
 
 from genesis_audit import ENV_VERSION, env, oracle, paths, shipped
-from genesis_audit.episodes import LoadedEpisode, load_episode_dir
+from genesis_audit.episodes import LoadedEpisode, load_episode_dir, load_public_dir
 from genesis_audit.errors import POLICY_ERRORS, EpisodeError, LifecycleError
 from genesis_audit.scoring import Score, score_submission
 from genesis_audit.store import is_int
@@ -120,6 +122,8 @@ def generate_episode(seed: int, config: dict, output_dir: str) -> None:
     directory.mkdir(parents=True, exist_ok=True)
     for name, text in {**public_files, **private_files}.items():
         (directory / name).write_bytes(text.encode("utf-8"))
+    for name in private_files:  # the official layout keeps truth here; only the jury's own uid may read it
+        os.chmod(directory / name, 0o600)
     LOG.info(
         "generate_episode %s",
         json.dumps({"adapter_version": ADAPTER_VERSION, "env_version": ENV_VERSION, "seed": seed,
@@ -131,12 +135,16 @@ def generate_episode(seed: int, config: dict, output_dir: str) -> None:
 # ------------------------------------------------------------------------------------------------ loading
 
 
-def _load(episode_dir: object) -> LoadedEpisode:
-    """One flat episode directory, loaded as the jury path does (formats enforced, consistency warned)."""
+def _load(episode_dir: object, *, public_only: bool = False) -> LoadedEpisode:
+    """One flat episode directory, loaded as the jury path does (formats enforced, consistency warned).
+
+    public_only: the six public files and empty truth (load_public_dir), for the closed-mode environment.
+    """
     if not isinstance(episode_dir, str | os.PathLike):
         raise AdapterError(f"episode_dir must be a path string; got {type(episode_dir).__name__}")
+    loader = load_public_dir if public_only else load_episode_dir
     try:
-        loaded = load_episode_dir(Path(os.fspath(episode_dir)), strict=False)
+        loaded = loader(Path(os.fspath(episode_dir)), strict=False)
     except EpisodeError as exc:
         raise AdapterError(f"episode directory refused: {exc}") from exc
     if loaded.warnings:
@@ -203,13 +211,18 @@ def _public_error(error: Mapping[str, str]) -> dict[str, str]:
 
 
 class JudgeEnv:
-    """The object make_env() returns. One episode at a time; every reset starts a fresh core environment."""
+    """The object make_env() returns. One episode at a time; every reset starts a fresh core environment.
+
+    In closed mode the core environment holds only the public half of the episode. The private half is read from
+    episode_dir by evaluator_report, after the episode has ended, and never while the policy can still act.
+    """
 
     def __init__(self, *, clock: Callable[[], float] = time.monotonic) -> None:
         self._clock = clock
         self._core: env.AuditEnv | None = None
         self._closed = True
         self._jury: dict[str, Any] = {}
+        self._private_dir: object | None = None  # closed mode: where truth is read once the episode is over
 
     def reset(self, seed: int | None = None, config: dict | None = None) -> tuple[dict, dict]:
         """config = {"mode": "closed"|"train", "episode_dir": str, "team_config": {...}}.
@@ -218,7 +231,7 @@ class JudgeEnv:
         generates from (seed, team_config). The 60 s window opens at the top of this call.
         """
         started_at = self._clock()
-        self._core = None  # a refused reset leaves no live episode
+        self._core, self._private_dir = None, None  # a refused reset leaves no live episode
         config = {} if config is None else config
         if not isinstance(config, Mapping):
             raise AdapterError("config must be an object with keys mode, episode_dir, team_config")
@@ -232,7 +245,7 @@ class JudgeEnv:
         if mode == "closed" and episode_dir is None:
             raise AdapterError("closed mode needs config.episode_dir; it never generates an episode")
         if episode_dir is not None:
-            loaded = _load(episode_dir)
+            loaded = _load(episode_dir, public_only=mode == "closed")  # train shows the true reward: needs truth
         else:
             public, truth, provenance = _generate(seed, config.get("team_config"))
             loaded = LoadedEpisode(public=public, truth=truth, provenance=provenance)
@@ -242,6 +255,7 @@ class JudgeEnv:
         observation, info = core.reset(core_seed, {"episode": INTERNAL_EPISODE, "mode": core_mode},
                                        started_at=started_at)  # fmt: skip
         self._core, self._closed = core, mode == "closed"
+        self._private_dir = episode_dir if self._closed else None
         self._jury = {"adapter_version": ADAPTER_VERSION, "env_version": ENV_VERSION, "seed": seed,
                       "config": config, "episode_id": observation["manifest"]["episode_id"]}  # fmt: skip
         LOG.info("reset %s", json.dumps(self._jury, default=repr, sort_keys=True))
@@ -278,7 +292,7 @@ class JudgeEnv:
 
     def _ending(self) -> tuple[Any, dict[str, str] | None]:
         """The episode ended on this step without a tool result: a submit, or the time limit."""
-        report = self.evaluator_report()
+        report = self._require().evaluator_report()  # the cause needs no truth; scoring waits for the jury
         cause = report["termination_cause"]
         LOG.info("episode %s over: %s after %d inspection steps", report["episode_id"], cause,
                  report["inspection_steps"])  # fmt: skip
@@ -291,8 +305,13 @@ class JudgeEnv:
 
     def evaluator_report(self) -> dict[str, Any]:
         """Jury only, after the episode has ended: the core report (score, counts, matched pairs, cause, steps)
-        plus adapter version, seed and the config reset was given."""
-        report = self._require().evaluator_report()
+        plus adapter version, seed and the config reset was given. In closed mode this is where truth.json is read
+        (once) and the recorded findings are scored, the same scoring score_episode applies."""
+        core = self._require()
+        if self._private_dir is not None and core.over:
+            core.evaluator_attach_truth(_load(self._private_dir))
+            self._private_dir = None
+        report = core.evaluator_report()
         return {**report, "judge": dict(self._jury)}
 
     def _require(self) -> env.AuditEnv:
